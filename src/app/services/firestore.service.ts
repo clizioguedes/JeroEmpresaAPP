@@ -27,7 +27,9 @@ export class FirestoreService {
   faltaDoc:AngularFirestoreDocument < Falta > ; 
   falta:Observable < Falta > ; 
 
-  constructor( private afs:AngularFirestore ) { }
+  constructor( private afs:AngularFirestore ) {
+    this.afs.firestore.settings({ timestampsInSnapshots: true });
+  }
 
   
 // --- FUNCIONÁRIOS ---
