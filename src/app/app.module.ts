@@ -27,7 +27,7 @@ import { FuncionarioComponent } from './componentes/funcionario/funcionario.comp
 import { EditarFuncionarioComponent } from './componentes/editar-funcionario/editar-funcionario.component';
 // Componentes do Módulo de Ordem de Produção
 import { EditarOrdemDeProducaoComponent } from './componentes/editar-ordem-de-producao/editar-ordem-de-producao.component';
-import { ListarOrdemDeProducaoComponent } from './componentes/listar-ordem-de-producao/listar-ordem-de-producao.component';
+import { ListarOrdensDeProducaoComponent } from './componentes/listar-ordens-de-producao/listar-ordens-de-producao.component';
 import { AddOrdemDeProducaoComponent } from './componentes/add-ordem-de-producao/add-ordem-de-producao.component';
 import { OrdemDeProducaoComponent } from './componentes/ordem-de-producao/ordem-de-producao.component';
 // Angular Material
@@ -36,12 +36,13 @@ import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, M
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
     MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
 
+
 // Rotas
 const routes: Routes = [
   { path: 'dashboard',                        component: DashboardComponent },
   { path: 'ordem-de-producao/:id',            component: OrdemDeProducaoComponent },
   { path: 'add-ordem-de-producao',            component: AddOrdemDeProducaoComponent },
-  { path: 'listar-ordem-de-producao',         component: ListarOrdemDeProducaoComponent },
+  { path: 'listar-ordens-de-producao',        component: ListarOrdensDeProducaoComponent },
   { path: 'edit-ordem-de-producao/:id',       component: EditarOrdemDeProducaoComponent },
 
   { path: 'funcionario/:id',                  component: FuncionarioComponent },
@@ -55,6 +56,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
+    MaterialNavComponent,
     // FUNCIONARIO
     FuncionarioComponent,
     AddFuncionarioComponent,
@@ -63,10 +66,8 @@ const routes: Routes = [
     // ORDEM DE PRODUÇÃO
     OrdemDeProducaoComponent,
     AddOrdemDeProducaoComponent,
-    ListarOrdemDeProducaoComponent,
+    ListarOrdensDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
-    DashboardComponent,
-    MaterialNavComponent,
   ],
   imports: [
     BrowserModule,
