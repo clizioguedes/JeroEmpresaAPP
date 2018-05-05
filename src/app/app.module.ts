@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // APP
 import { AppComponent } from './app.component';
+// Serviços
+import { FirestoreService } from './services/firestore.service';
 // Modulos Variados
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
