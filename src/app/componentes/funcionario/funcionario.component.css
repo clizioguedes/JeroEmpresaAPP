@@ -1,0 +1,124 @@
+mat-card {
+    margin-top: 5px;
+}
+
+body {
+    background: #292929;
+    color: #333;
+    font-family: "Lato", sans-serif;
+    font-size: 82%;
+}
+
+h2 {
+    color: #000;
+    float: left;
+    font-size: 200%;
+    margin: 0 0 20px;
+    max-width: 80%;
+    padding: 0 0 5px;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    padding: 15px 0 3px;
+}
+
+h3 {
+    border-bottom: 1px solid #eee;
+    color: #000;
+    font-size: 140%;
+    font-weight: 400;
+    margin: 0;
+    padding: 15px 0;
+}
+
+h4 {
+    clear: both;
+    color: #555;
+    font-size: 130%;
+    margin: 20px 0 5px;
+}
+
+h5 {
+    color: #777;
+    font-size: 110%;
+    margin: 10px 0 0;
+}
+
+h6 {
+    color: #999;
+    font-size: 100%;
+    margin: 5px 0 0;
+}
+
+
+/* Tables */
+
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    overflow: auto;
+    width: 100%;
+}
+
+table table.info {
+    margin: 0;
+}
+
+table.info {
+    border: 0 none;
+    display: table;
+    margin: 0 0 20px;
+}
+
+table.info td {
+    background: transparent;
+    border: 0 none;
+    box-shadow: 0 0 0;
+    padding: 7px;
+}
+
+table.info td:first-child {
+    width: 10%;
+}
+
+table.info.large td:first-child {
+    width: 25%;
+}
+
+table.info td:nth-child(odd) {
+    font-weight: 800;
+    text-align: right;
+}
+
+table.info tr:nth-child(even) td {
+    background: #f6f6f6;
+}
+
+
+/* Boxes */
+
+.box {
+    clear: both;
+    margin: 0 0 30px !important;
+    width: 100%;
+}
+
+.box>div {
+    overflow: auto;
+    padding: 18px 0 18px 15px;
+}
+
+.box h5 {
+    font-size: 120%;
+}
+
+.box h6 {
+    font-size: 110%;
+}
+
+.box h7 {
+    font-size: 100%;
+}

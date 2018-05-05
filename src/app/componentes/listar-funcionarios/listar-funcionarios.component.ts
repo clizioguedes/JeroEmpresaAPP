@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../services/firestore.service';
+import { Observable } from 'rxjs/Observable';
+import { Funcionario } from '../../interfaces/Funcionario';
 
 @Component({
   selector: 'app-listar-funcionarios',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarFuncionariosComponent implements OnInit {
 
-  constructor() { }
+  funcionarios: Funcionario[];
 
+  constructor(
+    private funcionarioService: FirestoreService ) {
+   }
+  
   ngOnInit() {
+    this.funcionarioService.getFuncionarios().subscribe( funcionarios => {
+      this.funcionarios = funcionarios;
+    });
   }
 
 }
