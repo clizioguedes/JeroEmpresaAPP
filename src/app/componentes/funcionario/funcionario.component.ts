@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../services/firestore.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Funcionario } from '../../interfaces/Funcionario';
+import { getLocaleDateFormat } from '@angular/common';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-funcionario',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FuncionarioComponent implements OnInit {
 
-  constructor() { }
+  id: any;
+  funcionario: any;
 
-  ngOnInit() {
-  }
+  constructor(
+    private funcionarioService: FirestoreService,
+    private router: Router,
+    private route: ActivatedRoute) { 
+      this.id = this.route.snapshot.params['id'];
+      this.funcionarioService.getFuncionario(this.id).subscribe(funcionario => {
+        this.funcionario = funcionario;
+      });
+     }
 
+  ngOnInit() {  }
 }

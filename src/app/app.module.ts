@@ -37,6 +37,7 @@ import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, M
     MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
 
 
+
 // Rotas
 const routes: Routes = [
   { path: 'dashboard',                        component: DashboardComponent },
@@ -77,7 +78,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFirestoreModule.enablePersistence(),
     NgxDatatableModule,
     FlexLayoutModule,
     NgxMaskModule.forRoot(),
