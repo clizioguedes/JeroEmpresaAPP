@@ -13,3 +13,4 @@ export class DashboardComponent {
     { title: 'Card 4', cols: 1, rows: 1 }
   ];
 }
+  
