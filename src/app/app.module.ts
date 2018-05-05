@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // APP
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // Serviços
 import { FirestoreService } from './services/firestore.service';
 // Modulos Variados
@@ -31,9 +32,10 @@ import { OrdemDeProducaoComponent } from './componentes/ordem-de-producao/ordem-
 import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
   MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule,
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
-    MatProgressBarModule, MatTabsModule, MatCardModule } from '@angular/material';
+    MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
 // Rotas
 const routes: Routes = [
+  { path: 'dashboard',                        component: DashboardComponent },
   { path: 'ordem-de-producao/:id',            component: OrdemDeProducaoComponent },
   { path: 'add-ordem-de-producao',            component: AddOrdemDeProducaoComponent },
   { path: 'listar-ordem-de-producao',         component: ListarOrdemDeProducaoComponent },
@@ -44,7 +46,7 @@ const routes: Routes = [
   { path: 'listar-funcionarios',              component: ListarFuncionariosComponent },
   { path: 'editar-funcionario/:id',           component: EditarFuncionarioComponent },
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -60,6 +62,7 @@ const routes: Routes = [
     AddOrdemDeProducaoComponent,
     ListarOrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,7 @@ const routes: Routes = [
     MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
       MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule, MatListModule, 
         MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatProgressBarModule,
-          MatTabsModule, MatCardModule
+          MatTabsModule, MatCardModule, MatGridListModule
   ],
   providers: [ FirestoreService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' } ],
   bootstrap: [AppComponent]
