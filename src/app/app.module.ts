@@ -14,6 +14,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
+import { MaterialNavComponent } from './material-nav/material-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 // Angularfire2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -33,6 +35,7 @@ import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, M
   MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule,
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
     MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
+
 // Rotas
 const routes: Routes = [
   { path: 'dashboard',                        component: DashboardComponent },
@@ -63,6 +66,7 @@ const routes: Routes = [
     ListarOrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
     DashboardComponent,
+    MaterialNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,7 @@ const routes: Routes = [
     MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
       MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule, MatListModule, 
         MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatProgressBarModule,
-          MatTabsModule, MatCardModule, MatGridListModule
+          MatTabsModule, MatCardModule, MatGridListModule, LayoutModule
   ],
   providers: [ FirestoreService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' } ],
   bootstrap: [AppComponent]
