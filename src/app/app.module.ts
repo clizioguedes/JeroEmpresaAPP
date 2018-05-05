@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // APP
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // Serviços
 import { FirestoreService } from './services/firestore.service';
 // Modulos Variados
@@ -27,19 +28,25 @@ import { EditarOrdemDeProducaoComponent } from './componentes/editar-ordem-de-pr
 import { ListarOrdemDeProducaoComponent } from './componentes/listar-ordem-de-producao/listar-ordem-de-producao.component';
 import { AddOrdemDeProducaoComponent } from './componentes/add-ordem-de-producao/add-ordem-de-producao.component';
 import { OrdemDeProducaoComponent } from './componentes/ordem-de-producao/ordem-de-producao.component';
+// Angular Material
+import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
+  MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule,
+    MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
+    MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
 // Rotas
 const routes: Routes = [
+  { path: 'dashboard',                        component: DashboardComponent },
   { path: 'ordem-de-producao/:id',            component: OrdemDeProducaoComponent },
   { path: 'add-ordem-de-producao',            component: AddOrdemDeProducaoComponent },
-  { path: 'listar-ordem-de-producao',          component: ListarOrdemDeProducaoComponent },
+  { path: 'listar-ordem-de-producao',         component: ListarOrdemDeProducaoComponent },
   { path: 'edit-ordem-de-producao/:id',       component: EditarOrdemDeProducaoComponent },
 
-  { path: 'funcionario/:id',        component: FuncionarioComponent },
-  { path: 'add-funcionario',        component: AddFuncionarioComponent },
-  { path: 'listar-funcionarios',      component: ListarFuncionariosComponent },
-  { path: 'editar-funcionario/:id',   component: EditarFuncionarioComponent },
+  { path: 'funcionario/:id',                  component: FuncionarioComponent },
+  { path: 'add-funcionario',                  component: AddFuncionarioComponent },
+  { path: 'listar-funcionarios',              component: ListarFuncionariosComponent },
+  { path: 'editar-funcionario/:id',           component: EditarFuncionarioComponent },
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -55,6 +62,7 @@ const routes: Routes = [
     AddOrdemDeProducaoComponent,
     ListarOrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,8 +73,15 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFirestoreModule.enablePersistence(),
+    NgxDatatableModule,
+    FlexLayoutModule,
+    NgxMaskModule.forRoot(),
+    MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
+      MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule, MatListModule, 
+        MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatProgressBarModule,
+          MatTabsModule, MatCardModule, MatGridListModule
   ],
-  providers: [],
+  providers: [ FirestoreService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
