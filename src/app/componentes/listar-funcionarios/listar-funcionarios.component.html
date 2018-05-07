@@ -1,4 +1,4 @@
-<ngx-datatable class="material" [rowHeight]="50" [headerHeight]="50" [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit]="15" [rows]="funcionarios">
+<ngx-datatable class="material" [rowHeight]="50" [headerHeight]="50" [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit]="25" [rows]="funcionarios">
 
     <ngx-datatable-column name="MATRICULA">
         <ng-template ngx-datatable-cell-template let-value="value">
@@ -21,11 +21,12 @@
     <ngx-datatable-column name="ID">
         <ng-template ngx-datatable-cell-template let-value="value">
             <button mat-icon-button [routerLink]="['/funcionario/'+value]">
-                          <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
-                      </button>
-            <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
-                          <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
-                      </button>
+                <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
+            </button>
+            <button mat-icon-button
+                [routerLink]="['/editar-funcionario/'+value]">
+                <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
+            </button>
         </ng-template>
     </ngx-datatable-column>
 

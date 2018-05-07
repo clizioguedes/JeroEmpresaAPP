@@ -1,4 +1,5 @@
 <mat-card>
+        <mat-card-title>{{funcionario?.nome}}</mat-card-title>
     <mat-card-content>
         <div class="box">
             <h3>Dados Gerais</h3>
@@ -41,11 +42,13 @@
                         </tr>
                         <tr>
                             <td>Titulo Eleitor</td>
-                            <td colspan="5"> {{funcionario?.tituloEleitor}} </td>
+                            <td colspan="5"> {{funcionario?.tituloEleitor}}
+                            </td>
                         </tr>
                         <tr>
                             <td>Zona Eleitoral</td>
-                            <td colspan="3"> {{funcionario?.zonaEleitoral}} </td>
+                            <td colspan="3"> {{funcionario?.zonaEleitoral}}
+                            </td>
                             <td>Secção Eleitoral</td>
                             <td> {{funcionario?.seccaoEleitoral}} </td>
                         </tr>
@@ -119,6 +122,18 @@
                             <td colspan="5"> {{funcionario?.operacao}} </td>
                         </tr>
                     </table>
+                    <mat-card-actions class="actions">
+                            <button mat-button color="accent">
+                                <mat-icon aria-label="Example icon-button with a heart
+                                    icon">mode_edit</mat-icon>
+                                Editar
+                            </button>
+                            <button mat-button color="warn">
+                                <mat-icon aria-label="Example icon-button with a heart
+                                    icon">mode_edit</mat-icon>
+                                Accent
+                            </button>
+                    </mat-card-actions>
                 </div>
             </div>
         </div>
