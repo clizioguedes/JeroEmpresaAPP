@@ -77,7 +77,7 @@ export class FirestoreService {
   }
 
   deleteDependente(dependente:Dependente) {
-    this.dependenteDoc = this.funcionarioDoc.collection < Dependente > ('dependentes').doc(`$ {dependente.id}`); 
+    this.dependenteDoc = this.funcionarioDoc.collection < Dependente > ('dependentes').doc(`${dependente.id}`); 
     this.dependenteDoc.delete(); 
   }
 

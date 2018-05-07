@@ -1,0 +1,22 @@
+<h3>Dependentes</h3>
+<div class="box">
+    <div class="row">
+        <table class="info">
+            <tbody>
+                <tr *ngFor="let dependente of dependentes">
+                    <td>Nome</td>
+                    <td>{{dependente.nome}}</td>
+                    <td>Nascimento</td>
+                    <td>{{dependente.nascimento}}</td>
+                    <td>CPF</td>
+                    <td>{{dependente.cpf}}</td>
+                    <td>Tipo</td>
+                    <td>{{dependente.tipo}}</td>
+                    <td>
+                        <button mat-mini-fab (click)="deleteDependente($event, dependente)" color="warn"><mat-icon>delete</mat-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

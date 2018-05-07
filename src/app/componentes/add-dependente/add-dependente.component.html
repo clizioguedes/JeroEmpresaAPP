@@ -1,0 +1,28 @@
+<h3>Cadastro</h3>
+<form>
+    <fieldset>
+        <mat-form-field>
+            <input matInput placeholder="Nome Completo" [(ngModel)]="dependente.nome" name="nome">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerNascimento" disabled="true" [(ngModel)]="dependente.nascimento" name="nascimento" placeholder="Data de Nascimento">
+            <mat-datepicker-toggle matSuffix [for]="pickerNascimento"></mat-datepicker-toggle>
+            <mat-datepicker disabled="false" touchUi="true" #pickerNascimento></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Tipo" [(ngModel)]="dependente.tipo" name="tipo">
+                <mat-option *ngFor="let tipo of tiposDep" [value]="tipo.value">
+                    {{tipo.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="dependente.cpf" name="cpf">
+        </mat-form-field>
+
+    </fieldset>
+    <button mat-mini-fab (click)="addDependente()" color="primary"><mat-icon>add</mat-icon></button>
+</form>

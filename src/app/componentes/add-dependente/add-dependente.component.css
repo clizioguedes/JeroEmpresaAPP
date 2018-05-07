@@ -1,0 +1,5 @@
+@import '../funcionario/funcionario.component.css';
+mat-form-field {
+    flex-direction: column;
+    display: flex;
+}

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 // APP
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,13 +18,15 @@ import { MaterialNavComponent } from './material-nav/material-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 // Angularfire2
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 // Componentes do Módulo de RH
 import { ListarFuncionariosComponent } from './componentes/listar-funcionarios/listar-funcionarios.component';
 import { AddFuncionarioComponent } from './componentes/add-funcionario/add-funcionario.component';
 import { FuncionarioComponent } from './componentes/funcionario/funcionario.component';
 import { EditarFuncionarioComponent } from './componentes/editar-funcionario/editar-funcionario.component';
+import { ListarDependentesComponent } from './componentes/listar-dependentes/listar-dependentes.component';
+import { AddDependenteComponent } from './componentes/add-dependente/add-dependente.component';
 // Componentes do Módulo de Ordem de Produção
 import { EditarOrdemDeProducaoComponent } from './componentes/editar-ordem-de-producao/editar-ordem-de-producao.component';
 import { ListarOrdensDeProducaoComponent } from './componentes/listar-ordens-de-producao/listar-ordens-de-producao.component';
@@ -36,22 +38,21 @@ import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, M
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
     MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
 
-
-
 // Rotas
 const routes: Routes = [
-  { path: 'dashboard',                        component: DashboardComponent },
-  { path: 'ordem-de-producao/:id',            component: OrdemDeProducaoComponent },
-  { path: 'add-ordem-de-producao',            component: AddOrdemDeProducaoComponent },
-  { path: 'listar-ordens-de-producao',        component: ListarOrdensDeProducaoComponent },
-  { path: 'edit-ordem-de-producao/:id',       component: EditarOrdemDeProducaoComponent },
-
-  { path: 'funcionario/:id',                  component: FuncionarioComponent },
-  { path: 'add-funcionario',                  component: AddFuncionarioComponent },
-  { path: 'listar-funcionarios',              component: ListarFuncionariosComponent },
-  { path: 'editar-funcionario/:id',           component: EditarFuncionarioComponent },
-
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+  { path: 'dashboard',                  component: DashboardComponent },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  // Funcionários
+  { path: 'dashboard',                  component: DashboardComponent },
+  { path: 'ordem-de-producao/:id',      component: OrdemDeProducaoComponent },
+  { path: 'add-ordem-de-producao',      component: AddOrdemDeProducaoComponent },
+  { path: 'listar-ordens-de-producao',  component: ListarOrdensDeProducaoComponent },
+  { path: 'edit-ordem-de-producao/:id', component: EditarOrdemDeProducaoComponent },
+  // Ordens de Produção
+  { path: 'funcionario/:id',            component: FuncionarioComponent },
+  { path: 'add-funcionario',            component: AddFuncionarioComponent },
+  { path: 'listar-funcionarios',        component: ListarFuncionariosComponent },
+  { path: 'editar-funcionario/:id',     component: EditarFuncionarioComponent },
 ];
 
 @NgModule({
@@ -59,17 +60,20 @@ const routes: Routes = [
     AppComponent,
     DashboardComponent,
     MaterialNavComponent,
-    // FUNCIONARIO
+    // Funcionários
     FuncionarioComponent,
     AddFuncionarioComponent,
     ListarFuncionariosComponent,
     EditarFuncionarioComponent,
-    // ORDEM DE PRODUÇÃO
+    AddDependenteComponent,
+    ListarDependentesComponent,
+    // Ordens de Produção
     OrdemDeProducaoComponent,
     AddOrdemDeProducaoComponent,
     ListarOrdensDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -86,7 +90,14 @@ const routes: Routes = [
         MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatProgressBarModule,
           MatTabsModule, MatCardModule, MatGridListModule, LayoutModule
   ],
+
   providers: [ FirestoreService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' } ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor( @Optional() @SkipSelf() parentModule: AppModule,
+                 private afs: AngularFirestore ) {
+      afs.firestore.settings({timestampsInSnapshots: true});
+    }
+ }

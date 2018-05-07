@@ -2,3 +2,8 @@ mat-list-item mat-icon {
     font-size: 10pt;
     margin-top: 12px;
 }
+
+.container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
