@@ -61,7 +61,7 @@ table.info td {
     background: transparent;
     border: 0 none;
     box-shadow: 0 0 0;
-    padding: 7px;
+    padding: 9px;
 }
 
 table.info td:first-child {
@@ -69,7 +69,7 @@ table.info td:first-child {
 }
 
 table.info td:nth-child(odd) {
-    font-weight: 800;
+    font-weight: 700;
     text-align: right;
 }
 
@@ -82,8 +82,6 @@ table.info tr:nth-child(even) td {
 
 .box {
     clear: both;
-    margin: 0 0 0 !important;
-    width: 100%;
 }
 
 .box>div {
@@ -101,4 +99,8 @@ table.info tr:nth-child(even) td {
 
 .box h7 {
     font-size: 100%;
+}
+
+.actions {
+    text-align: center;
 }
