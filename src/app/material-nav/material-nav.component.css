@@ -1,0 +1,14 @@
+.sidenav-container {
+    height: 100%;
+    widows: 25%;
+}
+
+.sidenav {
+    width: 200px;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+}
+
+mat-icon {
+    font-size: 10pt;
+    margin-top: 12px;
+}

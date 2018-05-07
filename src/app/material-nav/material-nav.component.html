@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'" [mode]="(isHandset | async)!.matches ? 'over' : 'side'" [opened]="!(isHandset | async)!.matches">
+        <mat-toolbar color="primary">Menu</mat-toolbar>
+        <mat-nav-list>
+            <mat-list-item id="sidenav-title" routerLink="/home">
+                Jero Confecções
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/listar-funcionarios">
+                <mat-icon class="icon-sidenav">assignment_ind</mat-icon>
+                Listar Funcionarios
+            </mat-list-item>
+            <mat-list-item routerLink="/add-funcionario">
+                <mat-icon class="icon-sidenav">add</mat-icon>
+                Funcionario
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/listar-ordens-de-producao">
+                <mat-icon class="icon-sidenav">settings</mat-icon>
+                Ordens
+            </mat-list-item>
+            <mat-list-item routerLink="/add-ordem-de-producao">
+                <mat-icon class="icon-sidenav">add</mat-icon>
+                Ordem de Produção
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset | async)!.matches">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+            <span>Jero Confecções</span>
+        </mat-toolbar>
+    </mat-sidenav-content>
+</mat-sidenav-container>
