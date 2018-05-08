@@ -27,6 +27,8 @@ import { FuncionarioComponent } from './componentes/funcionario/funcionario.comp
 import { EditarFuncionarioComponent } from './componentes/editar-funcionario/editar-funcionario.component';
 import { ListarDependentesComponent } from './componentes/listar-dependentes/listar-dependentes.component';
 import { AddDependenteComponent } from './componentes/add-dependente/add-dependente.component';
+import { ListarFaltasComponent } from './componentes/listar-faltas/listar-faltas.component';
+import { AddFaltaComponent } from './componentes/add-falta/add-falta.component';
 // Componentes do Módulo de Ordem de Produção
 import { EditarOrdemDeProducaoComponent } from './componentes/editar-ordem-de-producao/editar-ordem-de-producao.component';
 import { ListarOrdensDeProducaoComponent } from './componentes/listar-ordens-de-producao/listar-ordens-de-producao.component';
@@ -37,6 +39,7 @@ import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, M
   MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule,
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
     MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
+
 
 // Rotas
 const routes: Routes = [
@@ -61,16 +64,18 @@ const routes: Routes = [
     DashboardComponent,
     MaterialNavComponent,
     // Funcionários
-    FuncionarioComponent,
-    AddFuncionarioComponent,
     ListarFuncionariosComponent,
+    AddFuncionarioComponent,
+    FuncionarioComponent,
     EditarFuncionarioComponent,
-    AddDependenteComponent,
     ListarDependentesComponent,
+    AddDependenteComponent,
+    ListarFaltasComponent,
+    AddFaltaComponent,
     // Ordens de Produção
-    OrdemDeProducaoComponent,
-    AddOrdemDeProducaoComponent,
     ListarOrdensDeProducaoComponent,
+    AddOrdemDeProducaoComponent,
+    OrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
   ],
 

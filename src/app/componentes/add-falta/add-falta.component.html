@@ -1,0 +1,21 @@
+<h3> Faltas </h3>
+<form>
+      <fieldset>
+          <mat-form-field>
+              <input matInput [matDatepicker]="pickerDataFalta" disabled="true" [(ngModel)]="falta.dataFalta" name="dataFalta" placeholder="Data da Ausência" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerDataFalta"></mat-datepicker-toggle>
+              <mat-datepicker disabled="false" touchUi="true" #pickerDataFalta></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput placeholder="Observação" [(ngModel)]="falta.observacao" name="observacao"></textarea>
+          </mat-form-field>
+          <label for="estadoCivil">Periodo:</label>
+          <br>
+          <mat-radio-group class="example-radio-group" [(ngModel)]="falta.periodo" name="periodo" required>
+              <mat-radio-button class="example-radio-button" *ngFor="let periodo of periodos" [value]="periodo">
+                  {{periodo}}
+              </mat-radio-button>
+          </mat-radio-group>
+      </fieldset>
+      <button mat-mini-fab (click)="addFalta()" color="primary"><mat-icon>add</mat-icon></button>
+</form>

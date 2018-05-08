@@ -1,0 +1,20 @@
+<h3>Ausências</h3>
+<div class="box">
+    <div class="row">
+        <table class="info">
+            <tbody>
+                <tr *ngFor="let falta of faltas">
+                    <td>Data da Falta</td>
+                    <td>{{falta?.dataFalta}}</td>
+                    <td>Observações</td>
+                    <td>{{falta.observacao}}</td>
+                    <td>Periodo</td>
+                    <td>{{falta.periodo}}</td>
+                    <td>
+                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn"><mat-icon>delete</mat-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

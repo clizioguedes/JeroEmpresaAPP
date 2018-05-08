@@ -114,3 +114,33 @@ table.info tr:nth-child(even) td {
     padding: 16px;
     overflow: hidden;
 }
+
+table.info .status {
+    display: inline-block;
+}
+
+span.status-ativo {
+    background: rgba(52, 152, 219, 0.2);
+    border-color: rgb(52, 152, 219);
+    border-left: 4px solid rgb(52, 152, 219);
+    border-radius: 1px 5px 5px 1px;
+    color: black;
+    display: block;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 5px 8px;
+    white-space: nowrap;
+}
+
+span.status-inativo {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: rgb(231, 76, 60);
+    border-left: 4px solid rgb(52, 152, 219);
+    border-radius: 1px 5px 5px 1px;
+    color: black;
+    display: block;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 5px 8px;
+    white-space: nowrap;
+}
