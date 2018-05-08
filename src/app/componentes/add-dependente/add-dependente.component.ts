@@ -40,7 +40,10 @@ export class AddDependenteComponent implements OnInit {
       this.dependente.nascimento = new Date(this.dependente.nascimento).toLocaleDateString();
       this.firestoreService.addDependente(this.dependente);
 
-      this.dependente = null;
+      this.dependente.nome = null;
+      this.dependente.nascimento = null;
+      this.dependente.cpf = null;
+      this.dependente.tipo = null;
       console.log('Dependente Cadastrado');
 
           // SnackBar
