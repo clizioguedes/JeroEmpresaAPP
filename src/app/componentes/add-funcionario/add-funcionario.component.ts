@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { FirestoreService } from '../../services/firestore.service';
-import { Funcionario } from '../../interfaces/Funcionario';
+import { FirestoreService } from '../../serviços/firestore.service';
+import { Funcionario } from '../../interfaces/funcionario';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 

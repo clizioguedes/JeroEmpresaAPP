@@ -48,8 +48,10 @@ export interface Dependente {
 
 export interface Falta {
     id?: string;
+    tipo?: string;
     nomeFuncionario?: string;
+    periodo: string;
     dataRegistro;
-    dataAusencia;
+    dataFalta;
     observacao: string;
 }

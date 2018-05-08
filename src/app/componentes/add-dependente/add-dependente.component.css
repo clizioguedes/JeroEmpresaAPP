@@ -3,3 +3,9 @@ mat-form-field {
     flex-direction: column;
     display: flex;
 }
+
+@media print { 
+  * {
+    display: none;
+  }
+}

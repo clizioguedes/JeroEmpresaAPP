@@ -1,3 +1,31 @@
-mat-icon {
-    margin-bottom: 30px;
+@import '../funcionario/funcionario.component.css';
+
+@media screen and (max-width:800px) {
+  .desktop-hidden {
+    display: initial;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@media print {
+    .button-row {
+      display: none;
+    }
+    margin: auto;
+}
+
+.datatable mat-icon {
+  margin-bottom: 30px;
+  margin-top: -5px;
+}
+
+.button-row {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
 }

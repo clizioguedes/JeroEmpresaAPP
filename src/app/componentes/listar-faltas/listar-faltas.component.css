@@ -3,6 +3,11 @@
 .btnPrinter {
   text-align: center;
 }
+  
+.button-row {
+  margin: 5px;
+  text-align: center;
+}
 
 @media print { 
   button {

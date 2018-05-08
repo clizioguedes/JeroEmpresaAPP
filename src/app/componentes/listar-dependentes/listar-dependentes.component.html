@@ -1,6 +1,6 @@
-<h3>Dependentes</h3>
 <div class="box">
-    <div class="row">
+    <div class="print">
+        <h3>Dependentes</h3>
         <table class="info">
             <tbody>
                 <tr *ngFor="let dependente of dependentes">
@@ -13,10 +13,17 @@
                     <td>Tipo</td>
                     <td>{{dependente.tipo}}</td>
                     <td>
-                        <button mat-mini-fab (click)="deleteDependente($event, dependente)" color="warn"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab
+                        (click)="deleteDependente($event, dependente)"
+                        color="warn"><mat-icon>delete</mat-icon></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="btnPrinter">
+        <button mat-raised-button color="accent" onclick="window.print()">
+        <mat-icon>print</mat-icon>
+        </button>
     </div>
 </div>

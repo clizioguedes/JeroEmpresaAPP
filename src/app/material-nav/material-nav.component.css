@@ -1,9 +1,18 @@
 mat-list-item mat-icon {
-    font-size: 10pt;
-    margin-top: 12px;
+  font-size: 10pt;
+  margin-top: 12px
 }
 
 .container {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+
+@media print {
+  mat-sidenav-container mat-sidenav {
+    display: none;
+  }
+  mat-sidenav-content mat-toolbar {
+    display: none;
+  }
 }

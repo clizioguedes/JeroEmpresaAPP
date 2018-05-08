@@ -33,7 +33,7 @@ export class FirestoreService {
 // --- FUNCIONÁRIOS ---
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios'); 
+    this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/); 
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
@@ -44,6 +44,34 @@ export class FirestoreService {
         }); 
       }); 
     return this.funcionarios; 
+  }
+
+  getFuncionariosInativos() {
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Inativo')); 
+    this.funcionarios = this.funcionariosCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Funcionario; 
+          data.id = a.payload.doc.id; 
+          return data; 
+        }); 
+      }); 
+    return this.funcionarios;
+  }
+
+  getFuncionariosAtivos() {
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo')); 
+    this.funcionarios = this.funcionariosCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Funcionario; 
+          data.id = a.payload.doc.id; 
+          return data; 
+        }); 
+      }); 
+    return this.funcionarios;
   }
 
   getFuncionario(funcionarioId) {
@@ -83,8 +111,36 @@ export class FirestoreService {
 
   // --- FALTAS ---
 
-  getFaltas() {
+  getAllFaltas() {
     this.faltasCol = this.funcionarioDoc.collection('faltas'); 
+    this.faltas = this.faltasCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Falta; 
+          data.id = a.payload.doc.id; 
+          return data; 
+        }); 
+      }); 
+    return this.faltas; 
+  }
+
+    getAtestados() {
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Atestado')); 
+    this.faltas = this.faltasCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Falta; 
+          data.id = a.payload.doc.id; 
+          return data; 
+        }); 
+      }); 
+    return this.faltas; 
+  }
+
+    getFaltas() {
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Falta')); 
     this.faltas = this.faltasCol
     .snapshotChanges()
       .map(changes =>  {

@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // Serviços
-import { FirestoreService } from './services/firestore.service';
+import { FirestoreService } from './serviços/firestore.service';
 // Modulos Variados
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
 import { MaterialNavComponent } from './material-nav/material-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import * as JSPdf from 'jspdf'; 
 // Angularfire2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
@@ -27,6 +28,8 @@ import { FuncionarioComponent } from './componentes/funcionario/funcionario.comp
 import { EditarFuncionarioComponent } from './componentes/editar-funcionario/editar-funcionario.component';
 import { ListarDependentesComponent } from './componentes/listar-dependentes/listar-dependentes.component';
 import { AddDependenteComponent } from './componentes/add-dependente/add-dependente.component';
+import { ListarFaltasComponent } from './componentes/listar-faltas/listar-faltas.component';
+import { AddFaltaComponent } from './componentes/add-falta/add-falta.component';
 // Componentes do Módulo de Ordem de Produção
 import { EditarOrdemDeProducaoComponent } from './componentes/editar-ordem-de-producao/editar-ordem-de-producao.component';
 import { ListarOrdensDeProducaoComponent } from './componentes/listar-ordens-de-producao/listar-ordens-de-producao.component';
@@ -36,7 +39,9 @@ import { OrdemDeProducaoComponent } from './componentes/ordem-de-producao/ordem-
 import { MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
   MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule,
     MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
-    MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule } from '@angular/material';
+    MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule,
+    MatButtonToggleModule } from '@angular/material'; 
+
 
 // Rotas
 const routes: Routes = [
@@ -61,16 +66,18 @@ const routes: Routes = [
     DashboardComponent,
     MaterialNavComponent,
     // Funcionários
-    FuncionarioComponent,
-    AddFuncionarioComponent,
     ListarFuncionariosComponent,
+    AddFuncionarioComponent,
+    FuncionarioComponent,
     EditarFuncionarioComponent,
-    AddDependenteComponent,
     ListarDependentesComponent,
+    AddDependenteComponent,
+    ListarFaltasComponent,
+    AddFaltaComponent,
     // Ordens de Produção
-    OrdemDeProducaoComponent,
-    AddOrdemDeProducaoComponent,
     ListarOrdensDeProducaoComponent,
+    AddOrdemDeProducaoComponent,
+    OrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
   ],
 
