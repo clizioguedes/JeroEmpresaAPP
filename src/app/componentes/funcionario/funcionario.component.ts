@@ -27,7 +27,8 @@ export class FuncionarioComponent implements OnInit {
     this.funcionarioService.getFuncionario(this.id).subscribe(funcionario => {
       this.funcionario = funcionario;
     });
-
   }
 
   ngOnInit() { }
+
+}
