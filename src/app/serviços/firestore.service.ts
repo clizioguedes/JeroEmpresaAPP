@@ -1,164 +1,167 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument }from 'angularfire2/firestore'; 
-import { Observable }from 'rxjs/Observable'; 
-import { Funcionario, Dependente, Falta }from '../interfaces/funcionario'; 
-import { ActivatedRoute }from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { Funcionario, Dependente, Falta } from '../interfaces/funcionario';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  funcionariosCol:AngularFirestoreCollection < Funcionario > ; 
-  funcionarios:Observable < Funcionario[] > ; 
+  funcionariosCol: AngularFirestoreCollection < Funcionario > ;
+  funcionarios: Observable < Funcionario[] > ;
 
-  funcionarioDoc:AngularFirestoreDocument < Funcionario > ; 
-  funcionario:Observable < Funcionario > ; 
+  funcionarioDoc: AngularFirestoreDocument < Funcionario > ;
+  funcionario: Observable < Funcionario > ;
 
-  dependentesCol:AngularFirestoreCollection < Dependente > ; 
-  dependentes:Observable < Dependente[] > ; 
+  dependentesCol: AngularFirestoreCollection < Dependente > ;
+  dependentes: Observable < Dependente[] > ;
 
-  dependenteDoc:AngularFirestoreDocument < Dependente > ; 
-  dependente:Observable < Dependente > ; 
+  dependenteDoc: AngularFirestoreDocument < Dependente > ;
+  dependente: Observable < Dependente > ;
 
-  faltasCol:AngularFirestoreCollection < Falta > ; 
-  faltas:Observable < Falta[] > ; 
+  faltasCol: AngularFirestoreCollection < Falta > ;
+  faltas: Observable < Falta[] > ;
 
-  faltaDoc:AngularFirestoreDocument < Falta > ; 
-  falta:Observable < Falta > ; 
+  faltaDoc: AngularFirestoreDocument < Falta > ;
+  falta: Observable < Falta > ;
 
-  constructor( private afs:AngularFirestore ) { }
+  constructor( private afs: AngularFirestore ) { }
 
-  
 // --- FUNCIONÁRIOS ---
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/); 
+    this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Funcionario; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
-    return this.funcionarios; 
+          const data = a.payload.doc.data()as Funcionario;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.funcionarios;
   }
 
   getFuncionariosInativos() {
-    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Inativo')); 
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Inativo'));
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Funcionario; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
+          const data = a.payload.doc.data()as Funcionario;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
     return this.funcionarios;
   }
 
   getFuncionariosAtivos() {
-    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo')); 
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo'));
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Funcionario; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
+          const data = a.payload.doc.data()as Funcionario;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
     return this.funcionarios;
   }
 
   getFuncionario(funcionarioId) {
-    this.funcionarioDoc = this.afs.doc('/funcionarios/' + funcionarioId); 
-    this.funcionario = this.funcionarioDoc.valueChanges(); 
-    return this.funcionario; 
+    this.funcionarioDoc = this.afs.doc('/funcionarios/' + funcionarioId);
+    this.funcionario = this.funcionarioDoc.valueChanges();
+    return this.funcionario;
   }
 
-  addFuncionario(funcionario:Funcionario) {
-    this.afs.collection < Funcionario > ('funcionarios').add(funcionario); 
+  addFuncionario(funcionario: Funcionario) {
+    this.afs.collection < Funcionario > ('funcionarios').add(funcionario);
   }
 
-// --- DEPENDENTES -- // 
+  updateFuncionario( funcionario: Funcionario ) {
+    this.funcionarioDoc.update(funcionario);
+  }
+
+// --- DEPENDENTES -- //
 
   getDependentes() {
-    this.dependentesCol = this.funcionarioDoc.collection('dependentes'); 
+    this.dependentesCol = this.funcionarioDoc.collection('dependentes');
     this.dependentes = this.dependentesCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Dependente; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
-    return this.dependentes; 
+          const data = a.payload.doc.data()as Dependente;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.dependentes;
   }
 
-  addDependente(dependente:Dependente) {
-    this.funcionarioDoc.collection < Dependente > ('dependentes').add(dependente); 
+  addDependente(dependente: Dependente) {
+    this.funcionarioDoc.collection < Dependente > ('dependentes').add(dependente);
   }
 
-  deleteDependente(dependente:Dependente) {
-    this.dependenteDoc = this.funcionarioDoc.collection < Dependente > ('dependentes').doc(`${dependente.id}`); 
-    this.dependenteDoc.delete(); 
+  deleteDependente(dependente: Dependente) {
+    this.dependenteDoc = this.funcionarioDoc.collection < Dependente > ('dependentes').doc(`${dependente.id}`);
+    this.dependenteDoc.delete();
   }
 
   // --- FALTAS ---
 
   getAllFaltas() {
-    this.faltasCol = this.funcionarioDoc.collection('faltas'); 
+    this.faltasCol = this.funcionarioDoc.collection('faltas');
     this.faltas = this.faltasCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Falta; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
-    return this.faltas; 
+          const data = a.payload.doc.data()as Falta;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.faltas;
   }
 
     getAtestados() {
-    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Atestado')); 
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Atestado'));
     this.faltas = this.faltasCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Falta; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
-    return this.faltas; 
+          const data = a.payload.doc.data()as Falta;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.faltas;
   }
 
     getFaltas() {
-    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Falta')); 
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Falta'));
     this.faltas = this.faltasCol
     .snapshotChanges()
       .map(changes =>  {
         return changes.map(a =>  {
-          const data = a.payload.doc.data()as Falta; 
-          data.id = a.payload.doc.id; 
-          return data; 
-        }); 
-      }); 
-    return this.faltas; 
+          const data = a.payload.doc.data()as Falta;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.faltas;
   }
 
-  addFalta(falta:Falta) {
-    this.funcionarioDoc.collection < Falta > ('faltas').add(falta); 
+  addFalta(falta: Falta) {
+    this.funcionarioDoc.collection < Falta > ('faltas').add(falta);
   }
 
-  deleteFalta(falta:Falta) {
-    this.faltaDoc = this.funcionarioDoc.collection < Falta > ('faltas').doc(`${falta.id}`); 
-    this.faltaDoc.delete(); 
+  deleteFalta(falta: Falta) {
+    this.faltaDoc = this.funcionarioDoc.collection < Falta > ('faltas').doc(`${falta.id}`);
+    this.faltaDoc.delete();
   }
 }

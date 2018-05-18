@@ -47,6 +47,7 @@ export class AddFuncionarioComponent implements OnInit {
     banco: null,
     agencia: null,
     conta: null,
+    operacao: null,
     situacao: null
 };
 
@@ -97,5 +98,4 @@ export class AddFuncionarioComponent implements OnInit {
   }
 
   ngOnInit() { }
-
 }
