@@ -14,7 +14,7 @@
                     <td colspan="3">{{funcionario?.nome}}</td>
                     <td>Data de Nascimento</td>
                     <td>
-                      {{funcionario?.dataNascimento}}
+                      {{funcionario?.nascimento}}
                     </td>
                   </tr>
                   <tr>
@@ -44,7 +44,7 @@
                       {{funcionario?.identidade}}
                     </td>
                     <td>Data de Expedição</td>
-                    <td> {{funcionario?.dataExpedicao}}
+                    <td> {{funcionario?.expedicao}}
                     </td>
                   </tr>
                   <tr>
@@ -136,7 +136,12 @@
                   <tr>
                     <td>Admissão</td>
                     <td colspan="5">
-                      {{funcionario?.dataAdmissao}}</td>
+                      {{funcionario?.admissao}}</td>
+                  </tr>
+                  <tr *ngIf="funcionario.situacao === 'Inativo'">
+                    <td>Demissão</td>
+                    <td colspan="5">
+                      {{funcionario?.demissao}}</td>
                   </tr>
                   <tr>
                     <td>Setor</td>
@@ -148,6 +153,10 @@
                     <td>Cargo</td>
                     <td colspan="3"> {{funcionario?.cargo}}</td>
                   </tr>
+                  <tr>
+                      <td>CBO</td>
+                      <td colspan="3"> {{funcionario?.cbo}}</td>
+                    </tr>
                   <tr>
                     <td>Banco</td>
                     <td colspan="3">
@@ -165,7 +174,7 @@
                       {{funcionario?.conta}}
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="funcionario.banco === 'Caixa Econômica'">
                     <td>Operação</td>
                     <td colspan="5">
                       {{funcionario?.operacao}} </td>

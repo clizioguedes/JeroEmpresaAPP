@@ -3,16 +3,17 @@ mat-list-item mat-icon {
   margin-top: 12px
 }
 
-.container {
-  margin-top: 10px;
-  margin-bottom: 10px
+mat-drawer-container {
+  min-height: 90vh;
 }
 
 @media print {
-  mat-sidenav-container mat-sidenav {
+  
+  mat-drawer {
     display: none;
   }
-  mat-sidenav-content mat-toolbar {
+
+  mat-toolbar {
     display: none;
   }
 }

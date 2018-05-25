@@ -1,16 +1,16 @@
 export interface Funcionario {
     id?: string;
-    dataRegistro;
+    dataRegistro: any;
     // Dados Pessoais
     nome: string;
-    dataNascimento;
+    nascimento: any;
     nomePai?: string;
     nomeMae: string;
     sexo: string;
     estadoCivil: string;
     naturalidade?: string;
     identidade: string;
-    dataExpedicao;
+    expedicao: any;
     orgaoEmissor: string;
     cpf: string;
     tituloEleitor: string;
@@ -27,14 +27,17 @@ export interface Funcionario {
     email?: string;
     // Dados Funcionário / Bancários
     matricula: number;
-    dataAdmissao;
+    admissao: any;
+    demissao: any;
     setor: string;
+    cbo?: string;
     cargo: string;
     banco?: string;
     operacao?: string;
     agencia?: string;
     conta?: string;
     situacao?: string;
+
 }
 
 export interface Dependente {

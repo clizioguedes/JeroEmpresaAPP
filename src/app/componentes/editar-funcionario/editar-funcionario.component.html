@@ -1,17 +1,18 @@
 <h3>Atualizar Funcionário</h3>
-<mat-divider></mat-divider>
+
 <form>
     <div class="row">
         <mat-card class="col-xs-12 col-md-6 col-sm-12">
             <fieldset>
                 <h4> Dados Pessoais </h4>
-                <mat-divider></mat-divider>
-                <mat-form-field>
-                    <input matInput placeholder="Nome Completo" [(ngModel)]="funcionario.nome" name="nome" required>
-             </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput mask="00/00/0000" [(ngModel)]="funcionario.dataNascimento" name="dataNascimento" required>
+                    <input matInput placeholder="Nome Completo" [(ngModel)]="funcionario.nome" name="nome" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Data de Nascimento" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.nascimento"
+                        name="nascimento" required>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -51,7 +52,8 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput mask="00/00/0000" [(ngModel)]="funcionario.dataExpedicao" name="dataNascimento" required>
+                    <input matInput placeholder="Data de Expedição" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.expedicao"
+                        name="expedicao" required>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -59,19 +61,23 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="funcionario.cpf" name="cpf" required>
+                    <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="funcionario.cpf" name="cpf"
+                        required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Titulo Eleitoral" dropSpecialCharacters="false" mask="0000 0000 0000" [(ngModel)]="funcionario.tituloEleitor" name="tituloEleitor" required>
+                    <input matInput placeholder="Titulo Eleitoral" dropSpecialCharacters="false" mask="0000 0000 0000" [(ngModel)]="funcionario.tituloEleitor"
+                        name="tituloEleitor" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Zona Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.zonaEleitoral" name="zonaEleitoral">
+                    <input matInput placeholder="Zona Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.zonaEleitoral"
+                        name="zonaEleitoral">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Secção Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.seccaoEleitoral" name="seccaoEleitoral">
+                    <input matInput placeholder="Secção Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.seccaoEleitoral"
+                        name="seccaoEleitoral">
                 </mat-form-field>
 
                 <mat-form-field>
@@ -83,14 +89,14 @@
                 </mat-form-field>
 
                 <h4> Endereço e Contato </h4>
-                <mat-divider></mat-divider>
 
                 <mat-form-field hintLabel="Ex: Rua Sérvulo Pereira">
                     <input matInput placeholder="Endereço" [(ngModel)]="funcionario.endereco" name="endereco" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="number" matInput placeholder="Número" dropSpecialCharacters="false" mask='0000' [(ngModel)]="funcionario.numero" name="numero" required>
+                    <input type="number" matInput placeholder="Número" dropSpecialCharacters="false" mask='0000' [(ngModel)]="funcionario.numero"
+                        name="numero" required>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -102,7 +108,8 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Celular" dropSpecialCharacters="false" mask='(00) 00000-0000' [(ngModel)]="funcionario.celular" name="celular">
+                    <input matInput placeholder="Celular" dropSpecialCharacters="false" mask='(00) 00000-0000' [(ngModel)]="funcionario.celular"
+                        name="celular">
                 </mat-form-field>
 
                 <mat-form-field>
@@ -110,14 +117,24 @@
                 </mat-form-field>
 
                 <h4> Dados do Funcionario</h4>
-                <mat-divider></mat-divider>
 
                 <mat-form-field>
-                    <input type="number" minlength="1" dropSpecialCharacters="false" mask="0000" matInput placeholder="Matricula" [(ngModel)]="funcionario.matricula" name="matricula" required>
+                    <input type="number" minlength="1" dropSpecialCharacters="false" mask="0000" matInput placeholder="Matricula" [(ngModel)]="funcionario.matricula"
+                        name="matricula" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput mask="00/00/0000" [(ngModel)]="funcionario.dataAdmissao" name="dataNascimento" required>
+                    <input matInput placeholder="Data de Admissão" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.admissao"
+                        name="admissao" required>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="funcionario.situacao === 'Inativo'">
+                    <input matInput placeholder="Data de Demissão" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.demissao"
+                        name="demissao" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="CBO" [(ngModel)]="funcionario.cbo" name="cbo">
                 </mat-form-field>
 
                 <div class="row">
@@ -165,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <mat-divider></mat-divider>
+
                 <label for="banco">Banco:</label>
                 <div class="row">
                     <div class="col">
@@ -191,7 +208,7 @@
                     <div class="col">
                         <label for="situacao">Está Contratado Atualmente?</label>
                         <br>
-                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.situacao" name="situacao">
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.situacao" name="situacao" required>
                             <mat-radio-button class="example-radio-button" value="Ativo">
                                 Sim
                             </mat-radio-button>
@@ -201,8 +218,10 @@
                         </mat-radio-group>
                     </div>
                 </div>
-                <mat-divider></mat-divider>
-                <button class="btn-back" [routerLink]="['/funcionario', id]" mat-raised-button color="primary"> <mat-icon>keyboard_backspace</mat-icon></button>
+
+                <button class="btn-back" [routerLink]="['/funcionario', id]" mat-raised-button color="primary">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </button>
                 <button type="button" mat-raised-button class="btn-add" color="primary" (click)="updateFuncionario(funcionario)"> Atualizar </button>
             </fieldset>
         </mat-card>

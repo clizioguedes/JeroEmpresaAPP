@@ -16,7 +16,7 @@ export class AddFuncionarioComponent implements OnInit {
   funcionario: Funcionario = {
     // Dados Pessoais e Sociais
     nome: null,
-    dataNascimento: null,
+    nascimento: null,
     dataRegistro: null,
     nomePai: null,
     nomeMae: null,
@@ -24,7 +24,7 @@ export class AddFuncionarioComponent implements OnInit {
     estadoCivil: null,
     naturalidade: null,
     identidade: null,
-    dataExpedicao: null,
+    expedicao: null,
     orgaoEmissor: null,
     cpf: null,
     tituloEleitor: null,
@@ -41,9 +41,11 @@ export class AddFuncionarioComponent implements OnInit {
     email: null,
     // Dados Funcionais e Dados Bancários
     matricula: null,
-    dataAdmissao: null,
+    admissao: null,
+    demissao: null,
     setor: null,
     cargo: null,
+    cbo: null,
     banco: null,
     agencia: null,
     conta: null,
@@ -76,20 +78,23 @@ export class AddFuncionarioComponent implements OnInit {
   ];
 
   constructor(
-    private funcionarioService: FirestoreService,
+    private firestoreService: FirestoreService,
     private router: Router,
     public snackBar: MatSnackBar,
   ) {}
 
   addFuncionario(messagem: string) {
     this.funcionario.dataRegistro = new Date().toLocaleString();
-    this.funcionario.dataNascimento = new Date(this.funcionario.dataNascimento).toLocaleDateString();
-    this.funcionario.dataExpedicao = new Date(this.funcionario.dataExpedicao).toLocaleDateString();
-    this.funcionario.dataAdmissao = new Date(this.funcionario.dataAdmissao).toLocaleDateString();
-    this.funcionarioService.addFuncionario(this.funcionario);
+    this.funcionario.nascimento = new Date(this.funcionario.nascimento).toLocaleDateString();
+    this.funcionario.expedicao = new Date(this.funcionario.expedicao).toLocaleDateString();
+    this.funcionario.admissao = new Date(this.funcionario.admissao).toLocaleDateString();
+    if(this.funcionario.demissao != null) {
+    this.funcionario.demissao = new Date(this.funcionario.demissao).toLocaleDateString();
+    }
+    this.firestoreService.addFuncionario(this.funcionario);
     // SnackBar
     this.snackBar.open('Funcionario Cadastrado', 'Ok', {
-      duration: 2000,
+      duration: 2000
     });
 
     // Rota

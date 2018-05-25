@@ -1,17 +1,17 @@
 export interface OrdemDeProducao {
     id?: string;
-    dataCadastro: Date;
+    dataCadastro: any;
     fornecedor: string;
-    numeroOrdem: string;
-    notaFiscalFornecedor: string;
+    numero: string;
+    nf: string;
     referencia: string;
     item: string;
-    quantidadePecas: number;
-    tempoPadrao: number;
-    valorPeca: number;
-    dataEntrega: Date;
+    quantidade: number;
+    tempo: number;
+    valor: number;
+    entrega: any;
     status?: string;
-    producaoAtual?: number;
+    producao?: number;
     observacoes?: string;
 }
 

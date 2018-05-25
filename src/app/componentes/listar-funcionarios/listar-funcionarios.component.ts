@@ -18,14 +18,14 @@ export class ListarFuncionariosComponent implements OnInit {
   tablePrint = false;
 
   constructor(
-    private funcionarioService: FirestoreService ) {
+    private firestoreService: FirestoreService ) {
    }
   
   ngOnInit() {
     this.allFuncionarios = true;
     this.inativeFuncionarios = false;
     this.activeFuncionarios = false;
-    this.funcionarioService.getFuncionarios().subscribe( funcionarios => {
+    this.firestoreService.getFuncionarios().subscribe( funcionarios => {
       this.funcionarios = funcionarios;
     });
   }
@@ -34,7 +34,7 @@ export class ListarFuncionariosComponent implements OnInit {
     this.allFuncionarios = false;
     this.inativeFuncionarios = true;
     this.activeFuncionarios = false;
-    this.funcionarioService.getFuncionariosInativos().subscribe( funcionarios => {
+    this.firestoreService.getFuncionariosInativos().subscribe( funcionarios => {
       this.funcionarios = funcionarios;
     });
   }
@@ -43,36 +43,8 @@ export class ListarFuncionariosComponent implements OnInit {
     this.allFuncionarios = false;
     this.inativeFuncionarios = false;
     this.activeFuncionarios = true;
-    this.funcionarioService.getFuncionariosAtivos().subscribe( funcionarios => {
+    this.firestoreService.getFuncionariosAtivos().subscribe( funcionarios => {
       this.funcionarios = funcionarios;
     });
-  }
-
-  print() {
-    let printContents, popupWin;
-
-    if(this.allFuncionarios) {
-      printContents = document.getElementById('printerAll').innerHTML;
-    };
-    if (this.activeFuncionarios) {
-      printContents = document.getElementById('printerActive').innerHTML;
-    };
-    if (this.inativeFuncionarios) {
-      printContents = document.getElementById('printerInative').innerHTML;
-    };
-    popupWin = window.open();
-    popupWin.document.open();
-    popupWin.document.write(`
-      <html>
-        <head>
-          <style>
-            
-          </style>
-        </head>
-        <body id="print" onload="window.print();window.close()">
-            ${printContents}
-        </body>
-      </html>`);
-    popupWin.document.close();
   }
 }

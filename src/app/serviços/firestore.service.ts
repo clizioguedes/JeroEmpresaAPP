@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Funcionario, Dependente, Falta } from '../interfaces/funcionario';
+import { OrdemDeProducao } from '../interfaces/ordem-de-producao';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
+
+  // -------------------------- FUNCIONARIOS -------------------------
 
   funcionariosCol: AngularFirestoreCollection < Funcionario > ;
   funcionarios: Observable < Funcionario[] > ;
@@ -27,9 +30,17 @@ export class FirestoreService {
   faltaDoc: AngularFirestoreDocument < Falta > ;
   falta: Observable < Falta > ;
 
+  // -------------------------- ORDENS DE PRODUÇÃO -------------------------
+
+  ordensDeProducaoCol: AngularFirestoreCollection < OrdemDeProducao > ;
+  ordensDeProducao: Observable < OrdemDeProducao[] > ;
+  
+  ordenmDeProducaoDoc: AngularFirestoreDocument < OrdemDeProducao > ;
+  ordemDeProducao: Observable < OrdemDeProducao > ;
+
   constructor( private afs: AngularFirestore ) { }
 
-// --- FUNCIONÁRIOS ---
+// ---------------------------------- METODOS FUNCIONÁRIOS --------------------------------------
 
   getFuncionarios() {
     this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
@@ -87,7 +98,7 @@ export class FirestoreService {
     this.funcionarioDoc.update(funcionario);
   }
 
-// --- DEPENDENTES -- //
+// --- METODOS DEPENDENTES -- //
 
   getDependentes() {
     this.dependentesCol = this.funcionarioDoc.collection('dependentes');
@@ -112,7 +123,7 @@ export class FirestoreService {
     this.dependenteDoc.delete();
   }
 
-  // --- FALTAS ---
+  // --- METODOS FALTAS ---
 
   getAllFaltas() {
     this.faltasCol = this.funcionarioDoc.collection('faltas');
@@ -164,4 +175,35 @@ export class FirestoreService {
     this.faltaDoc = this.funcionarioDoc.collection < Falta > ('faltas').doc(`${falta.id}`);
     this.faltaDoc.delete();
   }
+
+  // ------------------------------------- METODOS ORDENS DE PRODUÇÃO ----------------------------
+
+  getOrdens() {
+    this.ordensDeProducaoCol = this.afs.collection('ordens' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
+    this.ordensDeProducao = this.ordensDeProducaoCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as OrdemDeProducao;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.ordensDeProducao;
+  }
+
+  getOrdem(ordemId) {
+    this.ordenmDeProducaoDoc = this.afs.doc('/ordens/' + ordemId);
+    this.ordemDeProducao = this.ordenmDeProducaoDoc.valueChanges();
+    return this.ordemDeProducao;
+  }
+
+  addOrdem( ordemDeProducao: OrdemDeProducao ) {
+    this.afs.collection < OrdemDeProducao > ('ordens').add(ordemDeProducao);
+  }
+
+  updateOrdem( ordemDeProducao: OrdemDeProducao ) {
+    this.ordenmDeProducaoDoc.update(ordemDeProducao);
+  }
+
 }

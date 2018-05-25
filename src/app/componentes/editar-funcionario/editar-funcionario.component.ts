@@ -17,7 +17,7 @@ export class EditarFuncionarioComponent implements OnInit {
   funcionario: Funcionario = {
     // Dados Pessoais e Sociais
     nome: null,
-    dataNascimento: null,
+    nascimento: null,
     dataRegistro: null,
     nomePai: null,
     nomeMae: null,
@@ -25,7 +25,7 @@ export class EditarFuncionarioComponent implements OnInit {
     estadoCivil: null,
     naturalidade: null,
     identidade: null,
-    dataExpedicao: null,
+    expedicao: null,
     orgaoEmissor: null,
     cpf: null,
     tituloEleitor: null,
@@ -42,9 +42,11 @@ export class EditarFuncionarioComponent implements OnInit {
     email: null,
     // Dados Funcionais e Dados Bancários
     matricula: null,
-    dataAdmissao: null,
+    admissao: null,
+    demissao: null,
     setor: null,
     cargo: null,
+    cbo: null,
     banco: null,
     agencia: null,
     conta: null,
@@ -89,14 +91,16 @@ export class EditarFuncionarioComponent implements OnInit {
       this.funcionario.bairro = funcionario.bairro;
       this.funcionario.banco = funcionario.banco;
       this.funcionario.cargo = funcionario.cargo;
+      this.funcionario.cbo = funcionario.cbo;
       this.funcionario.celular = funcionario.celular;
       this.funcionario.cidade = funcionario.cidade;
       this.funcionario.conta = funcionario.conta;
-      this.funcionario.cpf = funcionario.dataAdmissao;
+      this.funcionario.cpf = funcionario.cpf;
       this.funcionario.dataRegistro = funcionario.dataRegistro;
-      this.funcionario.dataNascimento = funcionario.dataNascimento;
-      this.funcionario.dataExpedicao = funcionario.dataExpedicao;
-      this.funcionario.dataAdmissao = funcionario.dataAdmissao;
+      this.funcionario.nascimento = funcionario.nascimento;
+      this.funcionario.expedicao = funcionario.expedicao;
+      this.funcionario.admissao = funcionario.admissao;
+      this.funcionario.demissao = funcionario.demissao;
       this.funcionario.email = funcionario.email;
       this.funcionario.endereco = funcionario.endereco;
       this.funcionario.estadoCivil = funcionario.estadoCivil;
@@ -121,6 +125,11 @@ export class EditarFuncionarioComponent implements OnInit {
   }
 
   updateFuncionario(funcionario: Funcionario) {
+    if(this.funcionario.situacao === "Inativo") {
+      this.funcionario.demissao = new Date(this.funcionario.demissao).toLocaleDateString();
+      } else {
+        funcionario.demissao = null;
+      }
     this.firestoreService.updateFuncionario(funcionario);
       // Rota
     this.router.navigate(['funcionario/' + this.id]);

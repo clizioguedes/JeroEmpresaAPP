@@ -1,6 +1,12 @@
-<mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'" [mode]="(isHandset | async)!.matches ? 'over' : 'side'" [opened]="!(isHandset | async)!.matches">
-        <mat-toolbar color="primary">Menu</mat-toolbar>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Jero Confecções</h1>
+</mat-toolbar>
+
+<mat-drawer-container>
+    <mat-drawer #snav [mode]="'side'">
         <mat-nav-list>
             <mat-divider></mat-divider>
             <mat-list-item routerLink="dashboard">
@@ -26,16 +32,11 @@
                 Ordem de Produção
             </mat-list-item>
         </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset | async)!.matches">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-            <span>Jero Confecções</span>
-        </mat-toolbar>
-            <div class="container">
-                <router-outlet></router-outlet>
-            </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
