@@ -41,22 +41,22 @@ import {
       MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
         MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule
       } from '@angular/material';
+import { ListarProducaoDiariaComponent } from './listar-producao-diaria/listar-producao-diaria.component';
 
 // Rotas
 const routes: Routes = [
   { path: 'dashboard',                  component: DashboardComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  // Funcionários
-  { path: 'dashboard',                  component: DashboardComponent },
+  // Ordens de Produção
   { path: 'ordem-de-producao/:id',      component: OrdemDeProducaoComponent },
   { path: 'add-ordem-de-producao',      component: AddOrdemDeProducaoComponent },
   { path: 'listar-ordens-de-producao',  component: ListarOrdensDeProducaoComponent },
-  { path: 'edit-ordem-de-producao/:id', component: EditarOrdemDeProducaoComponent },
-  // Ordens de Produção
+  { path: 'editar-ordem-de-producao/:id', component: EditarOrdemDeProducaoComponent },
+  // Funcionários  
   { path: 'funcionario/:id',            component: FuncionarioComponent },
   { path: 'add-funcionario',            component: AddFuncionarioComponent },
   { path: 'listar-funcionarios',        component: ListarFuncionariosComponent },
-  { path: 'editar-funcionario/:id',     component: EditarFuncionarioComponent },
+  { path: 'editar-funcionario/:id',     component: EditarFuncionarioComponent }
 ];
 
 @NgModule({
@@ -78,6 +78,8 @@ const routes: Routes = [
     AddOrdemDeProducaoComponent,
     OrdemDeProducaoComponent,
     EditarOrdemDeProducaoComponent,
+    // Produção Diaria
+    ListarProducaoDiariaComponent
   ],
 
   imports: [

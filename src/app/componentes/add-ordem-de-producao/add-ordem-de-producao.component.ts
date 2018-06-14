@@ -26,7 +26,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
     entrega: null,
     status: null,
     producao: null,
-    observacoes: null
+    observacao: null
   }
 
   status = [
@@ -44,6 +44,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
 
   addOrdem(messagem: string) {
     this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
+    this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
     this.firestoreService.addOrdem(this.ordemDeProducao);
     // SnackBar
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {

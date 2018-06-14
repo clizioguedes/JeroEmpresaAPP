@@ -1,6 +1,6 @@
 export interface Funcionario {
     id?: string;
-    dataRegistro: any;
+    dataCadastro: any;
     // Dados Pessoais
     nome: string;
     nascimento: any;
@@ -18,11 +18,12 @@ export interface Funcionario {
     seccaoEleitoral?: string;
     nis?: string;
     sus?: string;
-    // Contato
+    // Endereço
     endereco: string;
     numero: string;
     bairro: string;
     cidade: string;
+    // Contato
     celular?: string;
     email?: string;
     // Dados Funcionário / Bancários
@@ -37,7 +38,6 @@ export interface Funcionario {
     agencia?: string;
     conta?: string;
     situacao?: string;
-
 }
 
 export interface Dependente {
