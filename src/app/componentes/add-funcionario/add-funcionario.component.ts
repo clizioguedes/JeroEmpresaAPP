@@ -17,7 +17,7 @@ export class AddFuncionarioComponent implements OnInit {
     // Dados Pessoais e Sociais
     nome: null,
     nascimento: null,
-    dataRegistro: null,
+    dataCadastro: null,
     nomePai: null,
     nomeMae: null,
     sexo: null,
@@ -84,7 +84,7 @@ export class AddFuncionarioComponent implements OnInit {
   ) {}
 
   addFuncionario(messagem: string) {
-    this.funcionario.dataRegistro = new Date().toLocaleString();
+    this.funcionario.dataCadastro = new Date().toLocaleString();
     this.funcionario.nascimento = new Date(this.funcionario.nascimento).toLocaleDateString();
     this.funcionario.expedicao = new Date(this.funcionario.expedicao).toLocaleDateString();
     this.funcionario.admissao = new Date(this.funcionario.admissao).toLocaleDateString();

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../serviços/firestore.service';
+import { ActivatedRoute } from '@angular/router';
+import { OrdemDeProducao } from '../../interfaces/ordem-de-producao';
 
 @Component({
   selector: 'app-ordem-de-producao',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdemDeProducaoComponent implements OnInit {
 
-  constructor() { }
+  id: any;
+  ordemDeProducao: OrdemDeProducao;
 
-  ngOnInit() {
+  constructor(
+    private firestoreService: FirestoreService,
+    private route: ActivatedRoute) {
+    this.id = this.route.snapshot.params['id'];
+    this.firestoreService.getOrdem(this.id).subscribe(ordemDeProducao => {
+      this.ordemDeProducao = ordemDeProducao;
+    });
   }
+
+  ngOnInit() { }
 
 }

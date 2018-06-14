@@ -1,3 +1,94 @@
-<p>
-  ordem-de-producao works!
-</p>
+<div class="row">
+  <mat-card class="col-xs-12 col-md-12 col-sm-12">
+    <mat-card-content>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab class="mat-tab" label="Dadaos Cadastrais">
+          <div class="demo-tab-content">
+            <div class="box">
+              <div id="print">
+                <h3>Dados da Ordem de Produção: {{id}}</h3>
+                <table class="info">
+                  <tr>
+                    <td>Fornecedor</td>
+                    <td colspan="5">{{ordemDeProducao?.fornecedor}}</td>
+                  </tr>
+                  <tr>
+                    <td>NF Fornecedor</td>
+                    <td>
+                      {{ordemDeProducao?.nf}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Numero</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.numero}} </td>
+                  </tr>
+                  <tr>
+                    <td>Referência</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.referencia}} </td>
+                  </tr>
+                  <tr>
+                    <td>Item</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.item}} </td>
+                  </tr>
+                  <tr>
+                    <td>Quantidade</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.quantidade}} </td>
+                  </tr>
+                  <tr>
+                    <td>Tempo Padrão</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.tempo}} </td>
+                  </tr>
+                  <tr>
+                    <td>Valor por Peça</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.valor}} </td>
+                  </tr>
+                  <tr>
+                    <td>Entrega Prevista</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.entrega}} </td>
+                  </tr>
+                  <tr>
+                    <td>Status</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.status}} </td>
+                  </tr>
+                  <tr>
+                    <td>Observação</td>
+                    <td colspan="5">
+                      {{ordemDeProducao?.observacao}} </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="actions">
+                <button mat-button color="primary" routerLink="/editar-ordem-de-producao/{{id}}">
+                  <mat-icon aria-label="Editar Ordem de Produção">mode_edit</mat-icon>
+                  Editar
+                </button>
+                <button mat-button color="warn">
+                  <mat-icon aria-label="Demitir Funcionário">highlight_off</mat-icon>
+                  Excluir
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Produção Diaria">
+          <div class="demo-tab-content">
+            <mat-card>
+              //
+            </mat-card>
+            <mat-card>
+              //
+            </mat-card>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

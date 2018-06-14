@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -26,7 +24,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
     entrega: null,
     status: null,
     producao: null,
-    observacoes: null
+    observacao: null
   }
 
   status = [
@@ -39,11 +37,12 @@ export class AddOrdemDeProducaoComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
-    public snackBar: MatSnackBar,
+    public snackBar: MatSnackBar
   ) { }
 
-  addOrdem(messagem: string) {
+  addOrdem() {
     this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
+    this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
     this.firestoreService.addOrdem(this.ordemDeProducao);
     // SnackBar
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {

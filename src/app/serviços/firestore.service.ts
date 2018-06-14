@@ -205,5 +205,4 @@ export class FirestoreService {
   updateOrdem( ordemDeProducao: OrdemDeProducao ) {
     this.ordenmDeProducaoDoc.update(ordemDeProducao);
   }
-
 }

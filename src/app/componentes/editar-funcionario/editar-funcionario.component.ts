@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Funcionario } from '../../interfaces/funcionario';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -18,7 +16,7 @@ export class EditarFuncionarioComponent implements OnInit {
     // Dados Pessoais e Sociais
     nome: null,
     nascimento: null,
-    dataRegistro: null,
+    dataCadastro: null,
     nomePai: null,
     nomeMae: null,
     sexo: null,
@@ -86,6 +84,7 @@ export class EditarFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+
     this.firestoreService.getFuncionario(this.id).subscribe( funcionario => {
       this.funcionario.agencia = funcionario.agencia;
       this.funcionario.bairro = funcionario.bairro;
@@ -96,7 +95,7 @@ export class EditarFuncionarioComponent implements OnInit {
       this.funcionario.cidade = funcionario.cidade;
       this.funcionario.conta = funcionario.conta;
       this.funcionario.cpf = funcionario.cpf;
-      this.funcionario.dataRegistro = funcionario.dataRegistro;
+      this.funcionario.dataCadastro = funcionario.dataCadastro;
       this.funcionario.nascimento = funcionario.nascimento;
       this.funcionario.expedicao = funcionario.expedicao;
       this.funcionario.admissao = funcionario.admissao;
@@ -130,7 +129,7 @@ export class EditarFuncionarioComponent implements OnInit {
       } else {
         funcionario.demissao = null;
       }
-    this.firestoreService.updateFuncionario(funcionario);
+    this.firestoreService.updateFuncionario(this.funcionario);
       // Rota
     this.router.navigate(['funcionario/' + this.id]);
   }
