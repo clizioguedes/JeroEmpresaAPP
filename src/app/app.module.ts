@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // Serviços
 import { FirestoreService } from './serviços/firestore.service';
 // Modulos Variados
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -41,10 +41,6 @@ import {
       MatListModule, MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule,
         MatProgressBarModule, MatTabsModule, MatCardModule, MatGridListModule
       } from '@angular/material';
-import { ListarProducaoDiariaComponent } from './listar-producao-diaria/listar-producao-diaria.comp;
-import { AddProducaoDiariaComponent } from './componentes/add-producao-diaria/add-producao-diaria.comp;
-import { ListarProducoesDiariasComponent } from './componentes/listar-producoes-diarias/listar-producoes-diarias.comp;
-import { ProducaoDiariaComponent } from './componentes/producao-diaria/producao-diaria.component'onent'onent'onent';
 
 // Rotas
 const routes: Routes = [
@@ -80,12 +76,7 @@ const routes: Routes = [
     ListarOrdensDeProducaoComponent,
     AddOrdemDeProducaoComponent,
     OrdemDeProducaoComponent,
-    EditarOrdemDeProducaoComponent,
-    // Produção Diaria
-    ListarProducaoD,
-    AddProducaoDiariaComponent,
-    ListarProducoesDiariasComponent,
-    ProducaoDiariaComponentiariaComponent
+    EditarOrdemDeProducaoComponent
   ],
 
   imports: [
@@ -110,8 +101,7 @@ const routes: Routes = [
 })
 
 export class AppModule {
-  constructor( @Optional() @SkipSelf() parentModule: AppModule,
-                 private afs: AngularFirestore ) {
+  constructor( @Optional() @SkipSelf() parentModule: AppModule, private afs: AngularFirestore ) {
       afs.firestore.settings({timestampsInSnapshots: true});
     }
  }

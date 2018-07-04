@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Observable } from 'rxjs/Observable';
 import { OrdemDeProducao } from '../../interfaces/ordem-de-producao';
 
 @Component({

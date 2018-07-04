@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Funcionario, Dependente, Falta } from '../interfaces/funcionario';
-import { OrdemDeProducao } from '../interfaces/ordem-de-producao';
+import { OrdemDeProducao, ProducaoDiaria } from '../interfaces/ordem-de-producao';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
@@ -35,9 +35,15 @@ export class FirestoreService {
   ordensDeProducaoCol: AngularFirestoreCollection < OrdemDeProducao > ;
   ordensDeProducao: Observable < OrdemDeProducao[] > ;
   
-  ordenmDeProducaoDoc: AngularFirestoreDocument < OrdemDeProducao > ;
+  ordemDeProducaoDoc: AngularFirestoreDocument < OrdemDeProducao > ;
   ordemDeProducao: Observable < OrdemDeProducao > ;
 
+  producoesDiariasCol: AngularFirestoreCollection < ProducaoDiaria > ;
+  producoesDiarias: Observable < ProducaoDiaria[] > ;
+  
+  producaoDiariaDoc: AngularFirestoreDocument < ProducaoDiaria > ;
+  producaoDiaria: Observable < ProducaoDiaria > ;
+  
   constructor( private afs: AngularFirestore ) { }
 
 // ---------------------------------- METODOS FUNCIONÁRIOS --------------------------------------
@@ -193,8 +199,8 @@ export class FirestoreService {
   }
 
   getOrdem(ordemId) {
-    this.ordenmDeProducaoDoc = this.afs.doc('/ordens/' + ordemId);
-    this.ordemDeProducao = this.ordenmDeProducaoDoc.valueChanges();
+    this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + ordemId);
+    this.ordemDeProducao = this.ordemDeProducaoDoc.valueChanges();
     return this.ordemDeProducao;
   }
 
@@ -203,6 +209,46 @@ export class FirestoreService {
   }
 
   updateOrdem( ordemDeProducao: OrdemDeProducao ) {
-    this.ordenmDeProducaoDoc.update(ordemDeProducao);
+    this.ordemDeProducaoDoc.update(ordemDeProducao);
   }
+
+  deleteOrdem() {
+    this.ordemDeProducaoDoc.delete();
+  }
+
+    // ------------------------------------- METODOS PRODUÇÕES DIARIAS ----------------------------
+
+    getProducoesDiarias() {
+      this.producoesDiariasCol = this.ordemDeProducaoDoc.collection('producoes-diarias', ref => ref.orderBy('dataCadastro', 'desc'));
+      this.producoesDiarias = this.producoesDiariasCol
+      .snapshotChanges()
+        .map(changes =>  {
+          return changes.map(a =>  {
+            const data = a.payload.doc.data() as ProducaoDiaria;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        });
+      return this.producoesDiarias;
+    }
+
+    getProducaoDiaria(producaoDiariaId) {
+      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection('producoes-diarias').doc('/producoes-diarias/' + producaoDiariaId);
+      this.producaoDiaria = this.producaoDiariaDoc.valueChanges();
+      return this.producaoDiaria;
+    }
+  
+    addProducaoDiaria( producaoDiaria: ProducaoDiaria ) {
+      this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').add(producaoDiaria);
+    }
+  
+    updateProducaoDiaria( producao: ProducaoDiaria ) {
+      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').doc(`${producao.id}`);
+      this.producaoDiariaDoc.update(producao); 
+    }
+  
+    deleteProducaoDiaria(producao: ProducaoDiaria) {
+      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').doc(`${producao.id}`);
+      this.producaoDiariaDoc.delete();
+    }
 }

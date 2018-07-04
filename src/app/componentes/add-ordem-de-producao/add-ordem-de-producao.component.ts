@@ -41,6 +41,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
   ) { }
 
   addOrdem() {
+    this.ordemDeProducao.producao = 0;
     this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
     this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
     this.firestoreService.addOrdem(this.ordemDeProducao);
@@ -50,7 +51,6 @@ export class AddOrdemDeProducaoComponent implements OnInit {
     });
     // Rota
     this.router.navigate(['listar-ordens-de-producao']);
-    this.ordemDeProducao = null;
   }
 
   ngOnInit() {

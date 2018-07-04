@@ -59,7 +59,7 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
     });
   }
 
-  updateOrdemDeProducao(ordem: OrdemDeProducao) {
+  updateOrdemDeProducao() {
     this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
     this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
     this.firestoreService.updateOrdem(this.ordemDeProducao);
