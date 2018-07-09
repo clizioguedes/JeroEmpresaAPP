@@ -1,0 +1,47 @@
+body {
+    background: #fff;
+    padding-top: 10% !important;
+}
+
+.wdi-red {
+    color: greenyellow !important;
+}
+
+.login-box {
+    padding: 50px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.flat-input {
+    margin-bottom: 50px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    -webkit-transition: all 0.5s !important;
+    transition: all 0.5s !important;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, greenyellow 4%) !important;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, greenyellow 4%) !important;
+    background-position: -500px 0 !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+}
+
+.flat-input:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    background-position: 0 0 !important;
+    border-bottom: 0px !important;
+}
+
+.btn-login {
+    border-radius: 0 !important;
+    background: greenyellow !important;
+    color: #fff !important;
+    -webkit-transition: all 0.8s !important;
+    transition: all 0.8s !important;
+}
+
+.btn-login:hover {
+    background: transparent !important;
+    border: 1px solid greenyellow !important;
+    color: greenyellow !important;
+}
