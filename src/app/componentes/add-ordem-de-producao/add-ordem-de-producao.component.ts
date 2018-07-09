@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { OrdemDeProducao } from '../../interfaces/ordem-de-producao';
+import { OrdemDeProducao } from '../../interfaces/Producao';
 
 @Component({
   selector: 'app-add-ordem-de-producao',
@@ -25,7 +25,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
     status: null,
     producao: null,
     observacao: null
-  }
+  };
 
   status = [
     'Espera',

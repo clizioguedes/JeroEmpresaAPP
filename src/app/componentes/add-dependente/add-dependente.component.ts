@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Observable } from 'rxjs/Observable';
-import { Dependente } from '../../interfaces/funcionario';
+import { Dependente } from '../../interfaces/Funcionario';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -17,7 +16,7 @@ export class AddDependenteComponent implements OnInit {
     cpf: null,
     tipo: null,
     dataRegistro: null
-  }
+  };
 
   tiposDep = [
     { value: 'Cônjuge'},
@@ -35,7 +34,7 @@ export class AddDependenteComponent implements OnInit {
   }
 
   addDependente() {
-    if( this.dependente.nome != null && this.dependente.nascimento != null && this.dependente.tipo != null ) {
+    if ( this.dependente.nome != null && this.dependente.nascimento != null && this.dependente.tipo != null ) {
       this.dependente.dataRegistro = new Date().toLocaleString();
       this.dependente.nascimento = new Date(this.dependente.nascimento).toLocaleDateString();
       this.firestoreService.addDependente(this.dependente);
@@ -51,7 +50,7 @@ export class AddDependenteComponent implements OnInit {
       });
 
     } else {
-      alert("Ainda há campos obrigatórios não preenchidos!");
+      alert('Ainda há campos obrigatórios não preenchidos!');
     }
   }
 }

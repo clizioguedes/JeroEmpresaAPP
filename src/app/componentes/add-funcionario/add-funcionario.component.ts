@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Funcionario } from '../../interfaces/funcionario';
+import { Funcionario } from '../../interfaces/Funcionario';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -88,7 +88,7 @@ export class AddFuncionarioComponent implements OnInit {
     this.funcionario.nascimento = new Date(this.funcionario.nascimento).toLocaleDateString();
     this.funcionario.expedicao = new Date(this.funcionario.expedicao).toLocaleDateString();
     this.funcionario.admissao = new Date(this.funcionario.admissao).toLocaleDateString();
-    if(this.funcionario.demissao != null) {
+    if (this.funcionario.demissao != null) {
     this.funcionario.demissao = new Date(this.funcionario.demissao).toLocaleDateString();
     }
     this.firestoreService.addFuncionario(this.funcionario);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { ActivatedRoute } from '@angular/router';
-import { Funcionario } from '../../interfaces/funcionario';
+import { Funcionario } from '../../interfaces/Funcionario';
 
 @Component({
   selector: 'app-funcionario',

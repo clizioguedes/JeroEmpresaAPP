@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { Funcionario, Dependente, Falta } from '../interfaces/funcionario';
-import { OrdemDeProducao, ProducaoDiaria } from '../interfaces/ordem-de-producao';
-import { ActivatedRoute } from '@angular/router';
+import { Funcionario, Dependente, Falta } from '../interfaces/Funcionario';
+import { OrdemDeProducao, ProducaoDiaria } from '../interfaces/Producao';
 
 @Injectable({
   providedIn: 'root'
@@ -34,22 +33,36 @@ export class FirestoreService {
 
   ordensDeProducaoCol: AngularFirestoreCollection < OrdemDeProducao > ;
   ordensDeProducao: Observable < OrdemDeProducao[] > ;
-  
+
   ordemDeProducaoDoc: AngularFirestoreDocument < OrdemDeProducao > ;
   ordemDeProducao: Observable < OrdemDeProducao > ;
 
   producoesDiariasCol: AngularFirestoreCollection < ProducaoDiaria > ;
   producoesDiarias: Observable < ProducaoDiaria[] > ;
-  
+
   producaoDiariaDoc: AngularFirestoreDocument < ProducaoDiaria > ;
   producaoDiaria: Observable < ProducaoDiaria > ;
-  
+
   constructor( private afs: AngularFirestore ) { }
 
 // ---------------------------------- METODOS FUNCIONÁRIOS --------------------------------------
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.limit(15).orderBy('nome'));
+    this.funcionarios = this.funcionariosCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Funcionario;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.funcionarios;
+  }
+
+  getFuncionariosDashboard() {
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo').limit(10).orderBy('nome'));
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
@@ -198,6 +211,20 @@ export class FirestoreService {
     return this.ordensDeProducao;
   }
 
+  getOrdensDashboard() {
+    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref.limit(5).orderBy('dataCadastro', 'desc'));
+    this.ordensDeProducao = this.ordensDeProducaoCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as OrdemDeProducao;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.ordensDeProducao;
+  }
+
   getOrdem(ordemId) {
     this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + ordemId);
     this.ordemDeProducao = this.ordemDeProducaoDoc.valueChanges();
@@ -237,18 +264,15 @@ export class FirestoreService {
       this.producaoDiaria = this.producaoDiariaDoc.valueChanges();
       return this.producaoDiaria;
     }
-  
-    addProducaoDiaria( producaoDiaria: ProducaoDiaria ) {
+
+    addProducaoDiaria( producaoDiaria: ProducaoDiaria, ordemDeProducao: OrdemDeProducao ) {
       this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').add(producaoDiaria);
+      this.updateOrdem(ordemDeProducao);
     }
-  
-    updateProducaoDiaria( producao: ProducaoDiaria ) {
-      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').doc(`${producao.id}`);
-      this.producaoDiariaDoc.update(producao); 
-    }
-  
-    deleteProducaoDiaria(producao: ProducaoDiaria) {
-      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').doc(`${producao.id}`);
+
+    deleteProducaoDiaria(producaoDiaria: ProducaoDiaria, ordemDeProducao) {
+      this.producaoDiariaDoc = this.ordemDeProducaoDoc.collection < ProducaoDiaria > ('producoes-diarias').doc(`${producaoDiaria.id}`);
       this.producaoDiariaDoc.delete();
+      this.ordemDeProducaoDoc.update(ordemDeProducao);
     }
 }

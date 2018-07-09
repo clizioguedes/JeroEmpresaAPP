@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Funcionario } from '../../interfaces/funcionario';
+import { Funcionario } from '../../interfaces/Funcionario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -124,7 +124,7 @@ export class EditarFuncionarioComponent implements OnInit {
   }
 
   updateFuncionario(funcionario: Funcionario) {
-    if(this.funcionario.situacao === "Inativo") {
+    if (this.funcionario.situacao === 'Inativo') {
       this.funcionario.demissao = new Date(this.funcionario.demissao).toLocaleDateString();
       } else {
         funcionario.demissao = null;

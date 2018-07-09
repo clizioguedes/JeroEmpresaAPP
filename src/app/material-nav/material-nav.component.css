@@ -1,3 +1,6 @@
+router-outlet {
+  width: 80%;
+}
 mat-list-item mat-icon {
   font-size: 10pt;
   margin-top: 12px

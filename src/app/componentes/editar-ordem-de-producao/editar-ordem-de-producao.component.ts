@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdemDeProducao } from '../../interfaces/ordem-de-producao';
+import { OrdemDeProducao } from '../../interfaces/Producao';
 import { FirestoreService } from '../../servi\u00E7os/firestore.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -26,7 +26,7 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
     status: null,
     producao: null,
     observacao: null
-  }
+  };
 
   status = [
     'Espera',
@@ -56,12 +56,12 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
       this.ordemDeProducao.valor = ordemDeProducao.valor;
       this.ordemDeProducao.entrega = ordemDeProducao.entrega;
       this.ordemDeProducao.status = ordemDeProducao.status;
+      this.ordemDeProducao.observacao = ordemDeProducao.observacao;
     });
   }
 
   updateOrdemDeProducao() {
     this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
-    this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
     this.firestoreService.updateOrdem(this.ordemDeProducao);
     // Rota
     this.router.navigate(['ordem-de-producao/' + this.id]);

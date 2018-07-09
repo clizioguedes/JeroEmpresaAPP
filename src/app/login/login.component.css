@@ -1,0 +1,16 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  margin: 50px;
+  text-align: center;
+  position: relative;
+}
+
+mat-form-field{
+  width: 50%;
+}
+
+mat-form-field input {
+  width: 50%;
+}

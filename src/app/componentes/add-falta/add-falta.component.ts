@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Falta } from '../../interfaces/funcionario';
+import { Falta } from '../../interfaces/Funcionario';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { MatSnackBar } from '@angular/material';
-import { FuncionarioComponent } from '../funcionario/funcionario.component';
 
 @Component({
   selector: 'app-add-falta',
@@ -18,7 +17,7 @@ export class AddFaltaComponent implements OnInit {
     dataFalta: null,
     periodo: null,
     observacao: null
-  }
+  };
 
   tipos = [
    'Atestado',
@@ -40,7 +39,7 @@ export class AddFaltaComponent implements OnInit {
   }
 
   addFalta() {
-    if( this.falta.dataFalta != null && this.falta.observacao != null ) {
+    if (this.falta.dataFalta != null && this.falta.observacao != null) {
       this.falta.dataRegistro = Date.now();
       this.falta.dataRegistro = new Date(this.falta.dataRegistro).toLocaleString();
       this.falta.dataFalta = new Date(this.falta.dataFalta).toLocaleDateString();
@@ -56,7 +55,7 @@ export class AddFaltaComponent implements OnInit {
         duration: 2000,
       });
     } else {
-        alert("Há campos obrigatórios não preenchidos!");
+        alert('Há campos obrigatórios não preenchidos!');
     }
   }
 

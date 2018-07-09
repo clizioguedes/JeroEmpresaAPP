@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { OrdemDeProducao } from '../../interfaces/ordem-de-producao';
+import { OrdemDeProducao } from '../../interfaces/Producao';
 
 @Component({
   selector: 'app-listar-ordens-de-producao',

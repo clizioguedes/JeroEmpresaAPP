@@ -13,12 +13,10 @@ export interface OrdemDeProducao {
     status: string;
     producao: number;
     observacao?: string;
-    eficiencia?: string;
 }
 
 export interface ProducaoDiaria {
     id?: string;
-    idOrdem: string; // ID da ordem que essa produção diaria está relacionada 
     dataCadastro; // Data do Registro dessa PD
     quantidadePessoal: number; // Quantidade de funcionarios Envolvidos nessa PD
     producaoDiaria: number; // Total de Peças produzidas nessa PD
@@ -26,4 +24,5 @@ export interface ProducaoDiaria {
     minutosProducao: number; // Peças Produzidas * Tempo Padrão
     eficiencia: number; // (minutosTrabalhados / minutosPessoal);
     faturaDiaria: number; // producaoDiaria * valorPeca
+    faturaMensal: number;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Observable } from 'rxjs/Observable';
-import { Dependente } from '../../interfaces/funcionario';
+import { Dependente } from '../../interfaces/Funcionario';
 
 @Component({
   selector: 'app-listar-dependentes',
@@ -20,7 +20,7 @@ export class ListarDependentesComponent implements OnInit {
     });
   }
 
-  deleteDependente(event, dependente: Dependente){
+  deleteDependente(event, dependente: Dependente) {
     this.firestoreService.deleteDependente(dependente);
     console.log('Dependente Deletado');
   }

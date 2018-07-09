@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Falta } from '../../interfaces/funcionario';
+import { Falta } from '../../interfaces/Funcionario';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { MatSnackBar } from '@angular/material';
-import { FuncionarioComponent } from '../funcionario/funcionario.component';
 
 @Component({
   selector: 'app-listar-faltas',
@@ -19,7 +18,7 @@ export class ListarFaltasComponent implements OnInit {
 
   constructor(
     private firestoreService: FirestoreService,
-    public snackBar: MatSnackBar,) { }
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.allFaltas = true;

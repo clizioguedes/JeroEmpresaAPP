@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Observable } from 'rxjs/Observable';
-import { Funcionario } from '../../interfaces/funcionario';
+import { Funcionario } from '../../interfaces/Funcionario';
 
 @Component({
   selector: 'app-listar-funcionarios',
@@ -20,7 +19,7 @@ export class ListarFuncionariosComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService ) {
    }
-  
+
   ngOnInit() {
     this.allFuncionarios = true;
     this.inativeFuncionarios = false;

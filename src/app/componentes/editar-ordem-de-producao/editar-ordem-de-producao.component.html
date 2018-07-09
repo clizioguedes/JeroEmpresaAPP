@@ -57,15 +57,13 @@
               </mat-radio-group>
 
               <mat-form-field>
-                  <input matInput [matDatepicker]="pickerEntrega" [(ngModel)]="ordemDeProducao.entrega" name="entrega" placeholder="Previsão de Entrega">
-                  <mat-datepicker-toggle matSuffix [for]="pickerEntrega"></mat-datepicker-toggle>
-                  <mat-datepicker disabled="false" touchUi="true" #pickerEntrega></mat-datepicker>
-              </mat-form-field>
-
+                    <input matInput placeholder="Entrega" mask="00/00/0000" [(ngModel)]="ordemDeProducao.entrega" [dropSpecialCharacters]="false"
+                        name="entrega" required>
+            </mat-form-field>
+ 
               <mat-form-field>
                   <textarea matInput placeholder="Observações" [(ngModel)]="ordemDeProducao.observacao" name="observacao"></textarea>
               </mat-form-field>
-
               
               <button class="btn-back" [routerLink]="['/ordem-de-producao', id]" mat-raised-button color="primary">
                 <mat-icon>keyboard_backspace</mat-icon>

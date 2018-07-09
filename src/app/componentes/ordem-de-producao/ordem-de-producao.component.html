@@ -126,7 +126,7 @@
                                                 <th scope="col">Tempo de Pessoal <small>*Em minutos</small></th>
                                                 <th scope="col">Tempo em Produção</th>
                                                 <th scope="col">Produção <small>*Peças</small></th>
-                                                <th scope="col">Eficiência</th>
+                                                <th scope="col">Eficiência em %</th>
                                                 <th scope="col">Fatura <small>Em R$</small></th>
                                                 <th scope="col">Ações </th>
                                             </tr>
@@ -138,7 +138,7 @@
                                                 <td>{{producao.minutosPessoal}}</td>
                                                 <td>{{producao.minutosProducao}}</td>
                                                 <td>{{producao.producaoDiaria}}</td>
-                                                <td>{{producao.eficiencia}}</td>
+                                                <td>{{producao.eficiencia}} %</td>
                                                 <td>{{producao.faturaDiaria}}</td>
                                                 <td>
                                                     <button mat-mini-fab (click)="deleteProducaoDiaria($event, producao)" color="warn">
