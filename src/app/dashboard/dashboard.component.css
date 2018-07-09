@@ -1,3 +1,13 @@
+@import '../componentes/funcionario/funcionario.component.css';
+@import '../componentes/add-funcionario/add-funcionario.component.css';
+
+.table-sm td {
+    text-align: center;
+}
+
+.table-sm th {
+    text-align: center;
+}
 .grid-container {
   margin: 20px;
 }

@@ -143,6 +143,9 @@
                 <button mat-icon-button [routerLink]="['/funcionario/'+value]">
                     <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
                 </button>
+                <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
+                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                </button>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
@@ -206,6 +209,9 @@
             <ng-template ngx-datatable-cell-template let-value="value">
                 <button mat-icon-button [routerLink]="['/funcionario/'+value]">
                     <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
+                </button>
+                <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
+                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
                 </button>
             </ng-template>
         </ngx-datatable-column>

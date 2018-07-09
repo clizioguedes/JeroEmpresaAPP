@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Observable } from 'rxjs/Observable';
 import { Funcionario } from '../../interfaces/funcionario';
 
 @Component({

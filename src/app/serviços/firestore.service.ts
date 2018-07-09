@@ -3,7 +3,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import { Funcionario, Dependente, Falta } from '../interfaces/funcionario';
 import { OrdemDeProducao, ProducaoDiaria } from '../interfaces/ordem-de-producao';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +48,21 @@ export class FirestoreService {
 // ---------------------------------- METODOS FUNCIONÁRIOS --------------------------------------
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.limit(15).orderBy('nome'));
+    this.funcionarios = this.funcionariosCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as Funcionario;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.funcionarios;
+  }
+
+  getFuncionariosDashboard() {
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo').limit(10).orderBy('nome'));
     this.funcionarios = this.funcionariosCol
     .snapshotChanges()
       .map(changes =>  {
@@ -186,6 +199,20 @@ export class FirestoreService {
 
   getOrdens() {
     this.ordensDeProducaoCol = this.afs.collection('ordens' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
+    this.ordensDeProducao = this.ordensDeProducaoCol
+    .snapshotChanges()
+      .map(changes =>  {
+        return changes.map(a =>  {
+          const data = a.payload.doc.data()as OrdemDeProducao;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      });
+    return this.ordensDeProducao;
+  }
+
+  getOrdensDashboard() {
+    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref.limit(5).orderBy('dataCadastro', 'desc'));
     this.ordensDeProducao = this.ordensDeProducaoCol
     .snapshotChanges()
       .map(changes =>  {

@@ -44,12 +44,10 @@ export class OrdemDeProducaoComponent implements OnInit {
     this.firestoreService.getOrdem(this.idOrdem).subscribe(ordemDeProducao => {
       this.ordemDeProducao = ordemDeProducao;
     });
-
-    // Listagem de Producoes diarias
-    this.firestoreService.getProducoesDiarias().subscribe( (producoes) => {
-      this.producoes = producoes;
-    });
-
+        // Listagem de Producoes diarias
+        this.firestoreService.getProducoesDiarias().subscribe( (producoes) => {
+          this.producoes = producoes;
+        });
     // COMPARANDO PARA SABER SE O DIA QUE ESTA SENDO CADASTRADO É SEXTA
     // PARA AS HORAS DE TRABALHO DIMINUAM PARA 8H == 480MIN
     if (this.diaAtual === 5) {
@@ -77,6 +75,10 @@ export class OrdemDeProducaoComponent implements OnInit {
     this.producaoDiaria.minutosProducao = null;
     this.producaoDiaria.producaoDiaria = 0;
     this.producaoDiaria.quantidadePessoal = 0;
+  }
+
+  getIdOp() {
+    this.producaoDiaria.id = this.route.snapshot.params['id'];
   }
 
   addProducaoDiaria() {
