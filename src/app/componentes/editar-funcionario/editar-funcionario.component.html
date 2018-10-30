@@ -1,3 +1,229 @@
-<p>
-  editar-funcionario works!
-</p>
+<h3>Atualizar Funcionário</h3>
+
+<form>
+    <div class="row">
+        <mat-card class="col-xs-12 col-md-6 col-sm-12">
+            <fieldset>
+                <h4> Dados Pessoais </h4>
+
+                <mat-form-field>
+                    <input matInput placeholder="Nome Completo" [(ngModel)]="funcionario.nome" name="nome" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Data de Nascimento" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.nascimento"
+                        name="nascimento" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Nome do Pai" [(ngModel)]="funcionario.nomePai" name="nomePai" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Nome da Mãe" [(ngModel)]="funcionario.nomeMae" name="nomeMae" required>
+                </mat-form-field>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="sexo">Sexo:</label>
+                        <br>
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.sexo" name="sexo" required>
+                            <mat-radio-button class="example-radio-button" *ngFor="let sexo of sexos" [value]="sexo">
+                                {{sexo}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="estadoCivil">Estado Civil:</label>
+                        <br>
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.estadoCivil" name="estadoCivil" required>
+                            <mat-radio-button class="example-radio-button" *ngFor="let estadoCivil of estadosCivis" [value]="estadoCivil">
+                                {{estadoCivil}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <mat-form-field hintLabel="Ex: Cerro Corá-RN">
+                    <input matInput placeholder="Naturalidade" [(ngModel)]="funcionario.naturalidade" name="naturalidade" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Identidade" [(ngModel)]="funcionario.identidade" name="identidade" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Data de Expedição" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.expedicao"
+                        name="expedicao" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Orgão Emissor" [(ngModel)]="funcionario.orgaoEmissor" name="orgaoEmissor" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="funcionario.cpf" name="cpf"
+                        required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Titulo Eleitoral" dropSpecialCharacters="false" mask="0000 0000 0000" [(ngModel)]="funcionario.tituloEleitor"
+                        name="tituloEleitor" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Zona Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.zonaEleitoral"
+                        name="zonaEleitoral">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Secção Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.seccaoEleitoral"
+                        name="seccaoEleitoral">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="NIS" dropSpecialCharacters="false" mask='00000000000' [(ngModel)]="funcionario.nis" name="nis">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="SUS" dropSpecialCharacters="false" mask='000 0000 0000 0000' [(ngModel)]="funcionario.sus" name="sus">
+                </mat-form-field>
+
+                <h4> Endereço e Contato </h4>
+
+                <mat-form-field hintLabel="Ex: Rua Sérvulo Pereira">
+                    <input matInput placeholder="Endereço" [(ngModel)]="funcionario.endereco" name="endereco" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="number" matInput placeholder="Número" dropSpecialCharacters="false" mask='0000' [(ngModel)]="funcionario.numero"
+                        name="numero" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Bairro" [(ngModel)]="funcionario.bairro" name="bairro" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Cidade" [(ngModel)]="funcionario.cidade" name="cidade" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Celular" dropSpecialCharacters="false" mask='(00) 00000-0000' [(ngModel)]="funcionario.celular"
+                        name="celular">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="E-Mail" [(ngModel)]="funcionario.email" name="email">
+                </mat-form-field>
+
+                <h4> Dados do Funcionario</h4>
+
+                <mat-form-field>
+                    <input type="number" minlength="1" dropSpecialCharacters="false" mask="0000" matInput placeholder="Matricula" [(ngModel)]="funcionario.matricula"
+                        name="matricula" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Data de Admissão" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.admissao"
+                        name="admissao" required>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="funcionario.situacao === 'Inativo'">
+                    <input matInput placeholder="Data de Demissão" mask="00/00/0000" [dropSpecialCharacters]="false" [(ngModel)]="funcionario.demissao"
+                        name="demissao" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="CBO" [(ngModel)]="funcionario.cbo" name="cbo">
+                </mat-form-field>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="setor">Setor:</label>
+                        <br>
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.setor" name="setor" required>
+                            <mat-radio-button class="example-radio-button" *ngFor="let setor of setores" [value]="setor">
+                                {{setor}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="cargo" *ngIf="funcionario.setor">Cargo:</label>
+                        <br>
+                        <div *ngIf="funcionario.setor === 'Administração'">
+                            <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.cargo" name="cargo" required>
+                                <mat-radio-button class="example-radio-button" value="Secretário">
+                                    Secretário
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="funcionario.setor === 'Produção'">
+                            <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.cargo" name="cargo" required>
+                                <mat-radio-button class="example-radio-button" value="Gerente de produção">
+                                    Gerente de produção
+                                </mat-radio-button>
+                                <mat-radio-button class="example-radio-button" value="Costureiro">
+                                    Costureiro
+                                </mat-radio-button>
+                                <mat-radio-button class="example-radio-button" value="Mecânico">
+                                    Mecânico
+                                </mat-radio-button>
+                                <mat-radio-button class="example-radio-button" value="Passador">
+                                    Passador
+                                </mat-radio-button>
+                                <mat-radio-button class="example-radio-button" value="Revisora">
+                                    Revisora
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="banco">Banco:</label>
+                <div class="row">
+                    <div class="col">
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.banco" name="banco">
+                            <mat-radio-button class="example-radio-button" *ngFor="let banco of bancos" [value]="banco">
+                                {{banco}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <mat-form-field>
+                    <input matInput placeholder="Agência" [(ngModel)]="funcionario.agencia" name="agencia">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Conta Bancaria" [(ngModel)]="funcionario.conta" name="conta">
+                </mat-form-field>
+
+                <mat-form-field *ngIf="funcionario.banco === 'Caixa Econômica'">
+                    <input matInput placeholder="Operação (Apenas Caixa Econômica)" [(ngModel)]="funcionario.operacao" name="operacao">
+                </mat-form-field>
+                <div class="row">
+                    <div class="col">
+                        <label for="situacao">Está Contratado Atualmente?</label>
+                        <br>
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.situacao" name="situacao" required>
+                            <mat-radio-button class="example-radio-button" value="Ativo">
+                                Sim
+                            </mat-radio-button>
+                            <mat-radio-button class="example-radio-button" value="Inativo">
+                                Não
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+
+                <button class="btn-back" [routerLink]="['/funcionario', id]" mat-raised-button color="primary">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </button>
+                <button type="button" mat-raised-button class="btn-add" color="primary" (click)="updateFuncionario(funcionario)"> Atualizar </button>
+            </fieldset>
+        </mat-card>
+    </div>
+</form>

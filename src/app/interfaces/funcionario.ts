@@ -1,16 +1,16 @@
 export interface Funcionario {
     id?: string;
-    dataRegistro;
+    dataCadastro: any;
     // Dados Pessoais
     nome: string;
-    dataNascimento;
+    nascimento: any;
     nomePai?: string;
     nomeMae: string;
     sexo: string;
     estadoCivil: string;
     naturalidade?: string;
     identidade: string;
-    dataExpedicao;
+    expedicao: any;
     orgaoEmissor: string;
     cpf: string;
     tituloEleitor: string;
@@ -18,17 +18,20 @@ export interface Funcionario {
     seccaoEleitoral?: string;
     nis?: string;
     sus?: string;
-    // Contato
+    // Endereço
     endereco: string;
     numero: string;
     bairro: string;
     cidade: string;
+    // Contato
     celular?: string;
     email?: string;
     // Dados Funcionário / Bancários
     matricula: number;
-    dataAdmissao;
+    admissao: any;
+    demissao: any;
     setor: string;
+    cbo?: string;
     cargo: string;
     banco?: string;
     operacao?: string;
@@ -48,8 +51,10 @@ export interface Dependente {
 
 export interface Falta {
     id?: string;
+    tipo?: string;
     nomeFuncionario?: string;
+    periodo: string;
     dataRegistro;
-    dataAusencia;
+    dataFalta;
     observacao: string;
 }

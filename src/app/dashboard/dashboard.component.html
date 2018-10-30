@@ -6,18 +6,45 @@
                 <mat-card class="dashboard-card">
                     <mat-card-header>
                         <mat-card-title>
-                            Titulo
+                            Ordens de Produção
                             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                             <mat-menu #menu="matMenu" xPosition="before">
-                                <button mat-menu-item>Expand</button>
-                                <button mat-menu-item>Remove</button>
+                                <button mat-menu-item>Editar</button>
+                                <button mat-menu-item>Excluir</button>
                             </mat-menu>
                         </mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="dashboard-card-content">
-                        <div>Card Content Here</div>
+                        <div class="box">
+                            <div class="print">
+                                <table class="table-sm table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fornecedor</th>
+                                            <th scope="col">Referencia</th>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Quantidade</th>
+                                            <th scope="col">Produção</th>
+                                            <th scope="col">Data Prevista de Entrega</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr [routerLink]="['/ordem-de-producao/'+ordem.id]" *ngFor="let ordem of ordens">
+                                            <td>{{ordem.fornecedor}}</td>
+                                            <td>{{ordem.referencia}}</td>
+                                            <td>{{ordem.item}}</td>
+                                            <td>{{ordem.quantidade}}</td>
+                                            <td>{{ordem.producao}}</td>
+                                            <td>{{ordem.entrega}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
@@ -40,7 +67,7 @@
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
-                    <div>Card Content Here</div>
+Teste
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
@@ -49,18 +76,40 @@
             <mat-card class="dashboard-card">
                 <mat-card-header>
                     <mat-card-title>
-                        Titulo
+                        Funcionarios
                         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
                         <mat-menu #menu="matMenu" xPosition="before">
-                            <button mat-menu-item>Expand</button>
-                            <button mat-menu-item>Remove</button>
+                            <button mat-menu-item>Editar</button>
+                            <button mat-menu-item>Excluir</button>
                         </mat-menu>
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
-                    <div>Card Content Here</div>
+                    <div>
+                            <div class="box">
+                                    <div class="print">
+                                        <table class="table-sm table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Matricula</th>
+                                                    <th scope="col">Nome</th>
+                                                    <th scope="col">CPF</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr [routerLink]="['/funcionario/'+funcionario.id]" *ngFor="let funcionario of funcionarios">
+                                                    <td>{{funcionario.matricula}}</td>
+                                                    <td>{{funcionario.nome}}</td>
+                                                    <td>{{funcionario.cpf}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                    </div>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
@@ -79,7 +128,7 @@
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
-                    <div>Card Content Here</div>
+                    <div>Card Content Here 4</div>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>

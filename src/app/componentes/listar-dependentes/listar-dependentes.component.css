@@ -1,0 +1,11 @@
+@import '../funcionario/funcionario.component.css';
+
+.btnPrinter {
+  text-align: center;
+}
+
+@media print { 
+  button {
+    display: none;
+  }
+}

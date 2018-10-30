@@ -1,9 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-* {
-    font-family: 'Lato', sans-serif;
+
+@media print {
+  body {
+    background: #FFF;
+    color: #000;
+    font: 12pt serif;
+  }
+  a:link, a:visited {
+    color: #333;
+    text-decoration: underline;
+  }
+  a[href] {
+    content: " (" attr(href) ")";
+  }
+  div {
+    width: 100%;
+    margin: auto;
+  }
 }

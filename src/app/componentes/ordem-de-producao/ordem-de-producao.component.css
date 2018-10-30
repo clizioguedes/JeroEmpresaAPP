@@ -1,0 +1,9 @@
+@import '../funcionario/funcionario.component.css';
+@import '../add-funcionario/add-funcionario.component.css';
+.table-sm td {
+    text-align: center;
+}
+
+.table-sm th {
+    text-align: center;
+}

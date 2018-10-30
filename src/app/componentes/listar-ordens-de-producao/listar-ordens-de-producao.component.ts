@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../serviços/firestore.service';
+import { OrdemDeProducao } from '../../interfaces/Producao';
 
 @Component({
   selector: 'app-listar-ordens-de-producao',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarOrdensDeProducaoComponent implements OnInit {
 
-  constructor() { }
+  ordens: OrdemDeProducao[];
 
-  ngOnInit() {
+  constructor(
+    private firestoreService: FirestoreService ) {
+   }
+
+   ngOnInit() {
+    this.firestoreService.getOrdens().subscribe( ordens => {
+      this.ordens = ordens;
+    });
   }
 
 }

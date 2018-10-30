@@ -1,14 +1,22 @@
-.sidenav-container {
-    height: 100%;
-    widows: 25%;
+router-outlet {
+  width: 80%;
+}
+mat-list-item mat-icon {
+  font-size: 10pt;
+  margin-top: 12px
 }
 
-.sidenav {
-    width: 200px;
-    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+mat-drawer-container {
+  min-height: 90vh;
 }
 
-mat-icon {
-    font-size: 10pt;
-    margin-top: 12px;
+@media print {
+  
+  mat-drawer {
+    display: none;
+  }
+
+  mat-toolbar {
+    display: none;
+  }
 }

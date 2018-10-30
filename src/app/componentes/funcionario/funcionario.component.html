@@ -1,126 +1,224 @@
-<mat-card>
+<div class="row">
+  <mat-card class="col-xs-12 col-md-12 col-sm-12">
     <mat-card-content>
-        <div class="box">
-            <h3>Dados Gerais</h3>
-            <div class="row">
-                <div>
-                    <table class="info">
-                        <tr>
-                            <td>Nome</td>
-                            <td colspan="3">{{funcionario?.nome}}</td>
-                            <td>Data de Nascimento</td>
-                            <td>
-                                {{funcionario?.dataNascimento}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nome do Pai</td>
-                            <td colspan="3"> {{funcionario?.nomePai}} </td>
-                            <td>Nome da Mãe</td>
-                            <td> {{funcionario?.nomeMae}}</td>
-                        </tr>
-                        <tr>
-                            <td>Sexo</td>
-                            <td colspan="3"> {{funcionario?.sexo}} </td>
-                            <td>Estado Civil</td>
-                            <td> {{funcionario?.estadoCivil}}</td>
-                        </tr>
-                        <tr>
-                            <td>Naturalidade</td>
-                            <td colspan="5"> {{funcionario?.naturalidade}} </td>
-                        </tr>
-                        <tr>
-                            <td>Identidade</td>
-                            <td colspan="3"> {{funcionario?.identidade}} </td>
-                            <td>Data de Expedição</td>
-                            <td> {{funcionario?.dataExpedicao}} </td>
-                        </tr>
-                        <tr>
-                            <td>CPF</td>
-                            <td colspan="5"> {{funcionario?.cpf}} </td>
-                        </tr>
-                        <tr>
-                            <td>Titulo Eleitor</td>
-                            <td colspan="5"> {{funcionario?.tituloEleitor}} </td>
-                        </tr>
-                        <tr>
-                            <td>Zona Eleitoral</td>
-                            <td colspan="3"> {{funcionario?.zonaEleitoral}} </td>
-                            <td>Secção Eleitoral</td>
-                            <td> {{funcionario?.seccaoEleitoral}} </td>
-                        </tr>
-                        <tr>
-                            <td>NIS</td>
-                            <td colspan="3"> {{funcionario?.nis}} </td>
-                            <td>SUS</td>
-                            <td> {{funcionario?.sus}}</td>
-                        </tr>
-                        <tr>
-                            <td>Situação</td>
-                            <td colspan="5"><span class="status status-success">{{funcionario?.situacao}}</span></td>
-                        </tr>
-                    </table>
-                    <h3>Endereço e Contato</h3>
-
-                    <table class="info">
-                        <tr>
-                            <td>Endereço</td>
-                            <td colspan="5"> {{funcionario?.endereco}} </td>
-                        </tr>
-                        <tr>
-                            <td>Número</td>
-                            <td colspan="5"> {{funcionario?.numero}}</td>
-                        </tr>
-                        <tr>
-                            <td>Bairro</td>
-                            <td colspan="5"> {{funcionario?.bairro}} </td>
-                        </tr>
-                        <tr>
-                            <td>Cidade</td>
-                            <td colspan="5"> {{funcionario?.cidade}}</td>
-                        </tr>
-                        <tr>
-                            <td>Celular</td>
-                            <td colspan="5"> {{funcionario?.celular}} </td>
-                        </tr>
-                        <tr>
-                            <td>E-mail</td>
-                            <td colspan="5"> {{funcionario?.email}} </td>
-                        </tr>
-                    </table>
-                    <h3>Dados Funcionais</h3>
-                    <table class="info">
-                        <tr>
-                            <td>Matricula</td>
-                            <td colspan="5"> {{funcionario?.matricula}} </td>
-                        </tr>
-                        <tr>
-                            <td>Admissão</td>
-                            <td colspan="5"> {{funcionario?.dataAdmissao}}</td>
-                        </tr>
-                        <tr>
-                            <td>Setor</td>
-                            <td colspan="3"> {{funcionario?.setor}} </td>
-                            <td>Cargo</td>
-                            <td> {{funcionario?.cargo}}</td>
-                        </tr>
-                        <tr>
-                            <td>Banco</td>
-                            <td colspan="3"> {{funcionario?.banco}} </td>
-                            <td>Agência</td>
-                            <td> {{funcionario?.agencia}} </td>
-                        </tr>
-                        <tr>
-                            <td>Conta</td>
-                            <td colspan="5"> {{funcionario?.conta}} </td>
-                        </tr>
-                        <tr>
-                            <td>Operação</td>
-                            <td colspan="5"> {{funcionario?.operacao}} </td>
-                        </tr>
-                    </table>
-                </div>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab class="mat-tab" label="Dadaos Cadastrais">
+          <div class="demo-tab-content">
+            <div class="box">
+              <div id="print">
+              <mat-card-title style="text-align: center">{{funcionario?.nome}}</mat-card-title>
+                <h3>Dados Gerais</h3>
+                <table class="info">
+                  <tr>
+                    <td>Nome</td>
+                    <td colspan="3">{{funcionario?.nome}}</td>
+                    <td>Data de Nascimento</td>
+                    <td>
+                      {{funcionario?.nascimento}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nome do Pai</td>
+                    <td colspan="3">
+                      {{funcionario?.nomePai}} </td>
+                    <td>Nome da Mãe</td>
+                    <td> {{funcionario?.nomeMae}}</td>
+                  </tr>
+                  <tr>
+                    <td>Sexo</td>
+                    <td colspan="3">
+                      {{funcionario?.sexo}}
+                    </td>
+                    <td>Estado Civil</td>
+                    <td> {{funcionario?.estadoCivil}}</td>
+                  </tr>
+                  <tr>
+                    <td>Naturalidade</td>
+                    <td colspan="5">
+                      {{funcionario?.naturalidade}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Identidade</td>
+                    <td colspan="3">
+                      {{funcionario?.identidade}}
+                    </td>
+                    <td>Data de Expedição</td>
+                    <td> {{funcionario?.expedicao}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CPF</td>
+                    <td colspan="5">
+                      {{funcionario?.cpf}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Titulo Eleitor</td>
+                    <td colspan="5">
+                      {{funcionario?.tituloEleitor}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Zona Eleitoral</td>
+                    <td colspan="3">
+                      {{funcionario?.zonaEleitoral}}
+                    </td>
+                    <td>Secção Eleitoral</td>
+                    <td>
+                      {{funcionario?.seccaoEleitoral}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NIS</td>
+                    <td colspan="3">
+                      {{funcionario?.nis}}
+                    </td>
+                    <td>SUS</td>
+                    <td> {{funcionario?.sus}}</td>
+                  </tr>
+                  <tr>
+                    <td>Situação</td>
+                    <td colspan="5">
+                      <span [ngClass]="{
+                                                'status-ativo':
+                                                funcionario?.situacao ===
+                                                'Ativo', 'status-inativo':
+                                                funcionario?.situacao ===
+                                                'Inativo' }">
+                        {{funcionario?.situacao}}
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+                <h3>Endereço e Contato</h3>
+                <table class="info">
+                  <tr>
+                    <td>Endereço</td>
+                    <td colspan="5">
+                      {{funcionario?.endereco}} </td>
+                  </tr>
+                  <tr>
+                    <td>Número</td>
+                    <td colspan="5">
+                      {{funcionario?.numero}}</td>
+                  </tr>
+                  <tr>
+                    <td>Bairro</td>
+                    <td colspan="5">
+                      {{funcionario?.bairro}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cidade</td>
+                    <td colspan="5">
+                      {{funcionario?.cidade}}</td>
+                  </tr>
+                  <tr>
+                    <td>Celular</td>
+                    <td colspan="5">
+                      {{funcionario?.celular}} </td>
+                  </tr>
+                  <tr>
+                    <td>E-mail</td>
+                    <td colspan="5">
+                      {{funcionario?.email}}
+                    </td>
+                  </tr>
+                </table>
+                <h3>Dados Funcionais</h3>
+                <table class="info">
+                  <tr>
+                    <td>Matricula</td>
+                    <td colspan="5">
+                      {{funcionario?.matricula}} </td>
+                  </tr>
+                  <tr>
+                    <td>Admissão</td>
+                    <td colspan="5">
+                      {{funcionario?.admissao}}</td>
+                  </tr>
+                  <tr *ngIf="funcionario.situacao === 'Inativo'">
+                    <td>Demissão</td>
+                    <td colspan="5">
+                      {{funcionario?.demissao}}</td>
+                  </tr>
+                  <tr>
+                    <td>Setor</td>
+                    <td colspan="3">
+                      {{funcionario?.setor}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cargo</td>
+                    <td colspan="3"> {{funcionario?.cargo}}</td>
+                  </tr>
+                  <tr>
+                      <td>CBO</td>
+                      <td colspan="3"> {{funcionario?.cbo}}</td>
+                    </tr>
+                  <tr>
+                    <td>Banco</td>
+                    <td colspan="3">
+                      {{funcionario?.banco}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Agência</td>
+                    <td colspan="3">
+                      {{funcionario?.agencia}} </td>
+                  </tr>
+                  <tr>
+                    <td>Conta</td>
+                    <td colspan="5">
+                      {{funcionario?.conta}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="funcionario.banco === 'Caixa Econômica'">
+                    <td>Operação</td>
+                    <td colspan="5">
+                      {{funcionario?.operacao}} </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="actions">
+                <button mat-button color="primary" routerLink="/editar-funcionario/{{id}}">
+                  <mat-icon aria-label="Editar Funcionário">mode_edit</mat-icon>
+                  Editar
+                </button>
+                <button mat-button color="accent" onclick="window.print()">
+                  <mat-icon aria-label="Demitir Funcionário">print</mat-icon>
+                  Imprimir Ficha
+                </button>
+                <button mat-button color="warn">
+                  <mat-icon aria-label="Demitir Funcionário">highlight_off</mat-icon>
+                  Demitir
+                </button>
+              </div>
             </div>
-        </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Dependentes">
+          <div class="demo-tab-content">
+            <mat-card>
+              <app-add-dependente></app-add-dependente>
+            </mat-card>
+            <mat-card>
+              <app-listar-dependentes></app-listar-dependentes>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <mat-tab label="Faltas">
+          <div class="demo-tab-content">
+            <mat-card>
+              <app-add-falta></app-add-falta>
+            </mat-card>
+            <mat-card>
+              <app-listar-faltas></app-listar-faltas>
+            </mat-card>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </mat-card-content>
-</mat-card>
+  </mat-card>
+</div>

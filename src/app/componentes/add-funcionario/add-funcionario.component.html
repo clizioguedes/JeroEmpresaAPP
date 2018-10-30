@@ -1,16 +1,26 @@
 <form>
     <div class="row">
         <mat-card class="col-xs-12 col-md-6 col-sm-12">
-            <button routerLink="/listar-funcionarios" mat-raised-button color="primary"> <mat-icon>keyboard_backspace</mat-icon></button>
             <fieldset>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a routerLink="/">Home</a> 
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/listar-funcionarios">Listar Funcionários</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Cadastrar Funcionário</li>
+                    </ol>
+                </nav>
                 <h4> Dados Pessoais</h4>
-                <mat-divider></mat-divider>
                 <mat-form-field>
                     <input matInput placeholder="Nome Completo" [(ngModel)]="funcionario.nome" name="nome" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput [matDatepicker]="pickerNascimento" disabled="true" [(ngModel)]="funcionario.dataNascimento" name="dataNascimento" placeholder="Data de Nascimento" required>
+                    <input matInput [matDatepicker]="pickerNascimento" disabled="true" [(ngModel)]="funcionario.nascimento" name="nascimento"
+                        placeholder="Data de Nascimento" required>
                     <mat-datepicker-toggle matSuffix [for]="pickerNascimento"></mat-datepicker-toggle>
                     <mat-datepicker disabled="false" touchUi="true" #pickerNascimento></mat-datepicker>
                 </mat-form-field>
@@ -52,7 +62,8 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput [matDatepicker]="pickerExpedicao" disabled="true" [(ngModel)]="funcionario.dataExpedicao" name="dataExpedicao" placeholder="Data de Expedição" required>
+                    <input matInput [matDatepicker]="pickerExpedicao" disabled="true" [(ngModel)]="funcionario.expedicao" name="dataExpedicao"
+                        placeholder="Data de Expedição" required>
                     <mat-datepicker-toggle matSuffix [for]="pickerExpedicao"></mat-datepicker-toggle>
                     <mat-datepicker disabled="false" touchUi="true" #pickerExpedicao></mat-datepicker>
                 </mat-form-field>
@@ -62,19 +73,23 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="funcionario.cpf" name="cpf" required>
+                    <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="funcionario.cpf" name="cpf"
+                        required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Titulo Eleitoral" dropSpecialCharacters="false" mask="0000 0000 0000" [(ngModel)]="funcionario.tituloEleitor" name="tituloEleitor" required>
+                    <input matInput placeholder="Titulo Eleitoral" dropSpecialCharacters="false" mask="0000 0000 0000" [(ngModel)]="funcionario.tituloEleitor"
+                        name="tituloEleitor" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Zona Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.zonaEleitoral" name="zonaEleitoral">
+                    <input matInput placeholder="Zona Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.zonaEleitoral"
+                        name="zonaEleitoral">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Secção Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.seccaoEleitoral" name="seccaoEleitoral">
+                    <input matInput placeholder="Secção Eleitoral" dropSpecialCharacters="false" mask='000' [(ngModel)]="funcionario.seccaoEleitoral"
+                        name="seccaoEleitoral">
                 </mat-form-field>
 
                 <mat-form-field>
@@ -86,14 +101,14 @@
                 </mat-form-field>
 
                 <h4> Endereço e Contato </h4>
-                <mat-divider></mat-divider>
 
                 <mat-form-field hintLabel="Ex: Rua Sérvulo Pereira">
                     <input matInput placeholder="Endereço" [(ngModel)]="funcionario.endereco" name="endereco" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="number" matInput placeholder="Número" dropSpecialCharacters="false" mask='0000' [(ngModel)]="funcionario.numero" name="numero" required>
+                    <input type="number" matInput placeholder="Número" dropSpecialCharacters="false" mask='0000' [(ngModel)]="funcionario.numero"
+                        name="numero" required>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -105,7 +120,8 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Celular" dropSpecialCharacters="false" mask='(00) 00000-0000' [(ngModel)]="funcionario.celular" name="celular">
+                    <input matInput placeholder="Celular" dropSpecialCharacters="false" mask='(00) 00000-0000' [(ngModel)]="funcionario.celular"
+                        name="celular" required>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -113,16 +129,21 @@
                 </mat-form-field>
 
                 <h4> Dados do Funcionario</h4>
-                <mat-divider></mat-divider>
 
                 <mat-form-field>
-                    <input type="number" minlength="1" dropSpecialCharacters="false" mask="0000" matInput placeholder="Matricula" [(ngModel)]="funcionario.matricula" name="matricula" required>
+                    <input type="number" minlength="1" dropSpecialCharacters="false" mask="0000" matInput placeholder="Matricula" [(ngModel)]="funcionario.matricula"
+                        name="matricula" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput [matDatepicker]="dataAdmissao" disabled="true" [(ngModel)]="funcionario.dataAdmissao" name="dataAdmissao" placeholder="Data de Admissão">
+                    <input matInput placeholder="Data de Admissão" [matDatepicker]="dataAdmissao" disabled="true" [(ngModel)]="funcionario.admissao"
+                        name="admissao" placeholder="Data de Admissão" required>
                     <mat-datepicker-toggle matSuffix [for]="dataAdmissao"></mat-datepicker-toggle>
                     <mat-datepicker disabled="false" touchUi="true" #dataAdmissao></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="CBO" [(ngModel)]="funcionario.cbo" name="cbo" required>
                 </mat-form-field>
 
                 <div class="row">
@@ -152,7 +173,7 @@
                         <div *ngIf="funcionario.setor === 'Produção'">
                             <mat-radio-group class="example-radio-group" [(ngModel)]="funcionario.cargo" name="cargo" required>
                                 <mat-radio-button class="example-radio-button" value="Gerente de produção">
-                                    Gerente de produção
+                                    Ger. de Prod/Op
                                 </mat-radio-button>
                                 <mat-radio-button class="example-radio-button" value="Costureiro">
                                     Costureiro
@@ -170,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <mat-divider></mat-divider>
+
                 <label for="banco">Banco:</label>
                 <div class="row">
                     <div class="col">
@@ -206,8 +227,19 @@
                         </mat-radio-group>
                     </div>
                 </div>
-                <mat-divider></mat-divider>
-                <button mat-raised-button class="btn-add" color="primary" (click)="addFuncionario()"> Enviar <mat-icon class="icon-add">send</mat-icon></button>
+                <mat-form-field *ngIf="funcionario.situacao === 'Inativo'">
+                    <input matInput placeholder="Data de Demissão" [matDatepicker]="demissao" disabled="true" [(ngModel)]="funcionario.demissao"
+                        name="demissao">
+                    <mat-datepicker-toggle matSuffix [for]="demissao"></mat-datepicker-toggle>
+                    <mat-datepicker disabled="false" touchUi="true" #demissao></mat-datepicker>
+                </mat-form-field>
+
+                <button class="btn-back" routerLink="/listar-funcionarios" mat-raised-button color="primary">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </button>
+                <button mat-raised-button class="btn-add" color="primary" (click)="addFuncionario()">
+                    <mat-icon class="icon-add">done</mat-icon>
+                </button>
             </fieldset>
         </mat-card>
     </div>

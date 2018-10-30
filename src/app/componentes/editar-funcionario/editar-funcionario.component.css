@@ -1,0 +1,6 @@
+@import '../add-funcionario/add-funcionario.component.css';
+
+h3 {
+    text-align: center;
+    margin: 20px;
+}

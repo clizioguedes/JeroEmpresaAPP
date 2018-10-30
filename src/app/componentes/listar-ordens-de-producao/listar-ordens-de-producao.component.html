@@ -1,3 +1,64 @@
-<p>
-  listar-ordens-de-producao works!
-</p>
+<div class="button-row">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Listar Ordens de Produção</li>
+        </ol>
+    </nav>
+    <button mat-button color="primary" routerLink="/add-ordem-de-producao/">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="datatable" id="printerAll">
+    <h3>Ordens de Produção</h3>
+    <ngx-datatable name="datatable" fixed-header #table class="material striped" [columns]="columns" [rowHeight]="45" [headerHeight]="50" [footerHeight]="40"
+        [columnMode]="'force'" [rowHeight]="'auto'" [count]="true" [rows]="ordens">
+
+        <ngx-datatable-column name="NUMERO">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="REFERENCIA">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="ITEM">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="VALOR">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="ENTREGA">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="STATUS">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="ID">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <button mat-icon-button [routerLink]="['/ordem-de-producao/'+value]">
+                    <mat-icon aria-label="Example icon-button with a heart icon">build</mat-icon>
+                </button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

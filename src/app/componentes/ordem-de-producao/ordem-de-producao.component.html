@@ -1,3 +1,159 @@
-<p>
-  ordem-de-producao works!
-</p>
+<div class="row">
+    <mat-card class="col-xs-12 col-md-12 col-sm-12">
+        <mat-card-content>
+            <mat-tab-group class="demo-tab-group">
+                <mat-tab class="mat-tab" label="Dadaos Cadastrais">
+                    <div class="demo-tab-content">
+                        <div class="box">
+                            <div id="print">
+                                <h3>Dados da Ordem de Produção: {{id}}</h3>
+                                <table class="info">
+                                    <tr>
+                                        <td>Fornecedor</td>
+                                        <td colspan="5">{{ordemDeProducao?.fornecedor}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NF Fornecedor</td>
+                                        <td>
+                                            {{ordemDeProducao?.nf}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Numero</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.numero}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Referência</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.referencia}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.item}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantidade</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.quantidade}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tempo Padrão</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.tempo}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valor por Peça</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.valor}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Entrega Prevista</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.entrega}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.status}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Produção Geral</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.producao}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Observação</td>
+                                        <td colspan="5">
+                                            {{ordemDeProducao?.observacao}} </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="actions">
+                                <button mat-button color="primary" routerLink="/editar-ordem-de-producao/{{idOrdem}}">
+                  <mat-icon aria-label="Editar Ordem de Produção">mode_edit</mat-icon>
+                  Editar
+                </button>
+                                <button mat-button color="warn" (click)="deleteOrdem()">
+                  <mat-icon aria-label="Deletar Ordem de Produção">highlight_off</mat-icon>
+                  Excluir
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Produção Diaria">
+                    <div class="demo-tab-content">
+                        <mat-card>
+                            <fieldset>
+                                <h4>Cadastro de Produção Diária</h4>
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Quantidade de Pessoal" [(ngModel)]="producaoDiaria.quantidadePessoal" name="quantidadePessoal" required>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Produção Diaria" [(ngModel)]="producaoDiaria.producaoDiaria" name="producao">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Minutos de Produção" [(ngModel)]="ordemDeProducao?.tempo * producaoDiaria.producaoDiaria" disabled name="minutosProducao">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Total de Minutos" [(ngModel)]="producaoDiaria.quantidadePessoal * minutosPorFuncionario" disabled name="minutosPessoal">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Faturamento Diario" [(ngModel)]="ordemDeProducao?.valor * producaoDiaria.producaoDiaria" disabled name="faturaDiaria">
+                                </mat-form-field>
+
+                                <button mat-raised-button class="btn-add" color="primary" (click)="addProducaoDiaria()">
+                  <mat-icon class="icon-add">done</mat-icon>
+                </button>
+                            </fieldset>
+                        </mat-card>
+
+                        <mat-card>
+                            <div class="box">
+                                <div class="print">
+                                    <h3>Produções Diarias</h3>
+                                    <table class="table-sm table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Data</th>
+                                                <th scope="col">Funcionarios na OP</th>
+                                                <th scope="col">Tempo de Pessoal <small>*Em minutos</small></th>
+                                                <th scope="col">Tempo em Produção</th>
+                                                <th scope="col">Produção <small>*Peças</small></th>
+                                                <th scope="col">Eficiência em %</th>
+                                                <th scope="col">Fatura <small>Em R$</small></th>
+                                                <th scope="col">Ações </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let producao of producoes">
+                                                <td>{{producao.dataCadastro}}</td>
+                                                <td>{{producao.quantidadePessoal}}</td>
+                                                <td>{{producao.minutosPessoal}}</td>
+                                                <td>{{producao.minutosProducao}}</td>
+                                                <td>{{producao.producaoDiaria}}</td>
+                                                <td>{{producao.eficiencia}} %</td>
+                                                <td>{{producao.faturaDiaria}}</td>
+                                                <td>
+                                                    <button mat-mini-fab (click)="deleteProducaoDiaria($event, producao)" color="warn">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>
