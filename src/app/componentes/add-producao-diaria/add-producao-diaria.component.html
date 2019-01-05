@@ -1,0 +1,98 @@
+<form>
+  <div class="row">
+    <mat-card class="col-xs-12 col-sm-12">
+      <fieldset>
+        <h4> Cadastro de Produção Diária</h4>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerData" disabled="true" [(ngModel)]="producaoDiaria.data" name="data"
+            placeholder="Data da Produção">
+          <mat-datepicker-toggle matSuffix [for]="pickerData"></mat-datepicker-toggle>
+          <mat-datepicker disabled="false" touchUi="true" #pickerData></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="Minutos por Funcionário" [(ngModel)]="producaoDiaria.minutosDiarios"
+            name="minutosPorFuncionario">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="Quantidade de Pessoal" [(ngModel)]="producaoDiaria.quantidadeDePessoal"
+            name="quantidadePessoal">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="Total de Minutos" [(ngModel)]="producaoDiaria.quantidadeDePessoal * producaoDiaria.minutosDiarios"
+            readonly="readonly" name="minutosPessoal">
+        </mat-form-field>
+
+        <div class="box">
+          <div class="print">
+            <table class="table-sm table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"><small>Artigo</small></th>
+                  <th scope="col"><small>Tempo</small></th>
+                  <th scope="col"><small>Valor</small></th>
+                  <th scope="col"><small>Produção Diária</small></th>
+                  <th scope="col"><small>Produção por Minuto</small></th>
+                  <th scope="col"><small>Fatura por Ordem</small></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ordem of ordens; let i = index; trackBy: customTrackBy">
+                  <td>{{ordem.referencia}}</td>
+                  <td>{{ordem.tempo}}</td>
+                  <td>{{ordem.valor}}</td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" matInput [(ngModel)]="ordem.ultimaProducao" name="ultimaProducao">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" matInput [(ngModel)]="ordem.ultimaProducaoMin" value="{{ordem.tempo*ordem.ultimaProducao}}"
+                        name="ultimaProducaoMin">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" matInput [(ngModel)]="ordem.ultimaFaturaDiaria" value="{{ordem.valor*ordem.ultimaProducao}}"
+                        name="ultimaFaturaDiaria">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td colspan="3"> Total: </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" readonly="readonly" matInput placeholder="Produção Total Diária" [(ngModel)]="somaTotalProducao"
+                        name="somaProducao">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" readonly="readonly" matInput placeholder="Produção Total por Minuto"
+                        [(ngModel)]="somaTotalProducaoMin" name="somaProducaoMin">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input type="number" readonly="readonly" matInput placeholder="Fatura Total Diária" [(ngModel)]="somaTotalFaturaDiaria"
+                        name="somaFaturaDiaria">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <button type="button" (click)="somaTotal()" class="btn btn-primary btn-sm">Atualizar Valores</button>
+      </fieldset>
+      <button mat-raised-button class="btn-add" color="primary" (click)="addProducaoDiaria()">
+        <mat-icon class="icon-add">done</mat-icon> Enviar
+      </button>
+    </mat-card>
+  </div>
+</form>

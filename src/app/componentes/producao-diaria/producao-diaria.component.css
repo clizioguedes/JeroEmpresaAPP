@@ -1,0 +1,17 @@
+@import '../../../assets/css/index.css';
+@import '../../../assets/css/add.css';
+table {
+    overflow-x: hidden !important
+}
+
+.table-sm td {
+    text-align: center;
+}
+
+.table-sm th {
+    text-align: center;
+}
+
+.card-historico {
+    width: 50%
+}

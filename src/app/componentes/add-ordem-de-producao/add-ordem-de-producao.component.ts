@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { OrdemDeProducao } from '../../interfaces/Producao';
 
 @Component({
   selector: 'app-add-ordem-de-producao',
@@ -11,49 +11,47 @@ import { OrdemDeProducao } from '../../interfaces/Producao';
 })
 export class AddOrdemDeProducaoComponent implements OnInit {
 
-  ordemDeProducao: OrdemDeProducao = {
-    dataCadastro: null,
-    fornecedor: null,
-    numero: null,
-    nf: null,
-    referencia: null,
-    item: null,
-    quantidade: null,
-    tempo: null,
-    valor: null,
-    entrega: null,
-    status: null,
-    producao: null,
-    observacao: null
-  };
-
-  status = [
-    'Espera',
-    'Processo',
-    'Concluída',
-    'Enviada'
-  ];
+  registerForm: FormGroup;
+  submitted = false;
 
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private formBuilder: FormBuilder
   ) { }
 
-  addOrdem() {
-    this.ordemDeProducao.producao = 0;
-    this.ordemDeProducao.dataCadastro = new Date().toLocaleString();
-    this.ordemDeProducao.entrega = new Date(this.ordemDeProducao.entrega).toLocaleDateString();
-    this.firestoreService.addOrdem(this.ordemDeProducao);
-    // SnackBar
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      dataCadastro: [new Date().toLocaleDateString()],
+      fornecedor: ['', Validators.required],
+      numero: ['', Validators.required],
+      nf: ['', Validators.required],
+      referencia: ['', Validators.required],
+      item: ['', Validators.required],
+      quantidade: ['', Validators.required],
+      tempo: ['', Validators.required],
+      valor: ['', Validators.required],
+      entrega: ['', Validators.required],
+      status: ['', Validators.required],
+      producao: [ 0 ],
+      observacao: ['', Validators.required]
+    });
+  }
+
+  get f() { return this.registerForm.controls; }
+
+  async onSubmit() {
+    this.submitted = true;
+    const formValue = this.registerForm.value;
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+    await this.firestoreService.addOrdem(formValue);
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {
       duration: 2000
     });
-    // Rota
     this.router.navigate(['listar-ordens-de-producao']);
   }
-
-  ngOnInit() {
-  }
-
 }

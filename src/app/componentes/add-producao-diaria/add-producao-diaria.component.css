@@ -1,0 +1,32 @@
+@import '../../../assets/css/add.css';
+@import '../../../assets/css/index.css';
+div {
+    text-align: center;
+}
+
+.example-full-width {
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.example-margin {
+    margin: 0 10px;
+}
+
+mat-form-field {
+    flex-direction: column;
+    display: flex;
+}
+
+.table-sm td {
+    text-align: center;
+}
+
+.table-sm th {
+    text-align: center;
+}
+
+.grid-container {
+    margin: 20px;
+} 

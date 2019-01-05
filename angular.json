@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "jeroV2": {
+        "JeroConfeccaoAPP": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/jeroV2",
+                        "outputPath": "dist/JeroConfeccaoAPP",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -56,18 +56,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "jeroV2:build"
+                        "browserTarget": "JeroConfeccaoAPP:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "jeroV2:build:production"
+                            "browserTarget": "JeroConfeccaoAPP:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "jeroV2:build"
+                        "browserTarget": "JeroConfeccaoAPP:build"
                     }
                 },
                 "test": {
@@ -103,7 +103,7 @@
                 }
             }
         },
-        "jeroV2-e2e": {
+        "JeroConfeccaoAPP-e2e": {
             "root": "e2e/",
             "projectType": "application",
             "architect": {
@@ -111,7 +111,7 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "jeroV2:serve"
+                        "devServerTarget": "JeroConfeccaoAPP:serve"
                     }
                 },
                 "lint": {
@@ -126,5 +126,5 @@
             }
         }
     },
-    "defaultProject": "jeroV2"
+    "defaultProject": "JeroConfeccaoAPP"
 }

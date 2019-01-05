@@ -15,11 +15,14 @@ export class FuncionarioComponent implements OnInit {
 
   constructor(private firestoreService: FirestoreService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.params['id'];
-    this.firestoreService.getFuncionario(this.id).subscribe(funcionario => {
-      this.funcionario = funcionario;
-    });
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {
+    this.firestoreService.getFuncionario(this.id).subscribe(funcionario => {
+      this.funcionario = funcionario;
+      if (this.funcionario.id == null) {
+        this.firestoreService.addIdFuncionario(this.id);
+      }
+    });
+  }
 }

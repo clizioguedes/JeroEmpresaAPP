@@ -1,24 +1,77 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
     <title>Login Jero Confecções</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body>
-        <div class="login-form">
-    <!-- Container -->
-        <h3>Login no Sistema</h3>
-            <mat-form-field>
-              <input matInput name="email" [(ngModel)]="user.email" placeholder="Digite seu E-mail" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput name="password" [(ngModel)]="user.password" placeholder="Digite sua senha" [type]="hide ? 'password' : 'text'">
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-              </mat-form-field>
-          <button mat-button (click)="signInWithEmail()">Entrar</button>
+    <mat-card>
+        <div class="hgroup">
+            <h1>Jero Confecções</h1>
         </div>
+        <form>
+            <div class="group">
+                <input type="text" name="email" placeholder="Email" [(ngModel)]="user.email"><span class="highlight"></span><span
+                    class="bar"></span>
+            </div>
+            <div class="group">
+                <input type="password" name="password" placeholder="Senha" [(ngModel)]="user.password"><span class="highlight"></span><span
+                    class="bar"></span>
+            </div>
+            <button type="button" (click)="signInWithEmail()" class="button buttonBlue">Login
+                <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+            </button>
+
+            <button type="button" (click)="openDialog()" class="btn btn-outline-warning">Esqueci minha
+                senha
+            </button>
+
+        </form>
+        <footer><a href="http://portal.ifrn.edu.br/" target="_blank"><img src="http://portal.ifrn.edu.br/campus/curraisnovos/noticias/direcao-geral-divulga-novas-logomarcas-do-ifrn-campus-currais-novos/image_preview"></a>
+            <p>Desenvolvimento: <a href="http://portal.ifrn.edu.br/" target="_blank">IFRN</a></p>
+        </footer>
+    </mat-card>
 </body>
+
 </html>
+
+<script>
+    $(window, document, undefined).ready(function () {
+
+        $('input').blur(function () {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+        });
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function (e) {
+
+            var $this = $(this);
+            var $offset = $this.parent().offset();
+            var $circle = $this.find('.ripplesCircle');
+
+            var x = e.pageX - $offset.left;
+            var y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+        });
+
+        $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function (e) {
+            $(this).removeClass('is-active');
+        });
+
+    });
+</script>

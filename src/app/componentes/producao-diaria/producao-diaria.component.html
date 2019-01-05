@@ -1,0 +1,66 @@
+<div class="row">
+  <mat-card class="col-xs-12 col-md-12 col-sm-12">
+    <mat-card-content>
+      <mat-tab-group [color]="accent" [backgroundColor]="primary" class="demo-tab-group">
+        <mat-tab class="mat-tab" label="Dados da Produção Diária">
+          <div class="demo-tab-content">
+            <div class="box">
+              <div id="print">
+                <h3>Dados da Ordem de Produção: {{id}}</h3>
+                <table class="info">
+                  <tr>
+                    <td>Data de Produção</td>
+                    <td colspan="5">{{producaoDiaria?.data}}</td>
+                  </tr>
+                  <tr>
+                    <td>Quantidade de Pessoal</td>
+                    <td>
+                      {{producaoDiaria?.quantidadeDePessoal}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Minutos por Funcionário</td>
+                    <td colspan="5">
+                      {{producaoDiaria?.minutosDiarios}} </td>
+                  </tr>
+                  <tr>
+                    <td>Total de Minutos de Pessoal</td>
+                    <td colspan="5">
+                      {{producaoDiaria?.minutosPessoal}} </td>
+                  </tr>
+                  <tr>
+                    <td>Minutos de Produção</td>
+                    <td colspan="5">
+                      {{producaoDiaria?.minutosProducao}} </td>
+                  </tr>
+                  <tr>
+                    <td>Eficiêcia</td>
+                    <td colspan="5">
+                      {{producaoDiaria?.eficiencia}}% </td>
+                  </tr>
+                  <tr>
+                    <td>Fatura Diária</td>
+                    <td colspan="5">
+                      R$ {{producaoDiaria?.faturaDiaria}} </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="actions">
+                <!--
+                <button mat-button color="primary" routerLink="/editar-producao-diaria/{{idProducaoDiaria}}">
+                  <mat-icon aria-label="Editar Produção Diária">mode_edit</mat-icon>
+                  Editar
+                </button>
+                -->
+                <button mat-button color="warn" (click)="deleteProducaoDiaria()">
+                  <mat-icon aria-label="Deletar Produção Diária">highlight_off</mat-icon>
+                  Excluir
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

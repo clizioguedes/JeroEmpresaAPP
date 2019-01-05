@@ -1,5 +1,5 @@
 export interface Funcionario {
-    id?: string;
+    id: string;
     dataCadastro: any;
     // Dados Pessoais
     nome: string;
@@ -34,27 +34,27 @@ export interface Funcionario {
     cbo?: string;
     cargo: string;
     banco?: string;
-    operacao?: string;
     agencia?: string;
     conta?: string;
     situacao?: string;
+    observacao?: string;
+    ultimaEdicao?: any;
 }
 
 export interface Dependente {
-    id?: string;
-    dataRegistro;
+    idDependente?: string;
+    dataRegistro: any;
     nome: string;
-    nascimento;
+    nascimento: string;
     cpf: string;
     tipo: string;
 }
 
 export interface Falta {
-    id?: string;
+    idFalta?: string;
     tipo?: string;
-    nomeFuncionario?: string;
     periodo: string;
-    dataRegistro;
-    dataFalta;
+    dataRegistro: any;
+    dataFalta: any;
     observacao: string;
 }

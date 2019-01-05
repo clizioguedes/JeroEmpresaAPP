@@ -1,11 +1,19 @@
-@import '../funcionario/funcionario.component.css';
-
+@import '../../../assets/css/add.css';
+@import '../../../assets/css/index.css';
 .btnPrinter {
   text-align: center;
 }
 
-@media print { 
+.box {
+  text-align: center;
+}
+
+@media print {
   button {
     display: none;
   }
+}
+
+table {
+  text-align: center;
 }
