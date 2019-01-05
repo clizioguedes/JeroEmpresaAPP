@@ -5,26 +5,28 @@ import { Funcionario } from '../../interfaces/Funcionario';
 @Component({
   selector: 'app-listar-funcionarios',
   templateUrl: './listar-funcionarios.component.html',
-  styleUrls: ['./listar-funcionarios.component.css']
+  styleUrls: [
+    './listar-funcionarios.component.css'
+  ]
 })
 export class ListarFuncionariosComponent implements OnInit {
 
   funcionarios: Funcionario[];
 
-  allFuncionarios;
-  inativeFuncionarios;
-  activeFuncionarios;
+  allFuncionarios: boolean;
+  inativeFuncionarios: boolean;
+  activeFuncionarios: boolean;
   tablePrint = false;
 
   constructor(
-    private firestoreService: FirestoreService ) {
-   }
+    private firestoreService: FirestoreService) {
+  }
 
   ngOnInit() {
     this.allFuncionarios = true;
     this.inativeFuncionarios = false;
     this.activeFuncionarios = false;
-    this.firestoreService.getFuncionarios().subscribe( funcionarios => {
+    this.firestoreService.getFuncionarios().subscribe(funcionarios => {
       this.funcionarios = funcionarios;
     });
   }
@@ -33,7 +35,7 @@ export class ListarFuncionariosComponent implements OnInit {
     this.allFuncionarios = false;
     this.inativeFuncionarios = true;
     this.activeFuncionarios = false;
-    this.firestoreService.getFuncionariosInativos().subscribe( funcionarios => {
+    this.firestoreService.getFuncionariosInativos().subscribe(funcionarios => {
       this.funcionarios = funcionarios;
     });
   }
@@ -42,7 +44,7 @@ export class ListarFuncionariosComponent implements OnInit {
     this.allFuncionarios = false;
     this.inativeFuncionarios = false;
     this.activeFuncionarios = true;
-    this.firestoreService.getFuncionariosAtivos().subscribe( funcionarios => {
+    this.firestoreService.getFuncionariosAtivos().subscribe(funcionarios => {
       this.funcionarios = funcionarios;
     });
   }

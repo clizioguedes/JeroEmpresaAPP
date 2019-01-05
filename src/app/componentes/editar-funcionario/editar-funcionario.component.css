@@ -1,6 +1,13 @@
-@import '../add-funcionario/add-funcionario.component.css';
-
 h3 {
+    margin: 10px;
     text-align: center;
-    margin: 20px;
+}
+
+.btn-primary {
+    float: right;
+    margin: 10px;
+}
+
+.btnleft {
+    float: left;
 }

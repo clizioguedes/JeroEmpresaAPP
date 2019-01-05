@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyC46_LrhgBt9q0lPCXdsNVV_kZtl7xF59Y",
-    authDomain: "app-jero-b3030.firebaseapp.com",
-    databaseURL: "https://app-jero-b3030.firebaseio.com",
-    projectId: "app-jero-b3030",
-    storageBucket: "app-jero-b3030.appspot.com",
-    messagingSenderId: "653766813695"
+    apiKey: 'AIzaSyDcPokLlAogepruHVXf0ppYoGypNCUzhqA',
+    authDomain: 'jeroconfeccoes.firebaseapp.com',
+    databaseURL: 'https://jeroconfeccoes.firebaseio.com',
+    projectId: 'jeroconfeccoes',
+    storageBucket: 'jeroconfeccoes.appspot.com',
+    messagingSenderId: '432742218278'
   }
 };
 

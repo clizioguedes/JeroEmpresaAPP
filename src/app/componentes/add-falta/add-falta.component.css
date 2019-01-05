@@ -1,26 +1,11 @@
-@import '../funcionario/funcionario.component.css';
-
-mat-form-field {
-  flex-direction: column;
-  display: flex;
-}
-
-.example-radio-group {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.example-radio-button {
-  margin: 5px;
-}
-
-.example-selected-value {
-  margin: 15px 0;
-}
-
+@import "../../../assets/css/add.css";
+@import "../../../assets/css/index.css";
 @media print {
   * {
     display: none;
   }
-
+}
+.btn-falta {
+  text-align: center;
+  margin-top: 8px;
 }

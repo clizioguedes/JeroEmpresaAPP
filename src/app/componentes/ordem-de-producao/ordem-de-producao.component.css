@@ -1,9 +1,15 @@
-@import '../funcionario/funcionario.component.css';
-@import '../add-funcionario/add-funcionario.component.css';
-.table-sm td {
-    text-align: center;
+@import "../../../assets/css/index.css";
+.button-row .btn {
+  margin: 8px;
 }
-
-.table-sm th {
-    text-align: center;
+.button-row {
+  text-align: center;
+}
+.box {
+  margin-bottom: 10px;
+}
+@media print {
+  .button-row {
+    display: none;
+  }
 }

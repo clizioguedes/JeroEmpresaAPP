@@ -1,28 +1,23 @@
 <div class="button-row">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a routerLink="/">Home</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Listar Funcionários</li>
-        </ol>
-    </nav>
-    <button mat-button color="primary" routerLink="/add-funcionario/">
-        <mat-icon>add</mat-icon>
-    </button>
-    <button (click)="ngOnInit()" [ngClass]="allFuncionarios ? 'mat-raised-button': 'mat-button'" mat-button color="basic">Todos</button>
-    <button (click)="getFuncionariosAtivos()" [ngClass]="activeFuncionarios ? 'mat-raised-button': 'mat-button'" mat-button color="primary">Ativos</button>
-    <button (click)="getFuncionariosInativos()" [ngClass]="inativeFuncionarios ? 'mat-raised-button': 'mat-button'" mat-button
-        color="warn">Inativos</button>
-    <button mat-button color="accent" onclick="window.print()">
-        <mat-icon>print</mat-icon>
-    </button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/add-funcionario/">Cadastrar</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="ngOnInit()">Todos</button>
+    <button type="button" class="btn btn-outline-warning" (click)="getFuncionariosAtivos()">Ativos</button>
+    <button type="button" class="btn btn-outline-warning" (click)="getFuncionariosInativos()">Inativos</button>
+    <button type="button" class="btn btn-outline-success" onclick="window.print()">Imprimir</button>
 </div>
 
 <div class="datatable" id="printerAll" *ngIf="allFuncionarios">
     <h3>Todos os Funcionários</h3>
-    <ngx-datatable fixed-header #table class="material striped" [columns]="columns" [rowHeight]="40" [headerHeight]="40" [columnMode]="'force'"
-        [rowHeight]="'auto'" [footerHeight]="40" [count]="true" [rows]="funcionarios">
+    <ngx-datatable fixed-header #table class="bootstrap"
+    [columns]="columns"
+    [rowHeight]="50"
+    [headerHeight]="50"
+    [columnMode]="'force'"
+    [rowHeight]="'auto'"
+    [footerHeight]="50"
+    [count]="true"
+    [limit]
+    [rows]="funcionarios">
 
         <ngx-datatable-column name="MATRICULA">
             <ng-template ngx-datatable-cell-template let-value="value">
@@ -36,25 +31,7 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="NASCIMENTO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="ADMISSAO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="SETOR">
             <ng-template ngx-datatable-cell-template let-value="value">
                 {{value}}
             </ng-template>
@@ -66,20 +43,10 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="CBO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="ID">
             <ng-template ngx-datatable-cell-template let-value="value">
-                <button mat-icon-button [routerLink]="['/funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
-                </button>
-                <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                </button>
+                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
@@ -87,8 +54,8 @@
 
 <div class="datatable" id="printerInative" *ngIf="inativeFuncionarios">
     <h3>Funcionários Inativos</h3>
-    <ngx-datatable fixed-header #table class="material striped" [columns]="columns" [rowHeight]="40" [headerHeight]="40" [columnMode]="'force'"
-        [rowHeight]="'auto'" [footerHeight]="40" [count]="true" [rows]="funcionarios">
+    <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+        [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
 
         <ngx-datatable-column name="MATRICULA">
             <ng-template ngx-datatable-cell-template let-value="value">
@@ -102,25 +69,7 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="NASCIMENTO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="ADMISSAO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="SETOR">
             <ng-template ngx-datatable-cell-template let-value="value">
                 {{value}}
             </ng-template>
@@ -132,20 +81,10 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="CBO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="ID">
             <ng-template ngx-datatable-cell-template let-value="value">
-                <button mat-icon-button [routerLink]="['/funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
-                </button>
-                <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                </button>
+                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
@@ -154,8 +93,8 @@
 <div class="datatable" id="printerActive" *ngIf="activeFuncionarios">
     <h3>Funcionários Ativos</h3>
 
-    <ngx-datatable fixed-header #table class="material striped" [columns]="columns" [rowHeight]="40" [headerHeight]="40" [columnMode]="'force'"
-        [rowHeight]="'auto'" [footerHeight]="40" [count]="true" [rows]="funcionarios">
+    <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+        [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
 
         <ngx-datatable-column name="MATRICULA">
             <ng-template ngx-datatable-cell-template let-value="value">
@@ -169,25 +108,7 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="NASCIMENTO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="ADMISSAO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="SETOR">
             <ng-template ngx-datatable-cell-template let-value="value">
                 {{value}}
             </ng-template>
@@ -199,20 +120,10 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="CBO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="ID">
             <ng-template ngx-datatable-cell-template let-value="value">
-                <button mat-icon-button [routerLink]="['/funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">content_paste</mat-icon>
-                </button>
-                <button mat-icon-button [routerLink]="['/editar-funcionario/'+value]">
-                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                </button>
+                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>

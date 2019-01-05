@@ -12,11 +12,11 @@ export class ListarOrdensDeProducaoComponent implements OnInit {
   ordens: OrdemDeProducao[];
 
   constructor(
-    private firestoreService: FirestoreService ) {
-   }
+    private firestoreService: FirestoreService) {
+  }
 
-   ngOnInit() {
-    this.firestoreService.getOrdens().subscribe( ordens => {
+  ngOnInit() {
+    this.firestoreService.getOrdens().subscribe(ordens => {
       this.ordens = ordens;
     });
   }
