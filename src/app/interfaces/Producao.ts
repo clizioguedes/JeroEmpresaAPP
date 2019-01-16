@@ -16,13 +16,13 @@ export interface OrdemDeProducao {
     producaoTemp?: number;
     observacao?: string;
     ultimaProducao?: number;
-    ultimaProducaoMin?: number;
-    ultimaFaturaDiaria?: number;
+    ultimaPpm?: number;
+    ultimaFatura?: number;
 }
 
 export interface ProducaoDiaria {
-    idProducaoDiaria?: string;
-    dataCadastro: any;
+    id?: string;
+    dataCadastro?: any;
     data?: any;
     quantidadeDePessoal?: number;
     producaoDiaria?: number;
@@ -31,14 +31,15 @@ export interface ProducaoDiaria {
     minutosProducao?: number;
     eficiencia?: any;
     faturaDiaria?: number;
-    ordens?: OrdemDeProducao[];
+    ordensPD?: (OrdemPD)[];
 }
 
-export interface HistoricoDeProducao {
-    idHistoricoDeProducao?: string;
-    idOrdemDeProducao: string;
-    dataCadastro: any;
-    dataProducao: any;
-    producao: number;
-    faturaDiaria?: number;
+export interface OrdemPD {
+    idOrdem: string;
+    referencia?: string;
+    tempo?: number;
+    valor?: number;
+    producao?: number;
+    ppm?: number;
+    fatura?: number;
 }

@@ -23,7 +23,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      dataCadastro: [new Date().toLocaleDateString()],
+      dataCadastro: [new Date().toLocaleString()],
       fornecedor: ['', Validators.required],
       numero: ['', Validators.required],
       nf: ['', Validators.required],
@@ -35,7 +35,7 @@ export class AddOrdemDeProducaoComponent implements OnInit {
       entrega: ['', Validators.required],
       status: ['', Validators.required],
       producao: [ 0 ],
-      observacao: ['', Validators.required]
+      observacao: ['']
     });
   }
 

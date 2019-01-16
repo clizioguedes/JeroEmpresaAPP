@@ -23,7 +23,7 @@ export class AddFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      dataCadastro: [new Date(), Validators.required],
+      dataCadastro: [new Date().toLocaleString(), Validators.required],
       nome: ['', Validators.required],
       nascimento: ['', Validators.required],
       nomePai: ['', Validators.required],

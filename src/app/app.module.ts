@@ -20,7 +20,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxMaskModule } from 'ngx-mask';
 import { LayoutModule } from '@angular/cdk/layout';
-// Angularfire2
+// Angularfire
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -43,23 +43,21 @@ import { OrdemDeProducaoComponent } from './componentes/ordem-de-producao/ordem-
 import { LoginComponent } from './login/login.component';
 import { AfService } from './serviços/af.service';
 import { AuthGuardService } from './serviços/auth-guard.service';
-// Dashboard
-import { DashboardComponent } from './dashboard/dashboard.component';
 // Produção Diaria
 import { ListarProducoesDiariasComponent } from './componentes/listar-producoes-diarias/listar-producoes-diarias.component';
-import { EditarProducaoDiariaComponent } from './componentes/editar-producao-diaria/editar-producao-diaria.component';
 import { AddProducaoDiariaComponent } from './componentes/add-producao-diaria/add-producao-diaria.component';
 import { ProducaoDiariaComponent } from './componentes/producao-diaria/producao-diaria.component';
+
 import { DashFuncionarioComponent } from './componentes/dash-funcionario/dash-funcionario.component';
 import { DashProducaoComponent } from './componentes/dash-producao/dash-producao.component';
+import { NavbarProducaoComponent } from './componentes/navbar-producao/navbar-producao.component';
+import { NavbarFuncionarioComponent } from './componentes/navbar-funcionario/navbar-funcionario.component';
 
 // Rotas
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent,   },
   { path: 'dashboard-producao', component: DashProducaoComponent,   },
   { path: 'dashboard-funcionario', component: DashFuncionarioComponent,   },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   // Ordens de Produção
   { path: 'ordem-de-producao/:id', component: OrdemDeProducaoComponent,   },
   { path: 'add-ordem-de-producao', component: AddOrdemDeProducaoComponent,   },
@@ -74,13 +72,11 @@ const routes: Routes = [
   { path: 'producao-diaria/:id', component: ProducaoDiariaComponent,   },
   { path: 'add-producao-diaria', component: AddProducaoDiariaComponent,   },
   { path: 'listar-producoes-diarias', component: ListarProducoesDiariasComponent,   },
-  { path: 'editar-producao-diaria/:id', component: EditarProducaoDiariaComponent,   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     // Funcionários
     ListarFuncionariosComponent,
     AddFuncionarioComponent,
@@ -98,10 +94,11 @@ const routes: Routes = [
     LoginComponent,
     ProducaoDiariaComponent,
     ListarProducoesDiariasComponent,
-    EditarProducaoDiariaComponent,
     AddProducaoDiariaComponent,
     DashFuncionarioComponent,
     DashProducaoComponent,
+    NavbarProducaoComponent,
+    NavbarFuncionarioComponent,
   ],
 
   imports: [

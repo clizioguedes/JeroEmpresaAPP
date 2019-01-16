@@ -1,130 +1,125 @@
-<div class="button-row">
-    <button type="button" class="btn btn-outline-primary" routerLink="/add-funcionario/">Cadastrar</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="ngOnInit()">Todos</button>
-    <button type="button" class="btn btn-outline-warning" (click)="getFuncionariosAtivos()">Ativos</button>
-    <button type="button" class="btn btn-outline-warning" (click)="getFuncionariosInativos()">Inativos</button>
-    <button type="button" class="btn btn-outline-success" onclick="window.print()">Imprimir</button>
-</div>
+<app-navbar-funcionario></app-navbar-funcionario>
+<div class="container">
+    <div class="button-row">
+        <button mat-button color="primary" routerLink="/add-funcionario/">Cadastrar</button>
+        <button mat-button (click)="ngOnInit()">Todos</button>
+        <button mat-button color="accent" (click)="getFuncionariosAtivos()">Ativos</button>
+        <button mat-button color="warn" (click)="getFuncionariosInativos()">Inativos</button>
+        <button mat-raised-button color="accent" onclick="window.print()">Imprimir</button>
+    </div>
 
-<div class="datatable" id="printerAll" *ngIf="allFuncionarios">
-    <h3>Todos os Funcionários</h3>
-    <ngx-datatable fixed-header #table class="bootstrap"
-    [columns]="columns"
-    [rowHeight]="50"
-    [headerHeight]="50"
-    [columnMode]="'force'"
-    [rowHeight]="'auto'"
-    [footerHeight]="50"
-    [count]="true"
-    [limit]
-    [rows]="funcionarios">
+    <div class="datatable" id="printerAll" *ngIf="allFuncionarios">
+        <h3>Todos os Funcionários</h3>
+        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
 
-        <ngx-datatable-column name="MATRICULA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="MATRICULA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="NOME">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="NOME">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CPF">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CARGO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CARGO">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="ID">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-</div>
+            <ngx-datatable-column name="ID">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 
-<div class="datatable" id="printerInative" *ngIf="inativeFuncionarios">
-    <h3>Funcionários Inativos</h3>
-    <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-        [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
+    <div class="datatable" id="printerInative" *ngIf="inativeFuncionarios">
+        <h3>Funcionários Inativos</h3>
+        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
 
-        <ngx-datatable-column name="MATRICULA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="MATRICULA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="NOME">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="NOME">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CPF">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CARGO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CARGO">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="ID">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-</div>
+            <ngx-datatable-column name="ID">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 
-<div class="datatable" id="printerActive" *ngIf="activeFuncionarios">
-    <h3>Funcionários Ativos</h3>
+    <div class="datatable" id="printerActive" *ngIf="activeFuncionarios">
+        <h3>Funcionários Ativos</h3>
 
-    <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-        [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
+        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
 
-        <ngx-datatable-column name="MATRICULA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="MATRICULA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="NOME">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="NOME">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CPF">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CPF">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="CARGO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="CARGO">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="ID">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
+            <ngx-datatable-column name="ID">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 </div>

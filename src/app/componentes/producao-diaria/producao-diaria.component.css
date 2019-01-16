@@ -1,17 +1,18 @@
-@import '../../../assets/css/index.css';
-@import '../../../assets/css/add.css';
-table {
-    overflow-x: hidden !important
+@import "../../../assets/css/index.css";
+.button-row .btn {
+  margin: 8px;
 }
-
-.table-sm td {
-    text-align: center;
+.button-row {
+  text-align: center;
 }
-
-.table-sm th {
-    text-align: center;
+.box {
+  margin-bottom: 10px;
 }
-
-.card-historico {
-    width: 50%
+#left {
+  text-align: right !important;
+}
+@media print {
+  .button-row {
+    display: none;
+  }
 }

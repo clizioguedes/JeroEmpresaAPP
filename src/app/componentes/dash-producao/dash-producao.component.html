@@ -1,91 +1,43 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="card border-primary mb-3">
-      <div class="card-header">Cadastro de Ordem de Produção</div>
-      <div class="card-body">
-        <p class="card-text">
-          <button routerLink="/add-ordem-de-producao" type="button" class="btn btn-outline-primary btn-modulo">
-            Cadastro de OP</button>
-        </p>
-      </div>
+<app-navbar-producao></app-navbar-producao>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>#Produção</mat-card-title>
+          <mat-card-subtitle>Ordens de Produção</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/images/op.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            Gerência todas as Ordens de Produção da Empresa.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/add-ordem-de-producao/">CADASTRO DE OP</button>
+          <button mat-raised-button color="accent" routerLink="/listar-ordens-de-producao/">LISTAR OP'S</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card border-primary mb-3">
-      <div class="card-header">Listagem de Ordens de Produções</div>
-      <div class="card-body">
-        <p class="card-text">
-          <button routerLink="/listar-ordens-de-producao/" type="button" class="btn btn-outline-info btn-modulo">Listar
-            OP's</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card border-primary mb-3">
-      <div class="card-header">Cadastro de Produção Diária</div>
-      <div class="card-body">
-        <p class="card-text">
-          <button routerLink="/add-producao-diaria/" type="button" class="btn btn-outline-primary btn-modulo">
-            Cadastro de PD</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card border-primary mb-3">
-      <div class="card-header">Listagem de Produções Diárias</div>
-      <div class="card-body">
-        <p class="card-text">
-          <button routerLink="/listar-producoes-diarias/" type="button" class="btn btn-outline-info btn-modulo">Listar
-            PD's</button>
-        </p>
-      </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>#Produção</mat-card-title>
+          <mat-card-subtitle>Diário de Produção</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/images/pd.png" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            Acompanhamento da Produção Diária da empresa.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/add-producao-diaria/">CADASTRO DE PD</button>
+          <button mat-raised-button color="accent" routerLink="/listar-producoes-diarias/">LISTAR PD'S</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>
-<!--
-<table class="table-sm table-bordered table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Fornecedor</th>
-      <th scope="col">Referencia</th>
-      <th scope="col">Item</th>
-      <th scope="col">Quantidade</th>
-      <th scope="col">Produção</th>
-      <th scope="col">Data Prevista de Entrega</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr [routerLink]="['/ordem-de-producao/'+ordem.id]" *ngFor="let ordem of ordens">
-      <td>{{ordem.fornecedor}}</td>
-      <td>{{ordem.referencia}}</td>
-      <td>{{ordem.item}}</td>
-      <td>{{ordem.quantidade}}</td>
-      <td>{{ordem.producao}}</td>
-      <td>{{ordem.entrega}}</td>
-
-    </tr>
-  </tbody>
-</table>
-
-<table class="table-sm table-bordered table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Data</th>
-      <th scope="col">Minutos de Produção</th>
-      <th scope="col">Eficiêcia</th>
-      <th scope="col">Fatura Diária</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr [routerLink]="['/producao-diaria/'+producaoDiaria.id]" *ngFor="let producaoDiaria of producoesDiarias">
-      <td>{{producaoDiaria.data}}</td>
-      <td>{{producaoDiaria.minutosProducao}}</td>
-      <td>{{producaoDiaria.eficiencia}}%</td>
-      <td>R${{producaoDiaria.faturaDiaria}}</td>
-    </tr>
-  </tbody>
-</table>
--->

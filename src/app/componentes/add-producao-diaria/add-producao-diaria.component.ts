@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Router } from '@angular/router';
-import { OrdemDeProducao } from '../../interfaces/Producao';
+import { OrdemDeProducao, ProducaoDiaria, OrdemPD } from '../../interfaces/Producao';
 import { MatSnackBar } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 
 @Component({
   selector: 'app-add-producao-diaria',
@@ -14,87 +12,111 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export class AddProducaoDiariaComponent implements OnInit {
 
-  registerForm: FormGroup;
-  submitted = false;
-
   ordens: OrdemDeProducao[];
 
-  somaTotalProducao: any;
-  somaTotalProducaoMin: any;
-  somaTotalFaturaDiaria: any;
+  pd: ProducaoDiaria = {
+    dataCadastro: null,
+    data: null,
+    minutosDiarios: null,
+    quantidadeDePessoal: null,
+    minutosPessoal: null,
+    producaoDiaria: null,
+    minutosProducao: null,
+    eficiencia: null,
+    faturaDiaria: null,
+    ordensPD: []
+  };
 
-  data: Date;
-  quantidadeDePessoal: number;
-  minutosPessoal: number;
-  eficiencia: any;
-
-  day: any;
+  ordemPD: OrdemPD = {
+    idOrdem: '',
+    referencia: '',
+    tempo: 0,
+    valor: 0,
+    producao: 0,
+    ppm: 0,
+    fatura: 0,
+  };
 
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder) {
-
+    private snackBar: MatSnackBar
+  ) {
     this.firestoreService.getOrdensEmProcesso().subscribe(ordens => {
       this.ordens = ordens;
     });
   }
 
-  OnChange($event) {
-    console.log($event);
+  ngOnInit() {
   }
 
   customTrackBy(index: number, ordem: any): any {
     return index;
   }
 
-  somaTotal() {
-    this.somaTotalProducao = this.ordens.reduce(function (a, b) {
-      return a + b['ultimaProducao'];
-    }, 0);
-    this.somaTotalProducaoMin = this.ordens.reduce(function (a, b) {
-      return a + b['ultimaProducaoMin'];
-    }, 0);
-    this.somaTotalFaturaDiaria = this.ordens.reduce(function (a, b) {
-      return a + b['ultimaFaturaDiaria'];
-    }, 0);
-
-    this.somaTotalProducaoMin = parseFloat(this.somaTotalProducaoMin).toFixed(0);
-    this.somaTotalFaturaDiaria = parseFloat(this.somaTotalFaturaDiaria).toFixed(0);
-
-    this.eficiencia = (Math.floor((this.somaTotalProducaoMin / this.minutosPessoal) * 100));
-  }
-
-
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      dataCadastro: [new Date().toLocaleDateString()],
-      data: [this.data, Validators.required],
-      quantidadeDePessoal: ['', Validators.required],
-      producaoDiaria: [this.somaTotalProducao, Validators.required], //
-      minutosDiarios: ['', Validators.required],
-      minutosPessoal: [this.f.minutosPessoal * this.quantidadeDePessoal, Validators.required],
-      minutosProducao: [this.somaTotalProducaoMin, Validators.required],
-      eficiencia: [this.eficiencia, Validators.required],
-      faturaDiaria: [this.somaTotalFaturaDiaria, Validators.required],
-      ordens: [this.ordens, Validators.required],
-    });
-  }
-
-  get f() { return this.registerForm.controls; }
-
-  async onSubmit() {
-    this.submitted = true;
-    const formValue = this.registerForm.value;
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
+  onOrdemInPd() {
+    for (const item of this.ordens) {
+      const idOrdem = item.id;
+      const producao: number = item.producao + item.ultimaProducao;
+      this.firestoreService.updateAddProducao(idOrdem, producao);
+      this.pd.ordensPD.push(
+        {
+          idOrdem: item.id,
+          referencia: item.referencia,
+          tempo: item.tempo,
+          valor: item.valor,
+          producao: item.ultimaProducao,
+          ppm: item.tempo * item.ultimaProducao,
+          fatura: item.valor * item.ultimaProducao
+        }
+      );
     }
-    await this.firestoreService.addProducaoDiaria(formValue);
+    this.pd.producaoDiaria = this.pd.ordensPD.reduce(function (a, b) {
+      return a + b['producao'];
+    }, 0);
+
+    this.pd.minutosProducao = this.pd.ordensPD.reduce(function (a, b) {
+      return a + b['ppm'];
+    }, 0);
+    this.pd.minutosProducao = Math.round(this.pd.minutosProducao);
+
+    this.pd.faturaDiaria = this.pd.ordensPD.reduce(function (a, b) {
+      return a + b['fatura'];
+    }, 0);
+    this.pd.faturaDiaria = Math.round(this.pd.faturaDiaria);
+    this.pd.minutosPessoal = this.pd.minutosDiarios * this.pd.quantidadeDePessoal;
+    this.pd.eficiencia = (Math.floor((this.pd.minutosProducao / this.pd.minutosPessoal) * 100));
+    console.log(this.pd.ordensPD);
+    console.log(this.pd.producaoDiaria);
+    console.log(this.pd.minutosProducao);
+    console.log(this.pd.faturaDiaria);
+    this.pd.dataCadastro = new Date().toLocaleString();
+    this.firestoreService.addProducaoDiaria(this.pd);
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {
       duration: 2000
     });
-    this.router.navigate(['listar-ordens-de-producao']);
+    this.router.navigate(['listar-producoes-diarias']);
+  }
+
+  offOrdemInPd() {
+    this.clearPD();
+    alert('Sua produção foi cancelada');
+    this.router.navigate(['listar-producoes-diarias']);
+    console.log(this.pd.ordensPD);
+    console.log(this.pd.producaoDiaria);
+    console.log(this.pd.minutosProducao);
+    console.log(this.pd.faturaDiaria);
+  }
+
+  clearPD() {
+    this.pd.data = null,
+      this.pd.minutosDiarios = null,
+      this.pd.quantidadeDePessoal = null,
+      this.pd.minutosPessoal = null;
+    this.pd.producaoDiaria = 0;
+    this.pd.minutosProducao = 0;
+    this.pd.faturaDiaria = 0;
+    this.pd.eficiencia = 0;
+    this.pd.ordensPD = [];
   }
 }

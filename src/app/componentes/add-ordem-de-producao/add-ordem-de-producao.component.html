@@ -1,108 +1,114 @@
-<h3>Cadastro de Ordem de Produção</h3>
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            
-            <div class="form-group">
-                <label>Fornecedor</label>
-                <input type="text" formControlName="fornecedor" class="form-control" placeholder="Nome do fornecedor"
-                    [ngClass]="{ 'is-invalid': submitted && f.fornecedor.errors }" />
-                <div *ngIf="submitted && f.fornecedor.errors" class="invalid-feedback">
-                    <div *ngIf="f.fornecedor.errors.required">O Nome do Fornecedor é Obrigatório</div>
+<app-navbar-producao></app-navbar-producao>
+<div class="container">
+    <h3>Cadastro de Ordem de Produção</h3>
+    <mat-divider></mat-divider>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label>Fornecedor</label>
+                    <input type="text" formControlName="fornecedor" class="form-control" placeholder="Nome do fornecedor"
+                        [ngClass]="{ 'is-invalid': submitted && f.fornecedor.errors }" />
+                    <div *ngIf="submitted && f.fornecedor.errors" class="invalid-feedback">
+                        <div *ngIf="f.fornecedor.errors.required">O Nome do Fornecedor é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Numero da Ordem de Produção</label>
-                <input type="number" formControlName="numero" class="form-control" placeholder="Numero da ordem de produção"
-                    [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
-                <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
-                    <div *ngIf="f.numero.errors.required">O Numero da Ordem é Obrigatório</div>
+                <div class="form-group">
+                    <label>Numero da Ordem de Produção</label>
+                    <input type="number" formControlName="numero" class="form-control" placeholder="Numero da ordem de produção"
+                        [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
+                    <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                        <div *ngIf="f.numero.errors.required">O Numero da Ordem é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Nota Fiscal da Ordem de Produção</label>
-                <input type="text" formControlName="nf" class="form-control" placeholder="Nota Fiscal" [ngClass]="{ 'is-invalid': submitted && f.nf.errors }" />
-                <div *ngIf="submitted && f.nf.errors" class="invalid-feedback">
-                    <div *ngIf="f.nf.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                <div class="form-group">
+                    <label>Nota Fiscal da Ordem de Produção</label>
+                    <input type="text" formControlName="nf" class="form-control" placeholder="Nota Fiscal" [ngClass]="{ 'is-invalid': submitted && f.nf.errors }" />
+                    <div *ngIf="submitted && f.nf.errors" class="invalid-feedback">
+                        <div *ngIf="f.nf.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Referência da Ordem de Produção</label>
-                <input type="text" formControlName="referencia" class="form-control" placeholder="Referência da Ordem"
-                    [ngClass]="{ 'is-invalid': submitted && f.referencia.errors }" />
-                <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
-                    <div *ngIf="f.referencia.errors.required">A Referência da Ordem é Obrigatório</div>
+                <div class="form-group">
+                    <label>Referência da Ordem de Produção</label>
+                    <input type="text" formControlName="referencia" class="form-control" placeholder="Referência da Ordem"
+                        [ngClass]="{ 'is-invalid': submitted && f.referencia.errors }" />
+                    <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
+                        <div *ngIf="f.referencia.errors.required">A Referência da Ordem é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Descrição da Peça</label>
-                <input type="text" formControlName="item" class="form-control" placeholder="Item" [ngClass]="{ 'is-invalid': submitted && f.item.errors }" />
-                <div *ngIf="submitted && f.item.errors" class="invalid-feedback">
-                    <div *ngIf="f.item.errors.required">O Item da Ordem é Obrigatório</div>
+                <div class="form-group">
+                    <label>Descrição da Peça</label>
+                    <input type="text" formControlName="item" class="form-control" placeholder="Item" [ngClass]="{ 'is-invalid': submitted && f.item.errors }" />
+                    <div *ngIf="submitted && f.item.errors" class="invalid-feedback">
+                        <div *ngIf="f.item.errors.required">O Item da Ordem é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Quantidade de Peças</label>
-                <input type="number" formControlName="quantidade" class="form-control" placeholder="Quantidade" [ngClass]="{ 'is-invalid': submitted && f.quantidade.errors }" />
-                <div *ngIf="submitted && f.quantidade.errors" class="invalid-feedback">
-                    <div *ngIf="f.quantidade.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                <div class="form-group">
+                    <label>Quantidade de Peças</label>
+                    <input type="number" formControlName="quantidade" class="form-control" placeholder="Quantidade"
+                        [ngClass]="{ 'is-invalid': submitted && f.quantidade.errors }" />
+                    <div *ngIf="submitted && f.quantidade.errors" class="invalid-feedback">
+                        <div *ngIf="f.quantidade.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Tempo Padrão</label>
-                <input type="text" formControlName="tempo" mask="00.00" dropSpecialCharacters="false" class="form-control" placeholder="Tempo em minutos EX: 20.1"
-                    [ngClass]="{ 'is-invalid': submitted && f.tempo.errors }" />
-                <div *ngIf="submitted && f.tempo.errors" class="invalid-feedback">
-                    <div *ngIf="f.tempo.errors.required">O Tempo Padrão é Obrigatório</div>
+                <div class="form-group">
+                    <label>Tempo Padrão</label>
+                    <input type="text" formControlName="tempo" mask="00.00" dropSpecialCharacters="false" class="form-control"
+                        placeholder="Tempo em minutos EX: 20.1" [ngClass]="{ 'is-invalid': submitted && f.tempo.errors }" />
+                    <div *ngIf="submitted && f.tempo.errors" class="invalid-feedback">
+                        <div *ngIf="f.tempo.errors.required">O Tempo Padrão é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Valor da Peça</label>
-                <input type="text" formControlName="valor" mask="00.00" dropSpecialCharacters="false" class="form-control" placeholder="Valor em R$ por Peça" [ngClass]="{ 'is-invalid': submitted && f.valor.errors }" />
-                <div *ngIf="submitted && f.valor.errors" class="invalid-feedback">
-                    <div *ngIf="f.valor.errors.required">O Valor da Peça é Obrigatório</div>
+                <div class="form-group">
+                    <label>Valor da Peça</label>
+                    <input type="text" formControlName="valor" mask="00.00" dropSpecialCharacters="false" class="form-control"
+                        placeholder="Valor em R$ por Peça" [ngClass]="{ 'is-invalid': submitted && f.valor.errors }" />
+                    <div *ngIf="submitted && f.valor.errors" class="invalid-feedback">
+                        <div *ngIf="f.valor.errors.required">O Valor da Peça é Obrigatório</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Previsão de Entrega</label>
-                <input type="text" formControlName="entrega" mask="00/00/0000" dropSpecialCharacters="false"
-                    placeholder="Ex: 01/01/1994" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.entrega.errors }" />
-                <div *ngIf="submitted && f.entrega.errors" class="invalid-feedback">
-                    <div *ngIf="f.entrega.errors.required">A Data prevista é obrigatória</div>
+                <div class="form-group">
+                    <label>Previsão de Entrega</label>
+                    <input type="text" formControlName="entrega" mask="00/00/0000" dropSpecialCharacters="false"
+                        placeholder="Ex: 01/01/1994" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.entrega.errors }" />
+                    <div *ngIf="submitted && f.entrega.errors" class="invalid-feedback">
+                        <div *ngIf="f.entrega.errors.required">A Data prevista é obrigatória</div>
+                    </div>
                 </div>
-            </div>
-            <fieldset class="form-group">
-                <label for="">Status:</label>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" formControlName="status" name="status" value="Espera"
-                            checked="">
-                        Espera </label>
+                <fieldset class="form-group">
+                    <label for="">Status:</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Espera"
+                                checked="">
+                            Espera </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Processo">
+                            Processo </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Concluida">
+                            Concluida </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Enviada">
+                            Enviada </label>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label for="observacao">Observações</label>
+                    <textarea class="form-control" formControlName="observacao" name="observacao" rows="3"></textarea>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" formControlName="status" name="status" value="Processo">
-                        Processo </label>
+                <div class="form-group">
+                    <button class="btn btn-primary btnleft" routerLink="/listar-ordens-de-producao/">Cancelar</button>
+                    <button class="btn btn-primary">Cadastro</button>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" formControlName="status" name="status" value="Concluida">
-                        Concluida </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" formControlName="status" name="status" value="Enviada">
-                        Enviada </label>
-                </div>
-            </fieldset>
-            <div class="form-group">
-                <label for="observacao">Observações</label>
-                <textarea class="form-control" formControlName="observacao" name="observacao" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btnleft" routerLink="/listar-ordens-de-producao/">Cancelar</button>
-                <button class="btn btn-primary">Cadastro</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

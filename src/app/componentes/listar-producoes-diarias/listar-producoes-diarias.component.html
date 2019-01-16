@@ -1,68 +1,56 @@
-<div class="button-row">
-    <button type="button" class="btn btn-outline-primary" routerLink="/add-producao-diaria/">Cadastrar</button>
-</div>
+<app-navbar-producao></app-navbar-producao>
+<div class="container">
+    <div class="button-row">
+        <button mat-button color="primary" routerLink="/dashboard-producao/">
+            <mat-icon aria-label="Editar Ordem de Produção">dashboard</mat-icon>
+            Dashboard Produção
+        </button>
+        <button mat-button color="accent" routerLink="/add-producao-diaria/">
+            <mat-icon aria-label="Listar Produções Diárias">add</mat-icon>
+            Cadastro
+        </button>
+    </div>
 
-<div class="datatable" id="printerAll">
-    <h3>Todas Produções Diárias</h3>
-    <ngx-datatable fixed-header #table class="bootstrap"
-    [columns]="columns"
-    [rowHeight]="50"
-    [headerHeight]="50"
-    [columnMode]="'force'"
-    [rowHeight]="'auto'"
-    [footerHeight]="50"
-    [count]="true"
-    [limit]
-    [rows]="producoesDiarias">
+    <div class="datatable" id="printerAll">
+        <h3>Todas Produções Diárias</h3>
+        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
+            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="producoesDiarias">
 
-        <ngx-datatable-column name="DATA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="DATA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="QUANTIDADE DE PESSOAL">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="QUANTIDADE DE PESSOAL">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="PRODUCAO DIARIA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="PRODUCAO DIARIA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="MINUTOS PESSOAL">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="EFICIENCIA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}} %
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="MINUTOS PRODUCAO">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="FATURA DIARIA">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    R$ {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="EFICIENCIA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                {{value}} %
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="FATURA DIARIA">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                R$ {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="ID">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <button mat-icon-button [routerLink]="['/producao-diaria/'+value]">
-                    <mat-icon>content_paste</mat-icon>
-                </button>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
+            <ngx-datatable-column name="ID">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/producao-diaria/'+value]">Detalhes</button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 </div>

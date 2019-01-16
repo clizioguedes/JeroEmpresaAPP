@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Funcionario, Dependente, Falta } from '../interfaces/Funcionario';
-import { OrdemDeProducao, ProducaoDiaria, HistoricoDeProducao } from '../interfaces/Producao';
+import { OrdemDeProducao, ProducaoDiaria } from '../interfaces/Producao';
 import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -39,14 +39,6 @@ export class FirestoreService {
   ordemDeProducaoDoc: AngularFirestoreDocument<OrdemDeProducao>;
   ordemDeProducao: Observable<OrdemDeProducao>;
 
-  // HISTÓRICO DE PRODUÇÃO
-
-  historicosDeProducaoCol: AngularFirestoreCollection<HistoricoDeProducao>;
-  historicosDeProducao: Observable<HistoricoDeProducao[]>;
-
-  historicoDeProducaoDoc: AngularFirestoreDocument<HistoricoDeProducao>;
-  historicoDeProducao: Observable<HistoricoDeProducao>;
-
   // PRODUÇÃO DIARIA
 
   producoesDiariasCol: AngularFirestoreCollection<ProducaoDiaria>;
@@ -54,6 +46,9 @@ export class FirestoreService {
 
   producaoDiariaDoc: AngularFirestoreDocument<ProducaoDiaria>;
   producaoDiaria: Observable<ProducaoDiaria>;
+
+  ordensPDCol: AngularFirestoreCollection;
+  ordensPD: Observable<any[]>;
 
   constructor(public afs: AngularFirestore) { }
 
@@ -131,7 +126,6 @@ export class FirestoreService {
 
   addIdFuncionario(id: any) {
     this.funcionarioDoc.update({ id: id });
-    console.log('ID foi Adicionado com Sucesso');
   }
 
   // METODOS DEPENDENTES
@@ -276,7 +270,6 @@ export class FirestoreService {
 
   addIdOrdemDeProducao(id: any) {
     this.ordemDeProducaoDoc.update({ id: id });
-    console.log('ID foi Adicionado com Sucesso');
   }
 
   // METODOS PARA PRODUÇÕES DIARIAS
@@ -288,7 +281,7 @@ export class FirestoreService {
       .map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as ProducaoDiaria;
-          data.idProducaoDiaria = a.payload.doc.id;
+          data.id = a.payload.doc.id;
           return data;
         });
       });
@@ -302,7 +295,7 @@ export class FirestoreService {
       .map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as ProducaoDiaria;
-          data.idProducaoDiaria = a.payload.doc.id;
+          data.id = a.payload.doc.id;
           return data;
         });
       });
@@ -315,44 +308,31 @@ export class FirestoreService {
     return this.producaoDiaria;
   }
 
-  addProducaoDiaria(producaoDiaria: ProducaoDiaria) {
-    this.afs.collection<ProducaoDiaria>('producoes-diarias').add(producaoDiaria);
+  addProducaoDiaria(producaoDiaria: any) {
+    this.afs.collection('producoes-diarias').add(producaoDiaria);
   }
 
   deleteProducaoDiaria() {
     this.producaoDiariaDoc.delete();
   }
 
-  // METODOS PARA PRODUÇÕES DIARIAS
-  getHistoricosDeProducao() {
-    this.historicosDeProducaoCol = this.ordemDeProducaoDoc.collection('historicos-de-producao', ref => ref.orderBy('dataProducao'));
-    this.historicosDeProducao = this.historicosDeProducaoCol
-      .snapshotChanges()
-      .map(changes => {
-        return changes.map(a => {
-          const data = a.payload.doc.data() as HistoricoDeProducao;
-          data.idHistoricoDeProducao = a.payload.doc.id;
-          return data;
-        });
-      });
-    return this.historicosDeProducao;
+  addIdProducaoDiaria(id: any) {
+    this.producaoDiariaDoc.update({ id: id });
   }
 
-  getHistoricoDeProducao(historicoDeProducaoId) {
-    this.historicoDeProducaoDoc = this.ordemDeProducaoDoc.collection('historicos-de-producao')
-      .doc('/historicos-de-producao/' + historicoDeProducaoId);
-    this.historicoDeProducao = this.historicoDeProducaoDoc.valueChanges();
-    return this.historicoDeProducao;
+  updateAddProducao(id: string, prod: number) {
+    this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + id);
+    this.ordemDeProducaoDoc.update({ producao: prod });
   }
 
-  addHistoricoDeProducao(historicoDeProducao: HistoricoDeProducao, ordemDeProducao: OrdemDeProducao) {
-    this.ordemDeProducaoDoc.collection<ProducaoDiaria>('historicos-de-producao').add(historicoDeProducao);
-    this.updateOrdem(ordemDeProducao);
+  /*
+  updateDeleteProducao(id: string, prod: number) {
+    this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + id);
+    this.getOrdem(id).subscribe(ordemDeProducao => {
+      const ordem = ordemDeProducao;
+      const producao = ordem.producao;
+      this.ordemDeProducaoDoc.update({ producao: producao - prod });
+    });
   }
-
-  deleteHistoricoDeProducao(historicoDeProducao: HistoricoDeProducao) {
-    this.historicoDeProducaoDoc = this.ordemDeProducaoDoc.collection<ProducaoDiaria>('historicos-de-producao')
-      .doc(`${historicoDeProducao.idHistoricoDeProducao}`);
-    this.historicoDeProducaoDoc.delete();
-  }
+  */
 }

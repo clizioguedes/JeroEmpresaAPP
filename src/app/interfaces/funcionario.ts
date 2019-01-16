@@ -39,6 +39,8 @@ export interface Funcionario {
     situacao?: string;
     observacao?: string;
     ultimaEdicao?: any;
+    dependentes?: Dependente;
+    faltas?: Falta;
 }
 
 export interface Dependente {

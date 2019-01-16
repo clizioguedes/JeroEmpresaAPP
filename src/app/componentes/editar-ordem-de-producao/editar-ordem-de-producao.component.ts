@@ -38,12 +38,7 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
         valor: [ordem.valor, Validators.required],
         entrega: [ordem.entrega, Validators.required],
         status: [ordem.status, Validators.required],
-        producao: [ordem.producao, Validators.required],
-        producaoTemp: [ordem.producaoTemp, Validators.required],
         observacao: [ordem.observacao, Validators.required],
-        ultimaProducao: [ordem.ultimaProducao, Validators.required],
-        ultimaProducaoMin: [ordem.ultimaProducaoMin, Validators.required],
-        ultimaFaturaDiaria: [ordem.ultimaFaturaDiaria, Validators.required],
       });
     });
   }
@@ -54,7 +49,7 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
 
   get f() { return this.editForm.controls; }
 
-  updateOrdemDeProducao() {
+  onSubmit() {
     this.submitted = true;
     const ordemDeProducao = this.editForm.value;
     // stop here if form is invalid
