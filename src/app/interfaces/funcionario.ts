@@ -1,60 +1,62 @@
 export interface Funcionario {
     id?: string;
-    dataCadastro: any;
+    dataCadastro?: any;
     // Dados Pessoais
-    nome: string;
-    nascimento: any;
+    nome?: string;
+    nascimento?: any;
     nomePai?: string;
-    nomeMae: string;
-    sexo: string;
-    estadoCivil: string;
+    nomeMae?: string;
+    sexo?: string;
+    estadoCivil?: string;
     naturalidade?: string;
-    identidade: string;
-    expedicao: any;
-    orgaoEmissor: string;
-    cpf: string;
-    tituloEleitor: string;
+    identidade?: string;
+    expedicao?: any;
+    orgaoEmissor?: string;
+    cpf?: string;
+    tituloEleitor?: string;
     zonaEleitoral?: string;
     seccaoEleitoral?: string;
     nis?: string;
     sus?: string;
     // Endereço
-    endereco: string;
-    numero: string;
-    bairro: string;
-    cidade: string;
+    endereco?: string;
+    numero?: string;
+    bairro?: string;
+    cidade?: string;
     // Contato
     celular?: string;
     email?: string;
     // Dados Funcionário / Bancários
-    matricula: number;
-    admissao: any;
-    demissao: any;
-    setor: string;
+    matricula?: number;
+    admissao?: any;
+    demissao?: any;
+    setor?: string;
     cbo?: string;
-    cargo: string;
+    cargo?: string;
     banco?: string;
-    operacao?: string;
     agencia?: string;
     conta?: string;
     situacao?: string;
+    observacao?: string;
+    ultimaEdicao?: any;
+    dependentes?: Dependente;
+    faltas?: Falta;
 }
 
 export interface Dependente {
-    id?: string;
-    dataRegistro;
+    idDependente?: string;
+    dataRegistro: any;
     nome: string;
-    nascimento;
+    nascimento: string;
     cpf: string;
     tipo: string;
 }
 
 export interface Falta {
-    id?: string;
+    idFalta?: string;
     tipo?: string;
-    nomeFuncionario?: string;
     periodo: string;
-    dataRegistro;
-    dataFalta;
+    dataRegistro: any;
+    dataFalta: any;
     observacao: string;
 }

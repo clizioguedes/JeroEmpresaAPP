@@ -12,10 +12,10 @@ export class ListarDependentesComponent implements OnInit {
 
   dependentes: Dependente[];
 
-  constructor( private firestoreService: FirestoreService ) { }
+  constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit() {
-    this.firestoreService.getDependentes().subscribe( dependentes => {
+    this.firestoreService.getDependentes().subscribe(dependentes => {
       this.dependentes = dependentes;
     });
   }

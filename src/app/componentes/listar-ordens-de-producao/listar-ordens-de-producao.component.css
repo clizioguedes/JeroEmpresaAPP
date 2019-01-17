@@ -1,29 +1,32 @@
-@import '../funcionario/funcionario.component.css';
-@media screen and (max-width:800px) {
-    .desktop-hidden {
-        display: initial;
-    }
-    .mobile-hidden {
-        display: none;
-    }
+@import "../../../assets/css/index.css";
+@media screen and (max-width: 800px) {
+  .desktop-hidden {
+    display: initial;
+  }
+  .mobile-hidden {
+    display: none;
+  }
 }
 
 @media print {
-    .button-row {
-        display: none;
-    }
-}
-
-.datatable mat-icon {
-    margin-bottom: 30px;
-    margin-top: -5px;
+  .button-row {
+    display: none;
+  }
 }
 
 .button-row {
-    text-align: center;
-    margin: 7px;
+  margin: 20px;
+  text-align: center;
 }
 
 h3 {
-    text-align: center;
+  text-align: center;
+}
+
+.btn-config {
+  margin: 10px;
+}
+
+#btn-detail {
+    margin-right: 5px;
 }

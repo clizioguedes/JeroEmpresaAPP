@@ -1,0 +1,42 @@
+@import "../add-funcionario/add-funcionario.component.css";
+
+@media print {
+  .button-row {
+    display: none;
+  }
+}
+
+h3 {
+  margin: 10px;
+  text-align: center;
+}
+
+.btn-primary {
+  float: right;
+  margin: 10px;
+}
+
+.btnleft {
+  float: left;
+}
+
+.td-ppm {
+  text-align: center;
+}
+.ppm {
+  height: 30px;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.table {
+  text-align: center;
+}
+
+.button-row .btn {
+  margin: 8px;
+}
+
+#form-center {
+  margin: 0 auto;
+}

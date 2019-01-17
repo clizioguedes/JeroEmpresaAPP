@@ -1,0 +1,20 @@
+.example-card {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: whitesmoke;
+  background-color: #4a6572;
+}
+
+.example-card mat-card-actions {
+  text-align: center;
+}
+
+mat-card-subtitle {
+  color: whitesmoke;
+}
+
+button {
+  background-color: #f9aa33;
+  color: black;
+}

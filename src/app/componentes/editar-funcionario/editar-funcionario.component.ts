@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { Funcionario } from '../../interfaces/Funcionario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-funcionario',
@@ -11,126 +11,71 @@ import { MatSnackBar } from '@angular/material';
 })
 export class EditarFuncionarioComponent implements OnInit {
 
-  id;
-  funcionario: Funcionario = {
-    // Dados Pessoais e Sociais
-    nome: null,
-    nascimento: null,
-    dataCadastro: null,
-    nomePai: null,
-    nomeMae: null,
-    sexo: null,
-    estadoCivil: null,
-    naturalidade: null,
-    identidade: null,
-    expedicao: null,
-    orgaoEmissor: null,
-    cpf: null,
-    tituloEleitor: null,
-    zonaEleitoral: null,
-    seccaoEleitoral: null,
-    nis: null,
-    sus: null,
-    // Endereço e Contato
-    endereco: null,
-    numero: null,
-    bairro: null,
-    cidade: null,
-    celular: null,
-    email: null,
-    // Dados Funcionais e Dados Bancários
-    matricula: null,
-    admissao: null,
-    demissao: null,
-    setor: null,
-    cargo: null,
-    cbo: null,
-    banco: null,
-    agencia: null,
-    conta: null,
-    operacao: null,
-    situacao: null
-};
-
-  sexos = [
-    'Masculino',
-    'Feminino'
-  ];
-
-  estadosCivis = [
-    'Solteiro',
-    'Casado',
-    'Divorciado',
-    'Viúvo',
-    'Separado'
-  ];
-
-  setores = [
-    'Administração',
-    'Produção'
-  ];
-
-  bancos = [
-    'BB',
-    'Bradesco',
-    'Caixa Econômica'
-  ];
+  id: string;
+  editForm: FormGroup;
+  submitted = false;
+  funcionario: any;
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar,
-  ) {}
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-
-    this.firestoreService.getFuncionario(this.id).subscribe( funcionario => {
-      this.funcionario.agencia = funcionario.agencia;
-      this.funcionario.bairro = funcionario.bairro;
-      this.funcionario.banco = funcionario.banco;
-      this.funcionario.cargo = funcionario.cargo;
-      this.funcionario.cbo = funcionario.cbo;
-      this.funcionario.celular = funcionario.celular;
-      this.funcionario.cidade = funcionario.cidade;
-      this.funcionario.conta = funcionario.conta;
-      this.funcionario.cpf = funcionario.cpf;
-      this.funcionario.dataCadastro = funcionario.dataCadastro;
-      this.funcionario.nascimento = funcionario.nascimento;
-      this.funcionario.expedicao = funcionario.expedicao;
-      this.funcionario.admissao = funcionario.admissao;
-      this.funcionario.demissao = funcionario.demissao;
-      this.funcionario.email = funcionario.email;
-      this.funcionario.endereco = funcionario.endereco;
-      this.funcionario.estadoCivil = funcionario.estadoCivil;
-      this.funcionario.identidade = funcionario.identidade;
-      this.funcionario.matricula = funcionario.matricula;
-      this.funcionario.naturalidade = funcionario.naturalidade;
-      this.funcionario.nis = funcionario.nis;
-      this.funcionario.nome = funcionario.nome;
-      this.funcionario.nomeMae = funcionario.nomeMae;
-      this.funcionario.nomePai = funcionario.nomePai;
-      this.funcionario.numero = funcionario.numero;
-      this.funcionario.operacao = funcionario.operacao;
-      this.funcionario.orgaoEmissor = funcionario.orgaoEmissor;
-      this.funcionario.seccaoEleitoral = funcionario.seccaoEleitoral;
-      this.funcionario.setor = funcionario.setor;
-      this.funcionario.sexo = funcionario.sexo;
-      this.funcionario.situacao = funcionario.situacao;
-      this.funcionario.sus = funcionario.sus;
-      this.funcionario.tituloEleitor = funcionario.tituloEleitor;
-      this.funcionario.zonaEleitoral = funcionario.zonaEleitoral;
+    this.firestoreService.getFuncionario(this.id).subscribe(funcionario => {
+      // ALGUM PROBLEMA FEZ COM QUE funcionario.nome NÃO CARREGASSE NA PÁGINA
+      this.editForm = this.formBuilder.group({
+        nome: [funcionario.nome, Validators.required],
+        nascimento: [funcionario.nascimento, Validators.required],
+        ultimaEdicao: [new Date(), Validators.required],
+        nomePai: [funcionario.nomePai, Validators.required],
+        nomeMae: [funcionario.nomeMae, Validators.required],
+        sexo: [funcionario.sexo],
+        estadoCivil: [funcionario.estadoCivil],
+        naturalidade: [funcionario.naturalidade, Validators.required],
+        identidade: [funcionario.identidade, Validators.required],
+        expedicao: [funcionario.expedicao, Validators.required],
+        orgaoEmissor: [funcionario.orgaoEmissor, Validators.required],
+        cpf: [funcionario.cpf, Validators.required],
+        tituloEleitor: [funcionario.tituloEleitor, Validators.required],
+        zonaEleitoral: [funcionario.zonaEleitoral, Validators.required],
+        seccaoEleitoral: [funcionario.seccaoEleitoral, Validators.required],
+        nis: [funcionario.nis],
+        sus: [funcionario.sus],
+        endereco: [funcionario.endereco],
+        numero: [funcionario.numero],
+        bairro: [funcionario.bairro],
+        cidade: [funcionario.cidade],
+        celular: [funcionario.celular],
+        email: [funcionario.email],
+        matricula: [funcionario.matricula, Validators.required],
+        admissao: [funcionario.admissao, Validators.required],
+        demissao: [funcionario.demissao],
+        setor: [funcionario.setor],
+        cargo: [funcionario.cargo],
+        cbo: [funcionario.cbo],
+        banco: [funcionario.banco],
+        agencia: [funcionario.agencia],
+        conta: [funcionario.conta],
+        situacao: [funcionario.situacao, Validators.required],
+        observacao: [funcionario.observacao]
+      });
     });
   }
 
-  updateFuncionario(funcionario: Funcionario) {
-    if (this.funcionario.situacao === 'Inativo') {
-      this.funcionario.demissao = new Date(this.funcionario.demissao).toLocaleDateString();
-      } else {
-        funcionario.demissao = null;
-      }
+  get f() { return this.editForm.controls; }
+
+  updateFuncionario() {
+    this.submitted = true;
+    this.funcionario = this.editForm.value;
+    // stop here if form is invalid
+    if (this.editForm.invalid) {
+      return;
+    }
     this.firestoreService.updateFuncionario(this.funcionario);
-      // Rota
     this.router.navigate(['funcionario/' + this.id]);
   }
 }

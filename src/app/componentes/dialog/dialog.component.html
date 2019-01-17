@@ -1,0 +1,17 @@
+<div>
+  <form (ngSubmit)="submit()">
+    <h1 mat-dialog-title>Recuperar Senha</h1>
+    <mat-dialog-content>
+      <div class="example-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Digite seu E-mail</mat-label>
+          <input matInput [(ngModel)]="email" name="email" placeholder="exemplo@email.com">
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button type="submit">Enviar</button>
+      <button mat-button type="button" mat-dialog-close>Cancelar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

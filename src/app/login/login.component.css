@@ -1,16 +1,45 @@
-.login-form {
+.example-container {
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  margin: 50px;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.example-card {
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.example-card mat-card-actions {
   text-align: center;
-  position: relative;
+  margin-bottom: 10px;
 }
 
-mat-form-field{
-  width: 50%;
+.login {
+  background-color: #344995;
+  color: white;
+  margin-bottom: 5px;
 }
 
-mat-form-field input {
-  width: 50%;
+.recPass {
+    margin: 10px;
+}
+
+mat-card-header {
+  text-align: center;
 }

@@ -1,35 +1,17 @@
-mat-card {
-    margin: 0 auto;
+h3 {
+  margin: 10px;
+  text-align: center;
 }
 
-mat-form-field {
-    flex-direction: column;
-    display: flex;
+.btn-primary {
+  float: right;
+  margin: 10px;
 }
 
-h4 {
-    text-align: center;
+.btnleft {
+  float: left;
 }
 
-.example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-.example-radio-button {
-    margin: 5px;
-}
-
-.example-selected-value {
-    margin: 15px 0;
-}
-
-.btn-add {
-    float: right;
-    margin-top: 20px;
-}
-
-.btn-back {
-    float: left;
-    margin-top: 20px;
+mat-divider {
+  margin-bottom: 20px;
 }

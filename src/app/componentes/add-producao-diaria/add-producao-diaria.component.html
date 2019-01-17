@@ -1,0 +1,70 @@
+<app-navbar-producao></app-navbar-producao>
+<div class="container">
+  <h3>Cadastro de Produção Diária</h3>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col-md-8" id="form-center">
+      <form>
+        <div class="form-group">
+          <label>Data da Produção</label>
+          <input type="text" [(ngModel)]="pd.data" name="data" mask="00/00/0000" dropSpecialCharacters="false"
+            placeholder="Ex: 01/01/1994" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Minutos Por Funcionário</label>
+          <input type="number" [(ngModel)]="pd.minutosDiarios" name="minutosDiarios" class="form-control" placeholder="Minutos Diários de Cada Funcionário" />
+        </div>
+
+        <div class="form-group">
+          <label>Quantidade de Pessoal</label>
+          <input type="number" [(ngModel)]="pd.quantidadeDePessoal" name="quantidadeDePessoal" class="form-control"
+            placeholder="Quantidade de Funcionários" />
+        </div>
+
+        <div class="form-group">
+          <label>Total de Minutos de Funcionários</label>
+          <input type="number" disabled [(ngModel)]="pd.minutosDiarios*pd.quantidadeDePessoal" class="form-control"
+            placeholder="Total de Minutos" name="minutosPessoal" />
+        </div>
+      </form>
+      <table class="table table-responsive table-form">
+        <thead>
+          <tr>
+            <th scope="col">Artigo</th>
+            <th scope="col">Tempo</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Produzido</th>
+            <th scope="col">Produção Diária OP</th>
+            <th scope="col">PPM</th>
+            <th scope="col">Fatura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active" *ngFor="let ordem of ordens; let i = index; trackBy: customTrackBy">
+            <th scope="row">{{ordem.referencia}}</th>
+            <td>{{ordem.tempo}}</td>
+            <td>{{ordem.valor}}</td>
+            <td>{{ordem.producao}}</td>
+            <td class="td-ppm">
+              <input type="number" name="producao" [(ngModel)]="ordem.ultimaProducao" class="form-control ppm" />
+            </td>
+            <td class="td-ppm">
+              <input disabled name="ppm" type="number" [(ngModel)]="ppm" [value]="ordem.tempo*ordem.ultimaProducao"
+                class="form-control ppm" />
+            </td>
+            <td class="td-ppm">
+              <input disabled name="fatura" type="number" [(ngModel)]="fatura" [value]="ordem.valor*ordem.ultimaProducao"
+                class="form-control ppm" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="button" class="btn btn-primary btn-pd" (click)="onOrdemInPd()">Enviar
+          Produção Diaria</button>
+        <button mat-raised-button color="warn" type="button" class="btn btn-warning btn-pd" (click)="offOrdemInPd()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

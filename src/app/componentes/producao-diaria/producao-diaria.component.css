@@ -1,0 +1,18 @@
+@import "../../../assets/css/index.css";
+.button-row .btn {
+  margin: 8px;
+}
+.button-row {
+  text-align: center;
+}
+.box {
+  margin-bottom: 10px;
+}
+#left {
+  text-align: right !important;
+}
+@media print {
+  .button-row {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+@import "../../../assets/css/index.css";
+@media screen and (max-width: 800px) {
+  .desktop-hidden {
+    display: initial;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@media print {
+  .button-row {
+    display: none;
+  }
+}
+
+.button-row {
+  margin: 20px;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}

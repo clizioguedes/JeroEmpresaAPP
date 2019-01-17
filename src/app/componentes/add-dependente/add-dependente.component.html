@@ -1,28 +1,52 @@
-<h3>Cadastro</h3>
-<form>
-    <fieldset>
-        <mat-form-field>
-            <input matInput placeholder="Nome Completo" [(ngModel)]="dependente.nome" name="nome">
-        </mat-form-field>
+<!-- Button trigger modal -->
+<div class="btn-dependente">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDependente">
+        Cadastrar Dependente
+    </button>
+</div>
 
-        <mat-form-field>
-            <input matInput [matDatepicker]="pickerNascimento" disabled="true" [(ngModel)]="dependente.nascimento" name="nascimento" placeholder="Data de Nascimento">
-            <mat-datepicker-toggle matSuffix [for]="pickerNascimento"></mat-datepicker-toggle>
-            <mat-datepicker disabled="false" touchUi="true" #pickerNascimento></mat-datepicker>
-        </mat-form-field>
+<!-- Modal -->
+<div class="modal fade" id="modalDependente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Dependente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <fieldset>
+                        <mat-form-field>
+                            <input matInput placeholder="Nome Completo" [(ngModel)]="dependente.nome" name="nome">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput mask="00/00/0000" dropSpecialCharacters="false" [(ngModel)]="dependente.nascimento"
+                                name="dataFalta" placeholder="Data de Nascimento" required>
+                        </mat-form-field>
 
-        <mat-form-field>
-            <mat-select placeholder="Tipo" [(ngModel)]="dependente.tipo" name="tipo">
-                <mat-option *ngFor="let tipo of tiposDep" [value]="tipo.value">
-                    {{tipo.value}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+                        <div class="form-group">
+                            <label for="tipo">Tipo de Dependente</label>
+                            <select class="form-control" placeholder="Tipo" [(ngModel)]="dependente.tipo" name="tipo">
+                                <option *ngFor="let tipo of tiposDep" [value]="tipo.value">
+                                    {{tipo.value}}
+                                </option>
+                            </select>
+                        </div>
 
-        <mat-form-field>
-            <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00' [(ngModel)]="dependente.cpf" name="cpf">
-        </mat-form-field>
-
-    </fieldset>
-    <button mat-mini-fab (click)="addDependente()" color="primary"><mat-icon>add</mat-icon></button>
-</form>
+                        <mat-form-field>
+                            <input matInput placeholder="CPF" dropSpecialCharacters="false" mask='000.000.000-00'
+                                [(ngModel)]="dependente.cpf" name="cpf">
+                        </mat-form-field>
+                    </fieldset>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addDependente()">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,21 +1,29 @@
 import { AfService } from '../serviços/af.service';
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { tap, take, map } from 'rxjs/operators';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class AuthGuardService implements CanActivate {
 
   constructor(private router: Router, private afService: AfService) { }
 
-  canActivate() {
-    if ( this.afService.isLoggedIn() ) {
-        return true;
-    } else {
-      this.router.navigate(['/login']);
-        alert('Por Favor, Faça o Login para Ter Acesso as Funcionalidades!');
-        return false;
-      }
+
+  canActivate(route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> {
+
+
+    return this.afService.authInfo$.pipe(
+      map(authInfo => authInfo.isLoggedIn()),
+      take(1),
+      tap(allowed => {
+        if (!allowed) {
+          this.router.navigate(['/login']);
+        }
+      }),
+    );
   }
 }

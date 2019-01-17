@@ -1,24 +1,33 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <title>Login Jero Confecções</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-
-<body>
-        <div class="login-form">
-    <!-- Container -->
-        <h3>Login no Sistema</h3>
-            <mat-form-field>
-              <input matInput name="email" [(ngModel)]="user.email" placeholder="Digite seu E-mail" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput name="password" [(ngModel)]="user.password" placeholder="Digite sua senha" [type]="hide ? 'password' : 'text'">
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-              </mat-form-field>
-          <button mat-button (click)="signInWithEmail()">Entrar</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 offset-md-3">
+            <mat-card class="example-card">
+                <form [formGroup]="form" (ngSubmit)="signInWithEmail()">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h3>Login Jero Confecções</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="example-container">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Digite seu E-mail</mat-label>
+                                <input matInput name="email" formControlName="email" placeholder="exemplo@email.com">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Senha</mat-label>
+                                <input matInput name="password" formControlName="password" placeholder="Digite sua Senha"
+                                    [type]="hide ? 'password' : 'text'">
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button class="login" (click)="signInWithEmail()">LOGIN</button>
+                    </mat-card-actions>
+                </form>
+                <button mat-button class="recPass" (click)="openDialog()">Recuperar Senha</button>
+            </mat-card>
         </div>
-</body>
-</html>
+    </div>
+</div>

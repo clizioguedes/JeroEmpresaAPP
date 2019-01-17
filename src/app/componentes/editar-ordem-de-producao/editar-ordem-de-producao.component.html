@@ -1,75 +1,109 @@
-<form>
-  <div class="row">
-      <mat-card class="col-xs-12 col-md-6 col-sm-12">
-          <fieldset>
-              <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                          <a routerLink="/">Home</a>
-                      </li>
-                      <li class="breadcrumb-item">
-                          <a routerLink="/listar-ordens-de-producao">Listar Ordens de Produção</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">Cadastrar Ordens Produção</li>
-                  </ol>
-              </nav>
-              <h4>Ordem de Produção</h4>
-              <mat-form-field>
-                  <input matInput placeholder="Fornecedor" [(ngModel)]="ordemDeProducao.fornecedor" name="fornecedor" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Número" [(ngModel)]="ordemDeProducao.numero" name="numero" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Nota Fiscal do Fornecedor" [(ngModel)]="ordemDeProducao.nf" name="nf" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Referência" [(ngModel)]="ordemDeProducao.referencia" name="referencia" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Item" [(ngModel)]="ordemDeProducao.item" name="item" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Quantidade de Peças" [(ngModel)]="ordemDeProducao.quantidade" name="quantidade" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Valor por Peça" [dropSpecialCharacters]="false" mask="00.00" [(ngModel)]="ordemDeProducao.valor"
-                      name="valor" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput placeholder="Tempo Padrão" [dropSpecialCharacters]="false" mask="00.00" [(ngModel)]="ordemDeProducao.tempo"
-                      name="tempo" required>
-              </mat-form-field>
-
-              <label for="status">Status:</label>
-              <br>
-              <mat-radio-group class="example-radio-group" [(ngModel)]="ordemDeProducao.status" name="status" required>
-                  <mat-radio-button class="example-radio-button" *ngFor="let s of status" [value]="s">
-                      {{s}}
-                  </mat-radio-button>
-              </mat-radio-group>
-
-              <mat-form-field>
-                    <input matInput placeholder="Entrega" mask="00/00/0000" [(ngModel)]="ordemDeProducao.entrega" [dropSpecialCharacters]="false"
-                        name="entrega" required>
-            </mat-form-field>
- 
-              <mat-form-field>
-                  <textarea matInput placeholder="Observações" [(ngModel)]="ordemDeProducao.observacao" name="observacao"></textarea>
-              </mat-form-field>
-              
-              <button class="btn-back" [routerLink]="['/ordem-de-producao', id]" mat-raised-button color="primary">
-                <mat-icon>keyboard_backspace</mat-icon>
-            </button>
-            <button type="button" mat-raised-button class="btn-add" color="primary" (click)="updateOrdemDeProducao(ordem)"> Atualizar </button>
-          </fieldset>
-      </mat-card>
-  </div>
-</form>
+<app-navbar-producao></app-navbar-producao>
+<div class="container" *ngIf="editForm">
+    <h3>Dados da Ordem de Produção: {{f.referencia.value}}</h3>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Fornecedor</label>
+                    <input type="text" formControlName="fornecedor" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.fornecedor.errors }" />
+                    <div *ngIf="submitted && f.fornecedor.errors" class="invalid-feedback">
+                        <div *ngIf="f.fornecedor.errors.required">O Nome do Fornecedor é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Numero da Ordem de Produção</label>
+                    <input type="number" formControlName='numero' class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
+                    <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                        <div *ngIf="f.numero.errors.required">O Numero da Ordem é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nota Fiscal da Ordem de Produção</label>
+                    <input type="text" formControlName="nf" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nf.errors }" />
+                    <div *ngIf="submitted && f.nf.errors" class="invalid-feedback">
+                        <div *ngIf="f.nf.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Referência da Ordem de Produção</label>
+                    <input type="text" formControlName="referencia" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.referencia.errors }" />
+                    <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
+                        <div *ngIf="f.referencia.errors.required">A Referência da Ordem é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Descrição da Peça</label>
+                    <input type="text" formControlName="item" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.item.errors }" />
+                    <div *ngIf="submitted && f.item.errors" class="invalid-feedback">
+                        <div *ngIf="f.item.errors.required">O Item da Ordem é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade de Peças</label>
+                    <input type="number" formControlName='quantidade' class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantidade.errors }" />
+                    <div *ngIf="submitted && f.quantidade.errors" class="invalid-feedback">
+                        <div *ngIf="f.quantidade.errors.required">A Nota Fiscal da Ordem é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tempo Padrão</label>
+                    <input type="text" formControlName="tempo" mask="00.00" dropSpecialCharacters="false" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.tempo.errors }" />
+                    <div *ngIf="submitted && f.tempo.errors" class="invalid-feedback">
+                        <div *ngIf="f.tempo.errors.required">O Tempo Padrão é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Valor da Peça</label>
+                    <input type="text" formControlName="valor" mask="00.00" dropSpecialCharacters="false" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.valor.errors }" />
+                    <div *ngIf="submitted && f.valor.errors" class="invalid-feedback">
+                        <div *ngIf="f.valor.errors.required">O Valor da Peça é Obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Previsão de Entrega</label>
+                    <input type="text" formControlName="entrega" mask="00/00/0000" dropSpecialCharacters="false" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.entrega.errors }" />
+                    <div *ngIf="submitted && f.entrega.errors" class="invalid-feedback">
+                        <div *ngIf="f.entrega.errors.required">A Data prevista é obrigatória</div>
+                    </div>
+                </div>
+                <fieldset class="form-group">
+                    <label for="">Status:</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Espera"
+                                checked="">
+                            Espera </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Processo">
+                            Processo </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Concluida">
+                            Concluida </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" formControlName="status" name="status" value="Enviada">
+                            Enviada </label>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label for="observacao">Observações</label>
+                    <textarea class="form-control" formControlName="observacao" name="observacao" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btnleft" routerLink="/listar-ordens-de-producao/">Cancelar</button>
+                    <button class="btn btn-primary">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

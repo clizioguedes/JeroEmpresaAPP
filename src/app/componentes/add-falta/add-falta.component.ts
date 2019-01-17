@@ -12,7 +12,6 @@ export class AddFaltaComponent implements OnInit {
 
   falta: Falta = {
     tipo: null,
-    nomeFuncionario: null,
     dataRegistro: null,
     dataFalta: null,
     periodo: null,
@@ -20,8 +19,8 @@ export class AddFaltaComponent implements OnInit {
   };
 
   tipos = [
-   'Atestado',
-   'Falta',
+    'Atestado',
+    'Falta',
   ];
 
   periodos = [
@@ -40,9 +39,7 @@ export class AddFaltaComponent implements OnInit {
 
   addFalta() {
     if (this.falta.dataFalta != null && this.falta.observacao != null) {
-      this.falta.dataRegistro = Date.now();
-      this.falta.dataRegistro = new Date(this.falta.dataRegistro).toLocaleString();
-      this.falta.dataFalta = new Date(this.falta.dataFalta).toLocaleDateString();
+      this.falta.dataRegistro = new Date().toLocaleString();
       this.firestoreService.addFalta(this.falta);
       console.log('Ausência Cadastrada');
       console.log('Data de Registro da Ausência foi: ' + this.falta.dataRegistro);
@@ -50,13 +47,12 @@ export class AddFaltaComponent implements OnInit {
       this.falta.dataFalta = null;
       this.falta.observacao = null;
       this.falta.periodo = null;
-          // SnackBar
+      // SnackBar
       this.snackBar.open('Ausência Cadastrada', 'OK', {
         duration: 2000,
       });
     } else {
-        alert('Há campos obrigatórios não preenchidos!');
+      alert('Há campos obrigatórios não preenchidos!');
     }
   }
-
 }

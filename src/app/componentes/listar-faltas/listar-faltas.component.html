@@ -1,79 +1,91 @@
-<h3>Ausências</h3>
 <div class="button-row">
-  <button (click)="ngOnInit()" [ngClass]="allFaltas ? 'mat-raised-button': 'mat-button'" mat-button color="basic">Todos</button>
-  <button (click)="getAtestados()" [ngClass]="atestados ? 'mat-raised-button': 'mat-button'" mat-button color="primary">Atestados</button>
-  <button (click)="getFaltas()" [ngClass]="ausencias ? 'mat-raised-button': 'mat-button'" mat-button
-    color="warn">Faltas </button>
-  <button mat-button color="accent" onclick="window.print()">
-    <mat-icon>print</mat-icon>
-  </button>
+    <button (click)="ngOnInit()" [ngClass]="allFaltas ? 'mat-raised-button': 'mat-button'" mat-button color="basic">Todos</button>
+    <button (click)="getAtestados()" [ngClass]="atestados ? 'mat-raised-button': 'mat-button'" mat-button color="primary">Atestados</button>
+    <button (click)="getFaltas()" [ngClass]="ausencias ? 'mat-raised-button': 'mat-button'" mat-button color="warn">
+        Faltas </button>
 </div>
 <div class="box">
     <div class="row" *ngIf="allFaltas">
-        <table class="info">
-            <small>* Faltas e Atestados</small>
+        <table class="table-sm table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Data da Falta</th>
+                    <th scope="col">Tipo da Falta</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Observações</th>
+                    <th scope="col">Ações</th>
+
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let falta of faltas">
-                    <td>Data da Falta</td>
                     <td>{{falta?.dataFalta}}</td>
-                    <td>Tipo da Falta</td>
                     <td>{{falta?.tipo}}</td>
-                    <td>Periodo</td>
                     <td>{{falta.periodo}}</td>
-                    <td>Observações</td>
                     <td>{{falta.observacao}}</td>
                     <td>
-                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-        <div class="row" *ngIf="atestados">
-        <table class="info">
-            <small>* Apenas Atestados</small>
+    <div class="row" *ngIf="atestados">
+        <table class="table-sm table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Data da Falta</th>
+                    <th scope="col">Tipo da Falta</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Observações</th>
+                    <th scope="col">Ações</th>
+
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let falta of faltas">
-                    <td>Data da Falta</td>
                     <td>{{falta?.dataFalta}}</td>
-                    <td>Tipo da Falta</td>
                     <td>{{falta?.tipo}}</td>
-                    <td>Periodo</td>
                     <td>{{falta.periodo}}</td>
-                    <td>Observações</td>
                     <td>{{falta.observacao}}</td>
                     <td>
-                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-            <div class="row" *ngIf="ausencias">
-        <table class="info">
-            <small>* Faltas sem Atestado</small>
+    <div class="row" *ngIf="ausencias">
+        <table class="table-sm table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Data da Falta</th>
+                    <th scope="col">Tipo da Falta</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Observações</th>
+                    <th scope="col">Ações</th>
+
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let falta of faltas">
-                    <td>Data da Falta</td>
                     <td>{{falta?.dataFalta}}</td>
-                    <td>Tipo da Falta</td>
                     <td>{{falta?.tipo}}</td>
-                    <td>Periodo</td>
                     <td>{{falta.periodo}}</td>
-                    <td>Observações</td>
                     <td>{{falta.observacao}}</td>
                     <td>
-                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab (click)="deleteFalta($event, falta)" color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-        <div class="btnPrinter">
-        <button mat-raised-button color="accent" onclick="window.print()">
-        <mat-icon>print</mat-icon>
-        </button>
     </div>
 </div>

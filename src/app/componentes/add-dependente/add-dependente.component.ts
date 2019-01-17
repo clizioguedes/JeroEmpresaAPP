@@ -19,24 +19,23 @@ export class AddDependenteComponent implements OnInit {
   };
 
   tiposDep = [
-    { value: 'Cônjuge'},
-    { value: 'Companheiro'},
-    { value: 'Filho(a)'},
-    { value: 'Irmão/neto/bisneto'},
-    { value: 'Pais, avós e bisavós'},
-    { value: 'Ex-cônjuge'},
-    { value: 'Agregado/Outros'}
+    { value: 'Cônjuge' },
+    { value: 'Companheiro' },
+    { value: 'Filho(a)' },
+    { value: 'Irmão/neto/bisneto' },
+    { value: 'Pais, avós e bisavós' },
+    { value: 'Ex-cônjuge' },
+    { value: 'Agregado/Outros' }
   ];
 
-  constructor( private firestoreService: FirestoreService, public snackBar: MatSnackBar ) { }
+  constructor(private firestoreService: FirestoreService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   addDependente() {
-    if ( this.dependente.nome != null && this.dependente.nascimento != null && this.dependente.tipo != null ) {
+    if (this.dependente.nome != null && this.dependente.nascimento != null && this.dependente.tipo != null) {
       this.dependente.dataRegistro = new Date().toLocaleString();
-      this.dependente.nascimento = new Date(this.dependente.nascimento).toLocaleDateString();
       this.firestoreService.addDependente(this.dependente);
       // NULL
       this.dependente.nome = null;

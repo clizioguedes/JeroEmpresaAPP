@@ -1,11 +1,11 @@
-@import '../funcionario/funcionario.component.css';
-mat-form-field {
-    flex-direction: column;
-    display: flex;
-}
-
-@media print { 
+@import "../../../assets/css/add.css";
+@import "../../../assets/css/index.css";
+@media print {
   * {
     display: none;
   }
+}
+.btn-dependente {
+  text-align: center;
+  margin-top: 8px;
 }
