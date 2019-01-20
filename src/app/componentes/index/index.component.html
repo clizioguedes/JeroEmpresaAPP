@@ -1,31 +1,104 @@
 <app-navbar-producao></app-navbar-producao>
-<div class="body">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-sm-12">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>#Funcionários</mat-card-title>
-            <mat-card-subtitle>Módulo para a Gerência de Funcionários da Empresa</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-actions>
-            <button mat-raised-button routerLink="/dashboard-funcionario/">FUNCIONÁRIO</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>#Produção</mat-card-title>
-            <mat-card-subtitle>Módulo para a Gerência de Produção da Empresa</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-actions>
-            <button mat-raised-button routerLink="/dashboard-producao/">PRODUÇÃO</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>#Funcionários</mat-card-title>
+          <mat-card-subtitle>Módulo para a Gerência de Funcionários da Empresa</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/dashboard-funcionario/">FUNCIONÁRIO</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>#Produção</mat-card-title>
+          <mat-card-subtitle>Módulo para a Gerência de Produção da Empresa</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/dashboard-producao/">PRODUÇÃO</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="mat-elevation-z8">
+      <h4>Ordens de Produção Recentes</h4>
+      <table mat-table [dataSource]="dataSourceOP">
+        <!-- Name Column -->
+        <ng-container matColumnDef="referencia">
+          <th mat-header-cell *matHeaderCellDef> ARTIGO </th>
+          <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="quantidade">
+          <th mat-header-cell *matHeaderCellDef> QUANTIDADE </th>
+          <td mat-cell *matCellDef="let element">{{element.quantidade}}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="producao">
+          <th mat-header-cell *matHeaderCellDef> PRODUÇÃO </th>
+          <td mat-cell *matCellDef="let element"> {{element.producao}}</td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="entrega">
+          <th mat-header-cell *matHeaderCellDef> ENTREGA </th>
+          <td mat-cell *matCellDef="let element"> {{element.entrega.seconds * 1000 | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsOP"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsOP;"></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="mat-elevation-z8">
+      <h4>Produções Diárias Recentes</h4>
+
+      <table mat-table [dataSource]="dataSourcePD">
+
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef> Data </th>
+          <td [ngClass]="{'green' :element.eficiencia >= 60}" mat-cell *matCellDef="let element">
+            {{element.data.seconds * 1000 | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="producaoDiaria">
+          <th mat-header-cell *matHeaderCellDef> Produção </th>
+          <td [ngClass]="{'green' :element.eficiencia >= 60}" mat-cell *matCellDef="let element">
+            {{element.producaoDiaria}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="eficiencia">
+          <th mat-header-cell *matHeaderCellDef> Eficiência </th>
+          <td [ngClass]="{'green' :element.eficiencia >= 60}" mat-cell *matCellDef="let element">
+            {{element.eficiencia}}% </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="faturaDiaria">
+          <th mat-header-cell *matHeaderCellDef> Fatura R$ </th>
+          <td [ngClass]="{'green' :element.eficiencia >= 60}" mat-cell *matCellDef="let element">
+            {{element.faturaDiaria}},00 R$ </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsPD"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsPD;"></tr>
+      </table>
     </div>
   </div>
 </div>

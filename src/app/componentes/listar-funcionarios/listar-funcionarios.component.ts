@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Funcionario } from '../../interfaces/Funcionario';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-listar-funcionarios',
@@ -13,39 +14,55 @@ export class ListarFuncionariosComponent implements OnInit {
 
   funcionarios: Funcionario[];
 
-  allFuncionarios: boolean;
-  inativeFuncionarios: boolean;
-  activeFuncionarios: boolean;
+  todosFuncionarios: boolean;
+  inativosFuncionarios: boolean;
+  ativosFuncionarios: boolean;
   tablePrint = false;
+
+  displayedColumns: string[] = ['matricula', 'nome', 'cpf', 'cargo', 'situacao'];
+
+  dataSource: any;
+  dataSourceInativos: any;
+  dataSourceAtivos: any;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginatorInativos: MatPaginator;
+  @ViewChild(MatPaginator) paginatorAtivos: MatPaginator;
 
   constructor(
     private firestoreService: FirestoreService) {
   }
 
   ngOnInit() {
-    this.allFuncionarios = true;
-    this.inativeFuncionarios = false;
-    this.activeFuncionarios = false;
+    this.todosFuncionarios = true;
+    this.inativosFuncionarios = false;
+    this.ativosFuncionarios = false;
     this.firestoreService.getFuncionarios().subscribe(funcionarios => {
-      this.funcionarios = funcionarios;
+      const ELEMENT_DATA = funcionarios;
+      this.dataSource = new MatTableDataSource<Funcionario>(ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
   getFuncionariosInativos() {
-    this.allFuncionarios = false;
-    this.inativeFuncionarios = true;
-    this.activeFuncionarios = false;
-    this.firestoreService.getFuncionariosInativos().subscribe(funcionarios => {
-      this.funcionarios = funcionarios;
+    this.todosFuncionarios = false;
+    this.inativosFuncionarios = true;
+    this.ativosFuncionarios = false;
+    this.firestoreService.getFuncionariosInativos().subscribe(funcionariosINATIVOS => {
+      const ELEMENT_DATA_INATIVOS = funcionariosINATIVOS;
+      this.dataSourceInativos = new MatTableDataSource<Funcionario>(ELEMENT_DATA_INATIVOS);
+      this.dataSourceInativos.paginator = this.paginatorInativos;
     });
   }
 
   getFuncionariosAtivos() {
-    this.allFuncionarios = false;
-    this.inativeFuncionarios = false;
-    this.activeFuncionarios = true;
-    this.firestoreService.getFuncionariosAtivos().subscribe(funcionarios => {
-      this.funcionarios = funcionarios;
+    this.todosFuncionarios = false;
+    this.inativosFuncionarios = false;
+    this.ativosFuncionarios = true;
+    this.firestoreService.getFuncionariosAtivos().subscribe(funcionariosATIVOS => {
+      const ELEMENT_DATA_ATIVOS = funcionariosATIVOS;
+      this.dataSourceAtivos = new MatTableDataSource<Funcionario>(ELEMENT_DATA_ATIVOS);
+      this.dataSourceAtivos.paginator = this.paginatorAtivos;
     });
   }
 }

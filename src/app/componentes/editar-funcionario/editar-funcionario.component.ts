@@ -26,18 +26,17 @@ export class EditarFuncionarioComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.firestoreService.getFuncionario(this.id).subscribe(funcionario => {
-      // ALGUM PROBLEMA FEZ COM QUE funcionario.nome NÃO CARREGASSE NA PÁGINA
       this.editForm = this.formBuilder.group({
         nome: [funcionario.nome, Validators.required],
-        nascimento: [funcionario.nascimento, Validators.required],
-        ultimaEdicao: [new Date(), Validators.required],
+        nascimento: [funcionario.nascimento],
+        ultimaEdicao: [new Date()],
         nomePai: [funcionario.nomePai, Validators.required],
         nomeMae: [funcionario.nomeMae, Validators.required],
         sexo: [funcionario.sexo],
         estadoCivil: [funcionario.estadoCivil],
         naturalidade: [funcionario.naturalidade, Validators.required],
         identidade: [funcionario.identidade, Validators.required],
-        expedicao: [funcionario.expedicao, Validators.required],
+        expedicao: [funcionario.expedicao],
         orgaoEmissor: [funcionario.orgaoEmissor, Validators.required],
         cpf: [funcionario.cpf, Validators.required],
         tituloEleitor: [funcionario.tituloEleitor, Validators.required],
@@ -52,7 +51,7 @@ export class EditarFuncionarioComponent implements OnInit {
         celular: [funcionario.celular],
         email: [funcionario.email],
         matricula: [funcionario.matricula, Validators.required],
-        admissao: [funcionario.admissao, Validators.required],
+        admissao: [funcionario.admissao],
         demissao: [funcionario.demissao],
         setor: [funcionario.setor],
         cargo: [funcionario.cargo],

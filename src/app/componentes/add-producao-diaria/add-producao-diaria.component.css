@@ -1,10 +1,4 @@
-@import "../add-funcionario/add-funcionario.component.css";
-
-@media print {
-  .button-row {
-    display: none;
-  }
-}
+@import "../../../assets/css/add.css";
 
 h3 {
   margin: 10px;

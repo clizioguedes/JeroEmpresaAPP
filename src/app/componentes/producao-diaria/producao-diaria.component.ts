@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProducaoDiaria } from 'src/app/interfaces/Producao';
 import { FirestoreService } from 'src/app/serviços/firestore.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Component({
   selector: 'app-producao-diaria',
@@ -12,11 +13,15 @@ export class ProducaoDiariaComponent implements OnInit {
 
   producaoDiaria: ProducaoDiaria;
   ordens: any;
+  seconds: any;
+  data;
 
   constructor(private firestoreService: FirestoreService, private router: Router, private route: ActivatedRoute) {
     const idProducaoDiaria = this.route.snapshot.params['id'];
     this.firestoreService.getProducaoDiaria(idProducaoDiaria).subscribe(producaoDiaria => {
       this.producaoDiaria = producaoDiaria;
+      this.seconds = producaoDiaria.data;
+      this.data = this.seconds * 1000;
       this.ordens = this.producaoDiaria.ordensPD;
       if (producaoDiaria.id === idProducaoDiaria) {
         console.log('Já tem');

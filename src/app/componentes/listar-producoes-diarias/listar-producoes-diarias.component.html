@@ -1,56 +1,56 @@
 <app-navbar-producao></app-navbar-producao>
-<div class="container">
-    <div class="button-row">
-        <button mat-button color="primary" routerLink="/dashboard-producao/">
-            <mat-icon aria-label="Editar Ordem de Produção">dashboard</mat-icon>
-            Dashboard Produção
-        </button>
-        <button mat-button color="accent" routerLink="/add-producao-diaria/">
-            <mat-icon aria-label="Listar Produções Diárias">add</mat-icon>
-            Cadastro
-        </button>
-    </div>
+<div class="button-row">
+    <button mat-button color="primary" routerLink="/dashboard-producao/">
+        <mat-icon aria-label="Dashboard Produção">dashboard</mat-icon>
+        Dashboard Produção
+    </button>
+    <button mat-button color="accent" routerLink="/add-producao-diaria/">
+        <mat-icon aria-label="Cadastro de Produção Diária">add</mat-icon>
+        Cadastrar
+    </button>
+</div>
+<div class="datatable table table-responsive" id="printerAll">
+    <h1>Produções Diárias</h1>
 
-    <div class="datatable" id="printerAll">
-        <h3>Todas Produções Diárias</h3>
-        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="producoesDiarias">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> IDENTIFICAÇÃO </th>
+                <td mat-cell *matCellDef="let element"><a routerLink="/producao-diaria/{{element.id}}">{{element.id}}</a></td>
+            </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef> DATA </th>
+                <td mat-cell *matCellDef="let element">{{element.data.seconds * 1000 | date: 'dd/MM/yyyy'}}</td>
+            </ng-container>
+            <!-- <a routerLink="/ordem-de-producao/{{element.id}}" -->
+            <ng-container matColumnDef="quantidadeDePessoal">
+                <th mat-header-cell *matHeaderCellDef> FUNCIONÁRIOS </th>
+                <td mat-cell *matCellDef="let element"> {{element.quantidadeDePessoal}} </td>
+            </ng-container>
 
-            <ngx-datatable-column name="DATA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="producaoDiaria">
+                <th mat-header-cell *matHeaderCellDef> PRODUÇÃO DIÁRIA </th>
+                <td mat-cell *matCellDef="let element">{{element.producaoDiaria}}</td>
+            </ng-container>
 
-            <ngx-datatable-column name="QUANTIDADE DE PESSOAL">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="eficiencia">
+                <th mat-header-cell *matHeaderCellDef> EFICIÊNCIA </th>
+                <td [ngClass]="{'green' :element.eficiencia >= 60}" mat-cell *matCellDef="let element">
+                    {{element.eficiencia}}% </td>
+            </ng-container>
 
-            <ngx-datatable-column name="PRODUCAO DIARIA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <ng-container matColumnDef="faturaDiaria">
+                <th mat-header-cell *matHeaderCellDef> FATURA DIÁRIA </th>
+                <td mat-cell *matCellDef="let element">{{element.faturaDiaria}},00 R$</td>
+            </ng-container>
 
-            <ngx-datatable-column name="EFICIENCIA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}} %
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="FATURA DIARIA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    R$ {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ID">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/producao-diaria/'+value]">Detalhes</button>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

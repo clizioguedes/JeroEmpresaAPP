@@ -1,412 +1,371 @@
 <app-navbar-funcionario></app-navbar-funcionario>
-<div class="container">
-    <h3>Cadastro de Funcionário</h3>
+<div class="container" *ngIf="registerForm">
+    <h1>Cadastro de Funcionário</h1>
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <div class="row">
-                    <legend>Dados Pessoais</legend>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Nome Completo</label>
-                            <input type="text" formControlName="nome" class="form-control" placeholder="Ex: José Silva"
-                                [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" />
-                            <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
-                                <div *ngIf="f.nome.errors.required">O Nome do Funcionário é Obrigatório</div>
-                            </div>
+            <div class="example-container">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nome Completo</mat-label>
+                                <input matInput formControlName="nome" name="nome" placeholder="Ex: João Silva"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+                                <mat-hint *ngIf="submitted && f.nome.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <mat-form-field appearance="outline">
+                                <input matInput [matDatepicker]="nascimento" name="nascimento" placeholder="Nascimento"
+                                    formControlName="nascimento" [ngClass]="{ 'is-invalid': submitted && f.nascimento.errors }">
+                                <mat-datepicker-toggle matSuffix [for]="nascimento"></mat-datepicker-toggle>
+                                <mat-datepicker #nascimento></mat-datepicker>
+                                <mat-hint *ngIf="submitted && f.nascimento.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Data de Nascimento</label>
-                            <input type="text" formControlName="nascimento" mask="00/00/0000" dropSpecialCharacters="false"
-                                placeholder="Ex: 01/01/1994" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nascimento.errors }" />
-                            <div *ngIf="submitted && f.nascimento.errors" class="invalid-feedback">
-                                <div *ngIf="f.nascimento.errors.required">A Data de Nascimento é obrigatória</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nome do Pai</mat-label>
+                                <input matInput formControlName="nomePai" name="nomePai" placeholder="Ex: José Oliveira"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nomePai.errors }">
+                                <mat-hint *ngIf="submitted && f.nomePai.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nome da Mãe</mat-label>
+                                <input matInput formControlName="nomeMae" name="nomeMae" placeholder="Ex: Mariana Azevedo"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nomeMae.errors }">
+                                <mat-hint *ngIf="submitted && f.nomeMae.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Nome do Pai</label>
-                            <input type="text" formControlName="nomePai" class="form-control" placeholder="Ex: João Silva"
-                                [ngClass]="{ 'is-invalid': submitted && f.nomePai.errors }" />
-                            <div *ngIf="submitted && f.nomePai.errors" class="invalid-feedback">
-                                <div *ngIf="f.nomePai.errors.required">O Nome do Pai é Obrigatório</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-label>Sexo:</mat-label>
+                            <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="sexo"> <br>
+                                <mat-radio-button class="mat-radio" name="sexo" value="Masculino">Masculino</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="sexo" value="Feminino">Feminino</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col">
+                            <mat-label>Estado Civil:</mat-label>
+                            <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="estadoCivil"> <br>
+                                <mat-radio-button class="mat-radio" name="estadoCivil" value="Solteiro">Solteiro</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="estadoCivil" value="Casado">Casado</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="estadoCivil" value="Separado">Separado</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="estadoCivil" value="Divorciado">Divorciado</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="estadoCivil" value="Viúvo">Viúvo</mat-radio-button>
+                            </mat-radio-group>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Nome da Mãe</label>
-                            <input type="text" formControlName="nomeMae" class="form-control" placeholder="Ex: Maria Silva"
-                                [ngClass]="{ 'is-invalid': submitted && f.nomeMae.errors }" />
-                            <div *ngIf="submitted && f.nomeMae.errors" class="invalid-feedback">
-                                <div *ngIf="f.nomeMae.errors.required">O Nome do Pai é Obrigatório</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Naturalidade</mat-label>
+                                <input matInput formControlName="naturalidade" name="naturalidade" placeholder="Ex: Cerro Corá"
+                                    [ngClass]="{ 'is-invalid': submitted && f.naturalidade.errors }">
+                                <mat-hint *ngIf="submitted && f.naturalidade.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <fieldset class="form-group">
-                            <label for="">Sexo:</label>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="sexo" name="sexo"
-                                        value="Masculino" checked="">
-                                    Masculino </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="sexo" name="sexo"
-                                        value="Feminino">
-                                    Feminino </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col">
-                        <fieldset class="form-group">
-                            <label for="">Estado Civil:</label>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="estadoCivil" name="estadoCivil"
-                                        value="Solteiro" checked="">
-                                    Solteiro </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="estadoCivil" name="estadoCivil"
-                                        value="Casado">
-                                    Casado </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="estadoCivil" name="estadoCivil"
-                                        value="Separado" checked="">
-                                    Separado </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="estadoCivil" name="estadoCivil"
-                                        value="Divorciado">
-                                    Divorciado </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="estadoCivil" name="estadoCivil"
-                                        value="Viúvo" checked="">
-                                    Viúvo </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Naturalidade</label>
-                            <input type="text" formControlName="naturalidade" class="form-control" name="naturalidade"
-                                placeholder="Ex: Cerro Corá" [ngClass]="{ 'is-invalid': submitted && f.naturalidade.errors }" />
-                            <div *ngIf="submitted && f.naturalidade.errors" class="invalid-feedback">
-                                <div *ngIf="f.naturalidade.errors.required">O Nome do Pai é Obrigatório</div>
-                            </div>
+
+                    <h4>Documentação</h4>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Identidade</mat-label>
+                                <input matInput formControlName="identidade" name="identidade" placeholder="Apenas Números"
+                                    [ngClass]="{ 'is-invalid': submitted && f.identidade.errors }">
+                                <mat-hint *ngIf="submitted && f.identidade.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <input matInput [matDatepicker]="expedicao" name="expedicao" placeholder="Expedição"
+                                    formControlName="expedicao" [ngClass]="{ 'is-invalid': submitted && f.expedicao.errors }">
+                                <mat-datepicker-toggle matSuffix [for]="expedicao"></mat-datepicker-toggle>
+                                <mat-datepicker #expedicao></mat-datepicker>
+                                <mat-hint *ngIf="submitted && f.expedicao.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Orgão Emissor</mat-label>
+                                <input matInput formControlName="orgaoEmissor" name="orgaoEmissor" placeholder="Ex: SSP"
+                                    [ngClass]="{ 'is-invalid': submitted && f.orgaoEmissor.errors }">
+                                <mat-hint *ngIf="submitted && f.orgaoEmissor.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <legend>Documentação</legend>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Identidade</label>
-                            <input type="number" formControlName="identidade" class="form-control" name="identidade"
-                                [ngClass]="{ 'is-invalid': submitted && f.identidade.errors }" />
-                            <div *ngIf="submitted && f.identidade.errors" class="invalid-feedback">
-                                <div *ngIf="f.identidade.errors.required">O Número da Identidade é Obrigatório</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>CPF</mat-label>
+                                <input matInput formControlName="cpf" name="cpf" placeholder="Apenas Números" mask="000.000.000-00"
+                                    [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }">
+                                <mat-hint *ngIf="submitted && f.cpf.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Data de Expedição</label>
-                            <input type="text" formControlName="expedicao" mask="00/00/0000" name="expedicao"
-                                dropSpecialCharacters="false" placeholder="Ex: 01/01/1994" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.expedicao.errors }" />
-                            <div *ngIf="submitted && f.expedicao.errors" class="invalid-feedback">
-                                <div *ngIf="f.expedicao.errors.required">A Data de Expedição é obrigatória</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Titulo de Eleitor</mat-label>
+                                <input matInput formControlName="tituloEleitor" name="tituloEleitor" placeholder="Apenas Números"
+                                    mask="0000 0000 0000" [ngClass]="{ 'is-invalid': submitted && f.tituloEleitor.errors }">
+                                <mat-hint *ngIf="submitted && f.tituloEleitor.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Seção</mat-label>
+                                <input matInput formControlName="seccaoEleitoral" name="seccaoEleitoral" placeholder="Seção Eleitoral"
+                                    [ngClass]="{ 'is-invalid': submitted && f.seccaoEleitoral.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.seccaoEleitoral.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Zona</mat-label>
+                                <input matInput formControlName="zonaEleitoral" name="zonaEleitoral" placeholder="Zona Eleitoral"
+                                    [ngClass]="{ 'is-invalid': submitted && f.zonaEleitoral.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.zonaEleitoral.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Orgão Emissor</label>
-                            <input type="text" formControlName="orgaoEmissor" name="orgaoEmissor" class="form-control"
-                                placeholder="Ex: SSP" [ngClass]="{ 'is-invalid': submitted && f.orgaoEmissor.errors }" />
-                            <div *ngIf="submitted && f.orgaoEmissor.errors" class="invalid-feedback">
-                                <div *ngIf="f.orgaoEmissor.errors.required">O Orgão Emissor é Obrigatório</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>NIS</mat-label>
+                                <input matInput formControlName="nis" name="nis" placeholder="Apenas Números" [ngClass]="{ 'is-invalid': submitted && f.nis.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.nis.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>SUS</mat-label>
+                                <input matInput formControlName="sus" name="sus" mask='000 0000 0000 0000' placeholder="Apenas Números"
+                                    [ngClass]="{ 'is-invalid': submitted && f.sus.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.sus.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>CPF</label>
-                            <input type="text" formControlName="cpf" name="cpf" mask="000.000.000-00"
-                                dropSpecialCharacters="false" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" />
-                            <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
-                                <div *ngIf="f.cpf.errors.required">O CPF é Obrigatório</div>
-                            </div>
+
+                    <h4>Endereço e Contato</h4>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Endereço</mat-label>
+                                <input matInput formControlName="endereco" name="endereco" placeholder="Ex: Rua Sérvulo Pereira"
+                                    [ngClass]="{ 'is-invalid': submitted && f.endereco.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.endereco.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Número</mat-label>
+                                <input matInput formControlName="numero" name="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.numero.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Titulo de Eleitor</label>
-                            <input type="text" formControlName="tituloEleitor" name="tituloEleitor" mask="0000 0000 0000"
-                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tituloEleitor.errors }" />
-                            <div *ngIf="submitted && f.tituloEleitor.errors" class="invalid-feedback">
-                                <div *ngIf="f.tituloEleitor.errors.required">O Titulo de Eleitor é Obrigatório</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Bairro</mat-label>
+                                <input matInput formControlName="bairro" name="bairro" placeholder="Ex: Centro"
+                                    [ngClass]="{ 'is-invalid': submitted && f.bairro.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.bairro.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Cidade</mat-label>
+                                <input matInput formControlName="cidade" name="cidade" placeholder="Ex: Cerro Corá"
+                                    [ngClass]="{ 'is-invalid': submitted && f.cidade.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Seção Eleitoral</label>
-                            <input type="number" formControlName="seccaoEleitoral" name="seccaoEleitoral" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.seccaoEleitoral.errors }" />
-                            <div *ngIf="submitted && f.seccaoEleitoral.errors" class="invalid-feedback">
-                                <div *ngIf="f.seccaoEleitoral.errors.required">A Seção Eleitoral é Obrigatória</div>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email" name="email" placeholder="E-mail">
+                                <!-- <mat-hint *ngIf="submitted && f.email.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Celular para Contato</mat-label>
+                                <input matInput formControlName="celular" name="celular" mask="(00) 00000-0000"
+                                    placeholder="Apenas Números com DDD" [ngClass]="{ 'is-invalid': submitted && f.celular.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.celular.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Zona Eleitoral</label>
-                            <input type="number" formControlName="zonaEleitoral" name="zonaEleitoral" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.zonaEleitoral.errors }" />
-                            <div *ngIf="submitted && f.zonaEleitoral.errors" class="invalid-feedback">
-                                <div *ngIf="f.zonaEleitoral.errors.required">A Zona Eleitoral é Obrigatória</div>
-                            </div>
+
+                    <h4>Dados do Funcionário</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Matricula</mat-label>
+                                <input matInput formControlName="matricula" name="matricula" placeholder="Apenas Números"
+                                    [ngClass]="{ 'is-invalid': submitted && f.matricula.errors }">
+                                <mat-hint *ngIf="submitted && f.matricula.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field appearance="outline">
+                                <input matInput [matDatepicker]="admissao" name="admissao" placeholder="Data de Admissão"
+                                    formControlName="admissao" [ngClass]="{ 'is-invalid': submitted && f.admissao.errors }">
+                                <mat-datepicker-toggle matSuffix [for]="admissao"></mat-datepicker-toggle>
+                                <mat-datepicker #admissao></mat-datepicker>
+                                <mat-hint *ngIf="submitted && f.admissao.errors">{{aviso}}</mat-hint>
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>NIS</label>
-                            <input type="text" formControlName="nis" name="nis" mask="0000000000-0" class="form-control" />
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-label>Situação:</mat-label> <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="situacao"> <br>
+                                <mat-radio-button class="mat-radio" name="situacao" value="Ativo">Ativo</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="situacao" value="Inativo">Inativo</mat-radio-button>
+                            </mat-radio-group>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>SUS</label>
-                            <input type="text" formControlName="sus" name="sus" mask='000 0000 0000 0000' class="form-control" />
+                    <br>
+                    <div class="row" *ngIf="f.situacao.value === 'Inativo'">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <input matInput [matDatepicker]="demissao" name="demissao" placeholder="Data de Demissão"
+                                    formControlName="demissao" [ngClass]="{ 'is-invalid': submitted && f.demissao.errors }">
+                                <mat-datepicker-toggle matSuffix [for]="demissao"></mat-datepicker-toggle>
+                                <mat-datepicker #demissao></mat-datepicker>
+                                <mat-hint *ngIf="submitted && f.demissao.errors">{{aviso}}</mat-hint>
+                                <!-- <mat-hint *ngIf="submitted && f.demissao.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <legend>Endereço e Contato</legend>
-                    <div class="col-md-9">
-                        <div class="form-group">
-                            <label>Endereço</label>
-                            <input type="text" formControlName="endereco" name="endereco" class="form-control"
-                                placeholder="Ex: Rua Sérvulo Pereira" />
+
+                    <div class="row" *ngIf="f.situacao.value === 'Ativo'">
+                        <div class="col">
+                            <mat-label>Setor:</mat-label> <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="setor"> <br>
+                                <mat-radio-button class="mat-radio" name="setor" value="Administração">Administração</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="setor" value="Produção">Produção</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col" *ngIf="f.setor.value === 'Produção'">
+                            <mat-label>Cargo:</mat-label> <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="cargo"> <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Gerente de Produção">Gerente de
+                                    Produção</mat-radio-button> <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Costureiro">Costureiro</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Mecânico">Mecânico</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Passador">Passador</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Revisora">Revisora</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Outro">Outro</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="col" *ngIf="f.setor.value === 'Administração'">
+                            <mat-label>Cargo:</mat-label> <br>
+                            <mat-radio-group class="mat-radio-group" formControlName="cargo"> <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Secretário">Secretário</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="RH">Recursos Humanos</mat-radio-button>
+                                <br>
+                                <mat-radio-button class="mat-radio" name="cargo" value="Outro">Outro</mat-radio-button>
+                            </mat-radio-group>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Número</label>
-                            <input type="number" formControlName="numero" name="numero" class="form-control"
-                                placeholder="Ex: 001" />
+                    <div class="row" *ngIf="f.cargo.value === 'Outro'">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Outro Cargo</mat-label>
+                                <input matInput formControlName="cargo" name="cargo" placeholder="Ex: ASG">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Bairro</label>
-                            <input type="text" formControlName="bairro" name="bairro" class="form-control" placeholder="Ex: Centro" />
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>CBO</mat-label>
+                                <input matInput formControlName="cbo" name="cbo" placeholder="CBO" [ngClass]="{ 'is-invalid': submitted && f.cbo.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Cidade</label>
-                            <input type="text" formControlName="cidade" name="cidade" class="form-control" placeholder="Ex: Cerro Corá" />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Banco</mat-label>
+                                <input matInput formControlName="banco" name="banco" placeholder="Ex: Banco do Brasil"
+                                    [ngClass]="{ 'is-invalid': submitted && f.banco.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Agência</mat-label>
+                                <input matInput formControlName="agencia" name="agencia" placeholder="Ex: 2131"
+                                    [ngClass]="{ 'is-invalid': submitted && f.agencia.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Conta</mat-label>
+                                <input matInput formControlName="conta" name="conta" placeholder="Ex: 615-4" [ngClass]="{ 'is-invalid': submitted && f.conta.errors }">
+                                <!-- <mat-hint *ngIf="submitted && f.cidade.errors">{{aviso}}</mat-hint> -->
+                            </mat-form-field>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>E-Mail</label>
-                            <input type="email" formControlName="email" name="email" class="form-control" placeholder="Ex: exemplo@gmail.com" />
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <textarea matInput placeholder="Observações" formControlName="observacao" name="observacao"></textarea>
+                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Celular</label>
-                            <input type="text" formControlName="celular" name="celular" mask="(00) 00000-0000"
-                                dropSpecialCharacters="false" class="form-control" placeholder="Ex: Apenas Números com DDD" />
-                        </div>
+
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" class="btn-add">Cadastro</button>
+                        <button mat-raised-button color="warn" class="btn-cancel" routerLink="/dashboard-funcionario/">Cancelar</button>
                     </div>
-                </div>
-                <div class="row">
-                    <legend>Dados do Funcionário</legend>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Matricula</label>
-                            <input type="number" formControlName="matricula" class="form-control" name="matricula"
-                                [ngClass]="{ 'is-invalid': submitted && f.matricula.errors }" />
-                            <div *ngIf="submitted && f.matricula.errors" class="invalid-feedback">
-                                <div *ngIf="f.matricula.errors.required">O Número é Obrigatório</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Data de Admissão</label>
-                            <input type="text" formControlName="admissao" name="admissao" mask="00/00/0000"
-                                dropSpecialCharacters="false" placeholder="Ex: 01/01/1994" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.admissao.errors }" />
-                            <div *ngIf="submitted && f.admissao.errors" class="invalid-feedback">
-                                <div *ngIf="f.admissao.errors.required">A Data de admissão é obrigatória</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <fieldset class="form-group">
-                            <label for="">Situação:</label>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="situacao"
-                                        name="situacao" value="Ativo" checked="">
-                                    Ativo </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="situacao"
-                                        name="situacao" value="Inativo">
-                                    Inativo </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="row" *ngIf="f.situacao.value === 'Inativo'">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Data de Demissão</label>
-                            <input type="text" formControlName="demissao" mask="00/00/0000" dropSpecialCharacters="false"
-                                class="form-control" name="demissao" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <fieldset class="form-group">
-                            <label for="">Setor:</label>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="setor" name="setor"
-                                        value="Administração" checked="">
-                                    Administração </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" formControlName="setor" name="setor"
-                                        value="Produção">
-                                    Produção </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="row" *ngIf="f.setor.value === 'Produção'">
-                    <div class="col">
-                        <label for="">Cargo:</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Gerente de produção"
-                                    checked="">
-                                Gerente de Produção </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Costureiro">
-                                Costureiro </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Mecânico">
-                                Mecânico </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Passador">
-                                Passador </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Revisora">
-                                Revisora </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" *ngIf="f.setor.value === 'Administração'">
-                    <div class="col">
-                        <label for="">Cargo:</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" formControlName="cargo" name="cargo" value="Secretário"
-                                    checked="">
-                                Secretário </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>CBO</label>
-                            <input type="text" formControlName="cbo" class="form-control" name="cbo" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Banco</label>
-                            <input type="text" formControlName="banco" class="form-control" name="banco" placeholder="Ex: Banco do Brasil" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Agência</label>
-                            <input type="number" formControlName="agencia" class="form-control" name="agencia" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Conta</label>
-                            <input type="number" formControlName="conta" class="form-control" name="conta" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea">Observações</label>
-                    <textarea class="form-control" formControlName="observacao" name="observacao" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btnleft" routerLink="/dashboard-funcionario/">Cancelar</button>
-                    <button class="btn btn-primary">Cadastro</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

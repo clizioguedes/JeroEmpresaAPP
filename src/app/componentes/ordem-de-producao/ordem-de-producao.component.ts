@@ -13,7 +13,8 @@ export class OrdemDeProducaoComponent implements OnInit {
 
   id: any;
   ordemDeProducao: OrdemDeProducao;
-
+  seconds;
+  data;
   constructor
     (
       private firestoreService: FirestoreService,
@@ -23,6 +24,8 @@ export class OrdemDeProducaoComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.firestoreService.getOrdem(this.id).subscribe(ordemDeProducao => {
       this.ordemDeProducao = ordemDeProducao;
+      this.seconds = ordemDeProducao.entrega;
+      this.data = this.seconds * 1000;
       if (ordemDeProducao.id === this.id) {
         console.log('Já tem');
       } else {

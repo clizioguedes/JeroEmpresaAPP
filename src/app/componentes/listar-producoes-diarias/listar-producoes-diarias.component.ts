@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { ProducaoDiaria } from 'src/app/interfaces/Producao';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-listar-producoes-diarias',
@@ -9,15 +10,20 @@ import { ProducaoDiaria } from 'src/app/interfaces/Producao';
 })
 export class ListarProducoesDiariasComponent implements OnInit {
 
-  producoesDiarias: ProducaoDiaria[];
+  displayedColumns: string[] = ['id', 'data', 'quantidadeDePessoal', 'producaoDiaria', 'eficiencia', 'faturaDiaria'];
+  dataSource: any;
 
-  constructor(private firestoreService: FirestoreService) {
-  }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit() {
-    this.firestoreService.getProducoesDiarias().subscribe(producoesDiarias => {
-      this.producoesDiarias = producoesDiarias;
+  constructor(private firestore: FirestoreService) {
+    this.firestore.getProducoesDiarias().subscribe(pds => {
+      const ELEMENT_DATA = pds;
+      this.dataSource = new MatTableDataSource<ProducaoDiaria>(ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
+  ngOnInit() {
+
+  }
 }

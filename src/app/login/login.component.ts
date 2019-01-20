@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { AfService } from '../serviços/af.service';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../componentes/dialog/dialog.component';
-import { userInfo } from 'os';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -39,9 +38,12 @@ export class LoginComponent implements OnInit {
 
   signInWithEmail() {
     const formValue = this.form.value;
-    this.afService.signInRegular(formValue.email, formValue.password)
-      .subscribe(
-        () => this.router.navigate(['/index'])
-      );
+    console.log(formValue.email);
+    console.log(formValue.password);
+    // console.log(formValue.email.value);
+    // console.log(formValue.password.value);
+    // console.log(formValue.value.email.value);
+    // console.log(formValue.value.password.value);
+    this.afService.signInRegular(formValue.email, formValue.password);
   }
 }

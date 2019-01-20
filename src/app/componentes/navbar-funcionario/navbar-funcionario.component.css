@@ -1,7 +1,11 @@
-#navbar-title {
-  color: azure;
+body {
+  padding-top: 50px;
 }
-#btn-logout {
-  color: azure;
-  float: right;
+
+.color-nav-item {
+  color: white;
+}
+
+.nav-edit {
+  background-color: #007c91;
 }

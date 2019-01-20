@@ -1,125 +1,127 @@
 <app-navbar-funcionario></app-navbar-funcionario>
-<div class="container">
-    <div class="button-row">
-        <button mat-button color="primary" routerLink="/add-funcionario/">Cadastrar</button>
-        <button mat-button (click)="ngOnInit()">Todos</button>
-        <button mat-button color="accent" (click)="getFuncionariosAtivos()">Ativos</button>
-        <button mat-button color="warn" (click)="getFuncionariosInativos()">Inativos</button>
-        <button mat-button onclick="window.print()">Imprimir</button>
-    </div>
+<div class="button-row">
+    <button mat-button color="primary" routerLink="/add-funcionario/">Cadastrar</button>
+    <button mat-button (click)="ngOnInit()">Todos</button>
+    <button mat-button color="accent" (click)="getFuncionariosAtivos()">Ativos</button>
+    <button mat-button color="warn" (click)="getFuncionariosInativos()">Inativos</button>
+    <button mat-button onclick="window.print()">Imprimir</button>
+</div>
 
-    <div class="datatable" id="printerAll" *ngIf="allFuncionarios">
-        <h3>Todos os Funcionários</h3>
-        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
+<div class="datatable table table-responsive" id="printerAll" *ngIf="todosFuncionarios">
+    <h1>TODOS OS FUNCIONÁRIOS</h1>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="matricula">
+                <th mat-header-cell *matHeaderCellDef> MATRICULA </th>
+                <td mat-cell *matCellDef="let element"> <a routerLink="/funcionario/{{element.id}}">
+                        {{element.matricula}} </a> </td>
+            </ng-container>
 
-            <ngx-datatable-column name="MATRICULA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Name Column -->
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef> NOME </th>
+                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
 
-            <ngx-datatable-column name="NOME">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef> CPF </th>
+                <td mat-cell *matCellDef="let element">{{element.cpf}}</td>
+            </ng-container>
 
-            <ngx-datatable-column name="CPF">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="cargo">
+                <th mat-header-cell *matHeaderCellDef> CARGO </th>
+                <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+            </ng-container>
 
-            <ngx-datatable-column name="CARGO">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ID">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
-    </div>
-
-    <div class="datatable" id="printerInative" *ngIf="inativeFuncionarios">
-        <h3>Funcionários Inativos</h3>
-        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
-
-            <ngx-datatable-column name="MATRICULA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="NOME">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="CPF">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="CARGO">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ID">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
-    </div>
-
-    <div class="datatable" id="printerActive" *ngIf="activeFuncionarios">
-        <h3>Funcionários Ativos</h3>
-
-        <ngx-datatable fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50" [headerHeight]="50"
-            [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit] [rows]="funcionarios">
-
-            <ngx-datatable-column name="MATRICULA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="NOME">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="CPF">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="CARGO">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ID">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    <button type="button" class="btn btn-outline-info btn-sm" [routerLink]="['/funcionario/'+value]">Detalhes</button>
-                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-funcionario/'+value]">Editar</button>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+            <ng-container matColumnDef="situacao">
+                <th mat-header-cell *matHeaderCellDef> SITUACAO </th>
+                <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
+
+<div class="datatable table table-responsive" id="printerAll" *ngIf="ativosFuncionarios">
+    <h1>FUNCIONÁRIOS ATIVOS</h1>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourceAtivos">
+            <!-- Position Column -->
+            <ng-container matColumnDef="matricula">
+                <th mat-header-cell *matHeaderCellDef> MATRICULA </th>
+                <td mat-cell *matCellDef="let element"> <a routerLink="/ordem-de-producao/{{element.id}}">
+                        {{element.matricula}} </a> </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef> NOME </th>
+                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef> CPF </th>
+                <td mat-cell *matCellDef="let element">{{element.cpf}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="cargo">
+                <th mat-header-cell *matHeaderCellDef> CARGO </th>
+                <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="situacao">
+                <th mat-header-cell *matHeaderCellDef> SITUACAO </th>
+                <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+
+<div class="datatable table table-responsive" id="printerAll" *ngIf="inativosFuncionarios">
+    <h1>FUNCIONÁRIOS INATIVOS</h1>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourceInativos">
+            <!-- Position Column -->
+            <ng-container matColumnDef="matricula">
+                <th mat-header-cell *matHeaderCellDef> MATRICULA </th>
+                <td mat-cell *matCellDef="let element"> <a routerLink="/ordem-de-producao/{{element.id}}">
+                        {{element.matricula}} </a> </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef> NOME </th>
+                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef> CPF </th>
+                <td mat-cell *matCellDef="let element">{{element.cpf}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="cargo">
+                <th mat-header-cell *matHeaderCellDef> CARGO </th>
+                <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="situacao">
+                <th mat-header-cell *matHeaderCellDef> SITUACAO </th>
+                <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>

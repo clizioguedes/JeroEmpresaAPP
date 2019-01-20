@@ -13,6 +13,7 @@ export class AddFuncionarioComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+  aviso = 'Este Item é Obrigatório';
 
   constructor(
     private firestoreService: FirestoreService,
@@ -23,7 +24,7 @@ export class AddFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      dataCadastro: [new Date().toLocaleString(), Validators.required],
+      dataCadastro: [new Date(), Validators.required],
       nome: ['', Validators.required],
       nascimento: ['', Validators.required],
       nomePai: ['', Validators.required],
@@ -45,7 +46,7 @@ export class AddFuncionarioComponent implements OnInit {
       bairro: [''],
       cidade: [''],
       celular: [''],
-      email: [''],
+      email: ['', Validators.email],
       matricula: ['', Validators.required],
       admissao: ['', Validators.required],
       demissao: [''],

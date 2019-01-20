@@ -93,7 +93,6 @@ export class AddProducaoDiariaComponent implements OnInit {
     console.log(this.pd.producaoDiaria);
     console.log(this.pd.minutosProducao);
     console.log(this.pd.faturaDiaria);
-    this.pd.dataCadastro = new Date().toLocaleString();
     this.firestoreService.addProducaoDiaria(this.pd);
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {
       duration: 2000

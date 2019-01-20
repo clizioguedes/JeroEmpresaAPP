@@ -1,17 +1,23 @@
+@import "../../../assets/css/add.css";
 h3 {
   margin: 10px;
   text-align: center;
 }
-
-.btn-primary {
+h1 {
+  text-align: center;
+  margin: 10px;
+}
+.btn-add {
   float: right;
   margin: 10px;
 }
-
-.btnleft {
+.btn-cancel {
   float: left;
+  margin: 10px;
 }
-
 mat-divider {
   margin-bottom: 20px;
+}
+.example-container .mat-radio-button {
+  margin: 0 5px !important;
 }

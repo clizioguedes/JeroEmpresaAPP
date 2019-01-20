@@ -4,14 +4,5 @@
 @import "~@swimlane/ngx-datatable/release/index.css";
 @import "~@swimlane/ngx-datatable/release/themes/bootstrap.css";
 @import "~@swimlane/ngx-datatable/release/assets/icons.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./assets/css/cosmo.css";
-
-@media print {
-  body {
-    font-family: "Lato";
-  }
-}
-
-* {
-  font-family: "Lato";
-}

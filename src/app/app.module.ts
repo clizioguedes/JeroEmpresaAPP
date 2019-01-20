@@ -58,24 +58,24 @@ import { DialogComponent } from './componentes/dialog/dialog.component';
 // Rotas
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'index', component: IndexComponent, canActivate: [AuthGuardService] },
-  { path: 'dashboard-producao', component: DashProducaoComponent, canActivate: [AuthGuardService] },
-  { path: 'dashboard-funcionario', component: DashFuncionarioComponent, canActivate: [AuthGuardService] },
+  { path: 'index', component: IndexComponent, canActivate: [AuthGuardService]  },
+  { path: 'dashboard-producao', component: DashProducaoComponent, canActivate: [AuthGuardService]  },
+  { path: 'dashboard-funcionario', component: DashFuncionarioComponent, canActivate: [AuthGuardService]  },
   { path: 'login', component: LoginComponent },
   // Ordens de Produção
-  { path: 'ordem-de-producao/:id', component: OrdemDeProducaoComponent, canActivate: [AuthGuardService] },
-  { path: 'add-ordem-de-producao', component: AddOrdemDeProducaoComponent, canActivate: [AuthGuardService] },
-  { path: 'listar-ordens-de-producao', component: ListarOrdensDeProducaoComponent, canActivate: [AuthGuardService] },
-  { path: 'editar-ordem-de-producao/:id', component: EditarOrdemDeProducaoComponent, canActivate: [AuthGuardService] },
+  { path: 'ordem-de-producao/:id', component: OrdemDeProducaoComponent, canActivate: [AuthGuardService]  },
+  { path: 'add-ordem-de-producao', component: AddOrdemDeProducaoComponent, canActivate: [AuthGuardService]  },
+  { path: 'listar-ordens-de-producao', component: ListarOrdensDeProducaoComponent, canActivate: [AuthGuardService]  },
+  { path: 'editar-ordem-de-producao/:id', component: EditarOrdemDeProducaoComponent, canActivate: [AuthGuardService]  },
   // Funcionários
-  { path: 'funcionario/:id', component: FuncionarioComponent, canActivate: [AuthGuardService] },
-  { path: 'add-funcionario', component: AddFuncionarioComponent, canActivate: [AuthGuardService] },
-  { path: 'listar-funcionarios', component: ListarFuncionariosComponent, canActivate: [AuthGuardService] },
-  { path: 'editar-funcionario/:id', component: EditarFuncionarioComponent, canActivate: [AuthGuardService] },
+  { path: 'funcionario/:id', component: FuncionarioComponent, canActivate: [AuthGuardService]  },
+  { path: 'add-funcionario', component: AddFuncionarioComponent, canActivate: [AuthGuardService]  },
+  { path: 'listar-funcionarios', component: ListarFuncionariosComponent, canActivate: [AuthGuardService]  },
+  { path: 'editar-funcionario/:id', component: EditarFuncionarioComponent, canActivate: [AuthGuardService]  },
   // Produção Diaria
-  { path: 'producao-diaria/:id', component: ProducaoDiariaComponent, canActivate: [AuthGuardService] },
-  { path: 'add-producao-diaria', component: AddProducaoDiariaComponent, canActivate: [AuthGuardService] },
-  { path: 'listar-producoes-diarias', component: ListarProducoesDiariasComponent, canActivate: [AuthGuardService] },
+  { path: 'producao-diaria/:id', component: ProducaoDiariaComponent, canActivate: [AuthGuardService]  },
+  { path: 'add-producao-diaria', component: AddProducaoDiariaComponent, canActivate: [AuthGuardService]  },
+  { path: 'listar-producoes-diarias', component: ListarProducoesDiariasComponent, canActivate: [AuthGuardService]  },
 ];
 
 @NgModule({
@@ -125,7 +125,7 @@ const routes: Routes = [
     MatTableModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,
     MatFormFieldModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatMenuModule, MatListModule,
     MatDividerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatProgressBarModule,
-    MatTabsModule, MatCardModule, MatGridListModule, LayoutModule, MatCheckboxModule, MatPaginatorModule, MatDialogModule
+    MatTabsModule, MatCardModule, MatGridListModule, LayoutModule, MatCheckboxModule, MatPaginatorModule, MatDialogModule,
   ],
 
   providers: [FirestoreService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, AfService, AuthGuardService],

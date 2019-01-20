@@ -1,4 +1,11 @@
 @import "../../../assets/css/index.css";
+
+@media print {
+  .button-row {
+    display: none;
+  }
+}
+
 .button-row .btn {
   margin: 8px;
 }
@@ -9,9 +16,6 @@
 .box {
   margin-bottom: 10px;
 }
-
-@media print {
-  .button-row {
-    display: none;
-  }
+table {
+  text-align: left !important;
 }
