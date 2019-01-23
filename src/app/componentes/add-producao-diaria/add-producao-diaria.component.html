@@ -6,26 +6,26 @@
       <div class="example-container">
         <form>
           <mat-form-field>
-            <input matInput [matDatepicker]="dob" [(ngModel)]="pd.data" name="data" placeholder="Data da PD"
-              required>
+            <input matInput [matDatepicker]="dob" [(ngModel)]="pd.data" name="data" placeholder="Data da PD" required>
             <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
             <mat-datepicker #dob></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Minutos Por Funcionário</mat-label>
-            <input matInput [(ngModel)]="pd.minutosDiarios" name="minutosDiarios" placeholder="Ex: 540" required>
+            <input matInput type="number" [(ngModel)]="pd.minutosDiarios" name="minutosDiarios" placeholder="Ex: 540"
+              required>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Quantidade de Funcionários</mat-label>
-            <input matInput [(ngModel)]="pd.quantidadeDePessoal" name="quantidadeDePessoal" placeholder="Envolvidos na PD"
+            <input matInput type="number" [(ngModel)]="pd.quantidadeDePessoal" name="quantidadeDePessoal" placeholder="Envolvidos na PD"
               required>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Total de Minutos de Funcionários</mat-label>
-            <input matInput name="minutosPessoal" disabled value="{{pd.minutosDiarios*pd.quantidadeDePessoal}}"
+            <input matInput type="number" name="minutosPessoal" disabled value="{{pd.minutosDiarios*pd.quantidadeDePessoal}}"
               placeholder="Total de Minutos">
           </mat-form-field>
 

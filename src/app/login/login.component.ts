@@ -38,12 +38,8 @@ export class LoginComponent implements OnInit {
 
   signInWithEmail() {
     const formValue = this.form.value;
-    console.log(formValue.email);
-    console.log(formValue.password);
-    // console.log(formValue.email.value);
-    // console.log(formValue.password.value);
-    // console.log(formValue.value.email.value);
-    // console.log(formValue.value.password.value);
+    // console.log(formValue.email);
+    // console.log(formValue.password);
     this.afService.signInRegular(formValue.email, formValue.password);
   }
 }

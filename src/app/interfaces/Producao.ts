@@ -15,18 +15,16 @@ export interface OrdemDeProducao {
     producao?: number;
     observacao?: string;
     ultimaProducao?: number;
-    ultimaPpm?: number;
-    ultimaFatura?: number;
 }
 
 export interface ProducaoDiaria {
     id?: string;
     dataCadastro?: Date;
     data?: Date;
-    quantidadeDePessoal?: number;
-    producaoDiaria?: number;
     minutosDiarios?: number;
+    quantidadeDePessoal?: number;
     minutosPessoal?: number;
+    producaoDiaria?: number;
     minutosProducao?: number;
     eficiencia?: any;
     faturaDiaria?: number;

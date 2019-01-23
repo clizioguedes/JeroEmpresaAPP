@@ -55,7 +55,8 @@ export class FirestoreService {
   // METODOS PARA FUNCIONÁRIOS
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios');
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
+      .orderBy('matricula', 'asc'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
       .map(changes => {
@@ -87,7 +88,7 @@ export class FirestoreService {
 
   getFuncionariosInativos() {
     this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
-      .orderBy('nome', 'asc')
+      .orderBy('matricula', 'asc')
       .where('situacao', '==', 'Inativo'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
@@ -103,7 +104,7 @@ export class FirestoreService {
 
   getFuncionariosAtivos() {
     this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
-      .orderBy('nome', 'asc')
+      .orderBy('matricula', 'asc')
       .where('situacao', '==', 'Ativo'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()

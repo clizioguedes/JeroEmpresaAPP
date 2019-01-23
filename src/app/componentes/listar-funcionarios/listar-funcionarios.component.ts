@@ -19,12 +19,14 @@ export class ListarFuncionariosComponent implements OnInit {
   ativosFuncionarios: boolean;
   tablePrint = false;
 
-  displayedColumns: string[] = ['matricula', 'nome', 'cpf', 'cargo', 'situacao'];
+  displayedColumns: string[] = ['matricula', 'nome', 'cpf', 'admissao', 'cargo', 'situacao'];
 
   dataSource: any;
   dataSourceInativos: any;
   dataSourceAtivos: any;
 
+  seconds;
+  data;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatPaginator) paginatorInativos: MatPaginator;
   @ViewChild(MatPaginator) paginatorAtivos: MatPaginator;
