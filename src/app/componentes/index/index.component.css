@@ -1,3 +1,4 @@
+@import "../../../assets/css/index.css";
 .example-card {
   max-width: 300px;
   max-height: 400px;
@@ -6,16 +7,31 @@
   color: whitesmoke;
   background-color: #4a6572;
 }
-
 .example-card mat-card-actions {
   text-align: center;
 }
-
 mat-card-subtitle {
   color: whitesmoke;
 }
-
+mat-divider {
+  margin: 10px;
+}
 button {
-    background-color: #f9AA33;
-    color: black;
+  background-color: #f9aa33;
+  color: black;
+}
+.green {
+  background-color: #81c784;
+}
+table {
+  width: 100%;
+}
+table th {
+  text-align: center;
+}
+.mat-elevation-z8 {
+  margin: 20px;
+}
+h4 {
+  text-align: center;
 }

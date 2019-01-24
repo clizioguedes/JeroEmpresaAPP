@@ -5,61 +5,62 @@
       <h3>Dados da Produção Diária</h3>
       <table class="info">
         <tr>
-          <td>Data da Produção Diária</td>
-          <td colspan="5">{{producaoDiaria?.data}}</td>
+          <td>Data</td>
+          <td colspan="6">{{producaoDiaria.data.seconds * 1000 | date: 'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
-          <td>Quantidade de Pessoal na Produção</td>
-          <td>
+          <td>Funcionários</td>
+          <td colspan="6">
             {{producaoDiaria?.quantidadeDePessoal}}
           </td>
         </tr>
         <tr>
           <td>Minutos Diários</td>
-          <td colspan="5">
-            {{producaoDiaria?.minutosDiarios}} </td>
+          <td colspan="6">
+            {{producaoDiaria?.minutosDiarios}} Minutos / {{producaoDiaria?.minutosDiarios/60}}:00 Horas</td>
         </tr>
         <tr>
-          <td>Minutos Totais dos Funcionários</td>
-          <td colspan="5">
+          <td>Minutos Totais</td>
+          <td colspan="6">
             {{producaoDiaria?.minutosPessoal}} </td>
         </tr>
-        <tr>
-          <td>Eficiência da Produção</td>
-          <td colspan="5">
+        <tr [ngClass]="{'green' : producaoDiaria?.eficiencia >= 60}">
+          <td>Eficiência</td>
+          <td colspan="6">
             {{producaoDiaria?.eficiencia}}% </td>
         </tr>
       </table>
+      <h3>Ordens de Produção Envolvidas</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Referência</th>
+            <th scope="col">Tempo</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Produção</th>
+            <th scope="col">Minutos em Produção da OP</th>
+            <th scope="col">Fatura da OP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-info" *ngFor="let ordem of ordens">
+            <th scope="row">{{ordem.referencia}}</th>
+            <td>{{ordem.tempo}}</td>
+            <td>{{ordem.valor}}</td>
+            <td>{{ordem.producao}}</td>
+            <td>{{ordem.ppm}}</td>
+            <td>{{ordem.fatura}}</td>
+          </tr>
+          <tr class="table-success">
+            <th colspan="3" scope="row" id="left">Total:</th>
+            <th scope="row">{{producaoDiaria?.producaoDiaria}}</th>
+            <th scope="row">{{producaoDiaria?.minutosProducao}}</th>
+            <th scope="row">{{producaoDiaria?.faturaDiaria}}</th>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <h3>Ordens de Produção Envolvidas</h3>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Referência</th>
-          <th scope="col">Tempo</th>
-          <th scope="col">Valor</th>
-          <th scope="col">Produção</th>
-          <th scope="col">Minutos em Produção da OP</th>
-          <th scope="col">Fatura da OP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="table-info" *ngFor="let ordem of ordens">
-          <th scope="row">{{ordem.referencia}}</th>
-          <td>{{ordem.tempo}}</td>
-          <td>{{ordem.valor}}</td>
-          <td>{{ordem.producao}}</td>
-          <td>{{ordem.ppm}}</td>
-          <td>{{ordem.fatura}}</td>
-        </tr>
-        <tr class="table-success">
-          <th colspan="3" scope="row" id="left">Total:</th>
-          <th scope="row">{{producaoDiaria?.producaoDiaria}}</th>
-          <th scope="row">{{producaoDiaria?.minutosProducao}}</th>
-          <th scope="row">{{producaoDiaria?.faturaDiaria}}</th>
-        </tr>
-      </tbody>
-    </table>
+
     <div class="actions">
       <button mat-button color="primary" routerLink="/dashboard-producao/">
         <mat-icon aria-label="Editar Ordem de Produção">dashboard</mat-icon>

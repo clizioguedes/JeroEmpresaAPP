@@ -1,38 +1,65 @@
 /* CSS USADO PARA TODOS OS FORMULARIOS UTILIZADOS NO SISTEMA */
 
 mat-form-field {
-    flex-direction: column;
-    display: flex;
+  flex-direction: column;
+  display: flex;
 }
 
-mat-card {
-    width: 75%;
-    margin: 10px auto;
+.example-container form {
+  display: flex;
+  flex-direction: column;
 }
 
-h4 {
-    text-align: center;
+form .example-container > * {
+  width: 100%;
 }
 
 .example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .example-radio-button {
-    margin: 5px;
+  margin: 5px;
 }
 
 .example-selected-value {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .btn-add {
-    float: right;
-    margin-top: 20px;
+  float: right;
+  margin-top: 20px;
 }
 
 .btn-back {
-    float: left;
-    margin-top: 20px;
+  float: left;
+  margin-top: 20px;
+}
+
+h4 {
+  margin: 20px;
+  text-align: center;
+}
+
+.mat-radio-group {
+  text-align: center;
+  margin: 10px;
+}
+
+.mat-radio {
+  margin-right: 10px;
+}
+
+.mat-button {
+  margin: 10px;
+  width: 50px;
+  text-align: center;
+}
+
+.flt-r {
+  float: right;
+}
+.flt-l {
+  float: left;
 }

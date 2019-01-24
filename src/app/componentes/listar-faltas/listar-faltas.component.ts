@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Falta } from '../../interfaces/Funcionario';
 import { FirestoreService } from '../../serviços/firestore.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listar-faltas',

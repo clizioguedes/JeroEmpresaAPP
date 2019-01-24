@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AfService } from 'src/app/serviços/af.service';
 

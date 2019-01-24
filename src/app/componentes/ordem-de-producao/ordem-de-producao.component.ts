@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdemDeProducao } from '../../interfaces/Producao';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Component({
   selector: 'app-ordem-de-producao',
@@ -12,8 +12,8 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 export class OrdemDeProducaoComponent implements OnInit {
 
   id: any;
-  ordemDeProducao: OrdemDeProducao;
-
+  ordemDeProducao: any;
+  dataEntrega: any;
   constructor
     (
       private firestoreService: FirestoreService,
@@ -23,6 +23,8 @@ export class OrdemDeProducaoComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.firestoreService.getOrdem(this.id).subscribe(ordemDeProducao => {
       this.ordemDeProducao = ordemDeProducao;
+      this.dataEntrega = this.ordemDeProducao.entrega.seconds * 1000;
+      console.log(this.dataEntrega);
       if (ordemDeProducao.id === this.id) {
         console.log('Já tem');
       } else {

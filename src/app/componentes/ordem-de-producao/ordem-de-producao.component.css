@@ -13,3 +13,6 @@
     display: none;
   }
 }
+table {
+  text-align: left !important;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Dependente } from '../../interfaces/Funcionario';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-dependente',

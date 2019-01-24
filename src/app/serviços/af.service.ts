@@ -18,29 +18,12 @@ export class AfService {
   private userDetails: firebase.User = null;
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = _firebaseAuth.authState;
-    this.user.subscribe(
-      (user) => {
-        if (user) {
-          this.userDetails = user;
-          console.log(this.userDetails);
-        } else {
-          this.userDetails = null;
-        }
-      });
-  }
-
-  isLoggedIn() {
-    if (this.userDetails == null) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   logout() {
     this._firebaseAuth.auth.signOut()
       .then((res) => this.router.navigate(['/login']));
+      console.log('Logout realizado com Sucesso');
   }
 
   signInRegular(email, password): Observable<AuthInfo> {
@@ -50,17 +33,19 @@ export class AfService {
   fromFirebaseAuthPromise(promise): Observable<any> {
     const subject = new Subject<any>();
     promise
-      .then(res => {
+      .then((res: any) => {
         const authInfo = new AuthInfo(this._firebaseAuth.auth.currentUser.uid);
         this.authInfo$.next(authInfo);
         subject.next(res);
         subject.complete();
+        this.router.navigate(['/index']);
       },
-        err => {
-          this.authInfo$.error(
-            alert('EMAIL OU SENHA INVÁLIDO')
-          );
+        (err: any) => {
+          this.authInfo$.error(err);
+          subject.next(err);
           subject.complete();
+          console.log(err);
+          location.reload();
         });
 
     return subject.asObservable();
@@ -70,9 +55,20 @@ export class AfService {
     const auth = firebase.auth();
     try {
       await auth.sendPasswordResetEmail(email);
-      return console.log('email sent');
+      return console.log('email enviado');
     } catch (error) {
       return console.log(error);
     }
   }
 }
+
+/*
+  async SignIn(email: string, password: string) {
+    try {
+      const result = await this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
+      this.router.navigate(['/index']);
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }
+  */

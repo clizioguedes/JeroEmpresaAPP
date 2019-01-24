@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProducaoDiaria } from 'src/app/interfaces/Producao';
 import { FirestoreService } from 'src/app/serviços/firestore.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Component({
   selector: 'app-producao-diaria',

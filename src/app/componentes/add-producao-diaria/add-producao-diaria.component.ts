@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../serviços/firestore.service';
 import { Router } from '@angular/router';
 import { OrdemDeProducao, ProducaoDiaria, OrdemPD } from '../../interfaces/Producao';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-producao-diaria',
@@ -86,6 +86,7 @@ export class AddProducaoDiariaComponent implements OnInit {
     this.pd.faturaDiaria = this.pd.ordensPD.reduce(function (a, b) {
       return a + b['fatura'];
     }, 0);
+    this.pd.dataCadastro = new Date();
     this.pd.faturaDiaria = Math.round(this.pd.faturaDiaria);
     this.pd.minutosPessoal = this.pd.minutosDiarios * this.pd.quantidadeDePessoal;
     this.pd.eficiencia = (Math.floor((this.pd.minutosProducao / this.pd.minutosPessoal) * 100));
@@ -93,7 +94,6 @@ export class AddProducaoDiariaComponent implements OnInit {
     console.log(this.pd.producaoDiaria);
     console.log(this.pd.minutosProducao);
     console.log(this.pd.faturaDiaria);
-    this.pd.dataCadastro = new Date().toLocaleString();
     this.firestoreService.addProducaoDiaria(this.pd);
     this.snackBar.open('Ordem de Produção Cadastrada', 'Ok', {
       duration: 2000

@@ -55,7 +55,8 @@ export class FirestoreService {
   // METODOS PARA FUNCIONÁRIOS
 
   getFuncionarios() {
-    this.funcionariosCol = this.afs.collection('funcionarios');
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
+      .orderBy('matricula', 'asc'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
       .map(changes => {
@@ -69,7 +70,10 @@ export class FirestoreService {
   }
 
   getFuncionariosDashboard() {
-    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo').limit(15).orderBy('nome'));
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
+      .where('situacao', '==', 'Ativo')
+      .limit(15)
+      .orderBy('nome', 'asc'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
       .map(changes => {
@@ -83,7 +87,9 @@ export class FirestoreService {
   }
 
   getFuncionariosInativos() {
-    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Inativo'));
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
+      .orderBy('matricula', 'asc')
+      .where('situacao', '==', 'Inativo'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
       .map(changes => {
@@ -97,7 +103,9 @@ export class FirestoreService {
   }
 
   getFuncionariosAtivos() {
-    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref.where('situacao', '==', 'Ativo'));
+    this.funcionariosCol = this.afs.collection('funcionarios', ref => ref
+      .orderBy('matricula', 'asc')
+      .where('situacao', '==', 'Ativo'));
     this.funcionarios = this.funcionariosCol
       .snapshotChanges()
       .map(changes => {
@@ -149,7 +157,8 @@ export class FirestoreService {
   }
 
   deleteDependente(dependente: Dependente) {
-    this.dependenteDoc = this.funcionarioDoc.collection<Dependente>('dependentes').doc(`${dependente.idDependente}`);
+    this.dependenteDoc = this.funcionarioDoc.collection<Dependente>('dependentes')
+      .doc(`${dependente.idDependente}`);
     this.dependenteDoc.delete();
   }
 
@@ -170,7 +179,8 @@ export class FirestoreService {
   }
 
   getAtestados() {
-    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Atestado'));
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref
+      .where('tipo', '==', 'Atestado'));
     this.faltas = this.faltasCol
       .snapshotChanges()
       .map(changes => {
@@ -184,7 +194,8 @@ export class FirestoreService {
   }
 
   getFaltas() {
-    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref.where('tipo', '==', 'Falta'));
+    this.faltasCol = this.funcionarioDoc.collection('faltas', ref => ref
+      .where('tipo', '==', 'Falta'));
     this.faltas = this.faltasCol
       .snapshotChanges()
       .map(changes => {
@@ -202,14 +213,14 @@ export class FirestoreService {
   }
 
   deleteFalta(falta: Falta) {
-    this.faltaDoc = this.funcionarioDoc.collection<Falta>('faltas').doc(`${falta.idFalta}`);
+    this.faltaDoc = this.funcionarioDoc.collection<Falta>('faltas')
+      .doc(`${falta.idFalta}`);
     this.faltaDoc.delete();
   }
 
   // METODOS PARA ORDENS DE PRODUÇÃO
-
   getOrdens() {
-    this.ordensDeProducaoCol = this.afs.collection('ordens' /*, ref => ref.where('situacao', '==', 'Inativo')*/);
+    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref.orderBy('dataCadastro', 'desc'));
     this.ordensDeProducao = this.ordensDeProducaoCol
       .snapshotChanges()
       .map(changes => {
@@ -223,7 +234,8 @@ export class FirestoreService {
   }
 
   getOrdensEmProcesso() {
-    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref.where('status', '==', 'Processo'));
+    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref
+      .where('status', '==', 'Processo'));
     this.ordensDeProducao = this.ordensDeProducaoCol
       .snapshotChanges()
       .map(changes => {
@@ -237,7 +249,9 @@ export class FirestoreService {
   }
 
   getOrdensDashboard() {
-    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref.limit(5).orderBy('dataCadastro', 'asc'));
+    this.ordensDeProducaoCol = this.afs.collection('ordens', ref => ref
+      .limit(10)
+      .orderBy('entrega', 'desc'));
     this.ordensDeProducao = this.ordensDeProducaoCol
       .snapshotChanges()
       .map(changes => {
@@ -275,7 +289,8 @@ export class FirestoreService {
   // METODOS PARA PRODUÇÕES DIARIAS
 
   getProducoesDiarias() {
-    this.producoesDiariasCol = this.afs.collection('producoes-diarias', ref => ref.orderBy('data', 'desc').limit(15));
+    this.producoesDiariasCol = this.afs.collection('producoes-diarias', ref => ref
+      .orderBy('data', 'desc'));
     this.producoesDiarias = this.producoesDiariasCol
       .snapshotChanges()
       .map(changes => {
@@ -289,7 +304,9 @@ export class FirestoreService {
   }
 
   getProducoesDiariasDashboard() {
-    this.producoesDiariasCol = this.afs.collection('producoes-diarias', ref => ref.orderBy('data', 'desc').limit(15));
+    this.producoesDiariasCol = this.afs.collection('producoes-diarias', ref => ref
+      .orderBy('dataCadastro', 'desc')
+      .limit(10));
     this.producoesDiarias = this.producoesDiariasCol
       .snapshotChanges()
       .map(changes => {
@@ -324,15 +341,4 @@ export class FirestoreService {
     this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + id);
     this.ordemDeProducaoDoc.update({ producao: prod });
   }
-
-  /*
-  updateDeleteProducao(id: string, prod: number) {
-    this.ordemDeProducaoDoc = this.afs.doc('/ordens/' + id);
-    this.getOrdem(id).subscribe(ordemDeProducao => {
-      const ordem = ordemDeProducao;
-      const producao = ordem.producao;
-      this.ordemDeProducaoDoc.update({ producao: producao - prod });
-    });
-  }
-  */
 }

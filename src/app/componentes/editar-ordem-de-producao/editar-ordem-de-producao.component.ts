@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../../servi\u00E7os/firestore.service';
+import { FirestoreService } from '../../serviços/firestore.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,21 +13,19 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
   id: string;
   editForm: FormGroup;
   submitted = false;
-  fornecedor: any;
+  aviso = 'Este Item é Obrigatório';
 
   constructor(
-    private firestoreService: FirestoreService,
     private router: Router,
+    public firestoreService: FirestoreService,
     private route: ActivatedRoute,
-    public snackBar: MatSnackBar,
     private formBuilder: FormBuilder
   ) {
     this.id = this.route.snapshot.params['id'];
     this.firestoreService.getOrdem(this.id).subscribe(ordem => {
-      this.fornecedor = ordem.fornecedor;
       this.editForm = this.formBuilder.group({
         ultimaEdicao: [new Date(), Validators.required],
-        fornecedor: [this.fornecedor, Validators.required],
+        fornecedor: [ordem.fornecedor, Validators.required],
         nf: [ordem.nf, Validators.required],
         numero: [ordem.numero, Validators.required],
         referencia: [ordem.referencia, Validators.required],
@@ -36,13 +33,12 @@ export class EditarOrdemDeProducaoComponent implements OnInit {
         quantidade: [ordem.quantidade],
         tempo: [ordem.tempo, Validators.required],
         valor: [ordem.valor, Validators.required],
-        entrega: [ordem.entrega, Validators.required],
+        entrega: [ordem.entrega],
         status: [ordem.status, Validators.required],
         observacao: [ordem.observacao],
       });
     });
   }
-
   ngOnInit() {
 
   }

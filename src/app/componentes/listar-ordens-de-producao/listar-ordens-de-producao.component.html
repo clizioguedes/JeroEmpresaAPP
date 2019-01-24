@@ -1,58 +1,51 @@
 <app-navbar-producao></app-navbar-producao>
-<div class="container">
-    <div class="button-row">
-        <button mat-raised-button color="accent" routerLink="/dashboard-producao">
-            <mat-icon aria-label="Dashboard Produção">dashboard</mat-icon>
-            Dashboard Produção
-        </button>
-        <button mat-raised-button color="primary" class="btn-config" routerLink="/add-ordem-de-producao/">
-            <mat-icon aria-label="Adicionar Ordem de Produção">add</mat-icon>
-            Cadastrar
-        </button>
-    </div>
+<div class="button-row">
+    <button mat-button color="primary" routerLink="/dashboard-producao">
+        <mat-icon aria-label="Dashboard Produção">dashboard</mat-icon>
+        Dashboard Produção
+    </button>
+    <button mat-button color="accent" routerLink="/add-ordem-de-producao/">
+        <mat-icon aria-label="Cadastro de Ordem de Produção">add</mat-icon>
+        Cadastrar
+    </button>
+</div>
+<div class="datatable table table-responsive" id="printerAll">
+    <h1>Ordens de Produção</h1>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="referencia">
+                <th mat-header-cell *matHeaderCellDef> ARTIGO </th>
+                <td mat-cell *matCellDef="let element"> <a routerLink="/ordem-de-producao/{{element.id}}">
+                        {{element.referencia}} </a> </td>
+            </ng-container>
 
-    <div class="datatable" id="printerAll">
-        <h3>Ordens de Produção</h3>
-        <ngx-datatable name="datatable" fixed-header #table class="bootstrap" [columns]="columns" [rowHeight]="50"
-            [headerHeight]="50" [columnMode]="'force'" [rowHeight]="'auto'" [footerHeight]="50" [count]="true" [limit]
-            [rows]="ordens">
+            <!-- Name Column -->
+            <ng-container matColumnDef="quantidade">
+                <th mat-header-cell *matHeaderCellDef> QUANTIDADE </th>
+                <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
+            </ng-container>
 
-            <ngx-datatable-column name="NUMERO">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="producao">
+                <th mat-header-cell *matHeaderCellDef> PRODUÇÃO </th>
+                <td mat-cell *matCellDef="let element">{{element.producao}}</td>
+            </ng-container>
 
-            <ngx-datatable-column name="REFERENCIA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="entrega">
+                <th mat-header-cell *matHeaderCellDef> ENTREGA </th>
+                <td mat-cell *matCellDef="let element"> {{element.entrega.seconds * 1000 | date:
+                    'dd/MM/yyyy'}} </td>
+            </ng-container>
 
-            <ngx-datatable-column name="PRODUCAO">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ENTREGA">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="STATUS">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="ID">
-                <ng-template ngx-datatable-cell-template let-value="value">
-                    <button type="button" class="btn btn-outline-info btn-sm" id="btn-detail" [routerLink]="['/ordem-de-producao/'+value]">Detalhes</button>
-                    <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/editar-ordem-de-producao/'+value]">Editar</button>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

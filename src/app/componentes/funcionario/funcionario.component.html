@@ -2,18 +2,20 @@
 <div class="container">
   <div class="box">
     <div class="button-row">
-      <button mat-raised-button class="button-row" color="primary" routerLink="/editar-funcionario/{{id}}">Editar Funcionário</button>
+      <button mat-raised-button class="button-row" color="primary" routerLink="/editar-funcionario/{{id}}">Editar
+        Funcionário</button>
       <button mat-raised-button class="button-row" color="accent" routerLink="/listar-funcionarios">Listar Funcionários</button>
       <button mat-raised-button class="button-row" onclick="window.print()">Imprimir Ficha</button>
     </div>
-    <h3>Dados Gerais</h3>
+    <h1>Nome: {{funcionario?.nome}}</h1>
+    <h4>Dados Gerais</h4>
     <table class="info">
       <tr>
         <td>Nome</td>
         <td colspan="3">{{funcionario?.nome}}</td>
         <td>Data de Nascimento</td>
         <td>
-          {{funcionario?.nascimento}}
+          {{funcionario?.nascimento.seconds * 1000 | date: 'dd/MM/yyyy'}}
         </td>
       </tr>
       <tr>
@@ -43,7 +45,7 @@
           {{funcionario?.identidade}}
         </td>
         <td>Data de Expedição</td>
-        <td> {{funcionario?.expedicao}}
+        <td> {{funcionario?.expedicao.seconds * 1000 | date: 'dd/MM/yyyy'}}
         </td>
       </tr>
       <tr>
@@ -90,7 +92,7 @@
         </td>
       </tr>
     </table>
-    <h3>Endereço e Contato</h3>
+    <h4>Endereço e Contato</h4>
     <table class="info">
       <tr>
         <td>Endereço</td>
@@ -125,7 +127,7 @@
         </td>
       </tr>
     </table>
-    <h3>Dados do Funcionário</h3>
+    <h4>Dados do Funcionário</h4>
     <table class="info">
       <tr>
         <td>Matricula</td>
@@ -135,12 +137,12 @@
       <tr>
         <td>Admissão</td>
         <td colspan="5">
-          {{funcionario?.admissao}}</td>
+          {{funcionario?.admissao.seconds * 1000 | date: 'dd/MM/yyyy'}}</td>
       </tr>
       <tr *ngIf="funcionario.situacao === 'Inativo'">
         <td>Demissão</td>
         <td colspan="5">
-          {{funcionario?.demissao}}</td>
+          {{funcionario?.demissao.seconds * 1000 | date: 'dd/MM/yyyy'}}</td>
       </tr>
       <tr>
         <td>Setor</td>
@@ -180,10 +182,10 @@
         </td>
       </tr>
     </table>
-    <h3>Faltas e Atestados</h3>
+    <h4>Faltas e Atestados</h4>
     <app-add-falta></app-add-falta>
     <app-listar-faltas></app-listar-faltas>
-    <h3>Dependentes</h3>
+    <h4>Dependentes</h4>
     <app-add-dependente></app-add-dependente>
     <app-listar-dependentes></app-listar-dependentes>
   </div>

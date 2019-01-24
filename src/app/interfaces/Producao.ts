@@ -1,7 +1,7 @@
 export interface OrdemDeProducao {
     id?: string;
-    dataCadastro?: any;
-    ultimaEdicao?: any;
+    dataCadastro?: Date;
+    ultimaEdicao?: Date;
     fornecedor?: string;
     nf?: string;
     numero?: number;
@@ -10,24 +10,21 @@ export interface OrdemDeProducao {
     quantidade?: number;
     tempo?: number;
     valor?: number;
-    entrega?: any;
+    entrega?: Date;
     status?: string;
     producao?: number;
-    producaoTemp?: number;
     observacao?: string;
     ultimaProducao?: number;
-    ultimaPpm?: number;
-    ultimaFatura?: number;
 }
 
 export interface ProducaoDiaria {
     id?: string;
-    dataCadastro?: any;
-    data?: any;
-    quantidadeDePessoal?: number;
-    producaoDiaria?: number;
+    dataCadastro?: Date;
+    data?: Date;
     minutosDiarios?: number;
+    quantidadeDePessoal?: number;
     minutosPessoal?: number;
+    producaoDiaria?: number;
     minutosProducao?: number;
     eficiencia?: any;
     faturaDiaria?: number;

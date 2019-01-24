@@ -2,6 +2,10 @@ body {
   padding-top: 50px;
 }
 
-#navbar-title {
-  color: azure;
+.color-nav-item {
+  color: white;
+}
+
+.nav-edit {
+  background-color: #007c91;
 }

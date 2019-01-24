@@ -16,3 +16,10 @@
     display: none;
   }
 }
+
+.green {
+  background-color: #81c784;
+}
+table {
+  text-align: left !important;
+}
